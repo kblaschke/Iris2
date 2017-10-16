@@ -1,0 +1,169 @@
+diff --git a/lua/lib.beam.lua b/lua/lib.beam.lua
+index 6eafac6..11e5d1b 100644
+--- a/lua/lib.beam.lua
++++ b/lua/lib.beam.lua
+@@ -63,9 +63,9 @@ function BeamSingleLine (gfx,x1,y1,z1,x2,y2,z2,h1,h2,h3,h4,u1,u2,u3,u4,v1,v2,v3,
+ end
+ 
+ function BeamSingleLineStep (gfx,...)
+-	gfx:BeamAddPoint(unpack(arg))
++	gfx:BeamAddPoint(...)
+ 	local iLine = gfx:BeamAddLine()
+ 	arg[0] = iLine
+-	gfx:BeamAddPoint(unpack(arg))
++	gfx:BeamAddPoint(...)
+ end
+ 
+diff --git a/lua/lib.broadcast.lua b/lua/lib.broadcast.lua
+index 2bc0be4..5338a2b 100644
+--- a/lua/lib.broadcast.lua
++++ b/lua/lib.broadcast.lua
+@@ -9,7 +9,7 @@ gBroadcastSenderPrototype = {}
+ function NewBroadcastSender( ... )
+ 	local o = {}
+ 	ArrayOverwrite( o, gBroadcastSenderPrototype )
+-	o:init(unpack(arg))
++	o:init(...)
+ 	return o
+ end
+ 
+@@ -117,7 +117,7 @@ gBroadcastReceiverPrototype = {}
+ function NewBroadcastReceiver( ... )
+ 	local o = {}
+ 	ArrayOverwrite( o, gBroadcastReceiverPrototype )
+-	o:init(unpack(arg))
++	o:init(...)
+ 	return o
+ end
+ 
+diff --git a/lua/lib.listener.lua b/lua/lib.listener.lua
+index 34f0203..035b1c7 100644
+--- a/lua/lib.listener.lua
++++ b/lua/lib.listener.lua
+@@ -13,6 +13,7 @@ function RegisterListener (eventname,listenerfunc)
+ 	else
+ 		gListeners[eventname] = { [0]=listenerfunc, nextindex=1 } 
+ 	end
++	
+ 	return listenerfunc
+ end
+ 
+@@ -34,17 +35,20 @@ function NotifyListener (eventname,...)
+ 	
+ 	local arr = gListeners[eventname]
+ 	local i = 0
++	
++	--~ print("NotifyListener",eventname,"#",vardump2(gListeners[eventname]))
++	
+ 	gListenerIterationDepth = gListenerIterationDepth + 1
+ 	repeat 
+ 		local callback = arr[i] -- remove callback if it returns true
+ 		if (callback) then 
+-			local success,errormsg_or_result = lugrepcall(callback,unpack(arg))
++			local success,errormsg_or_result = lugrepcall(callback,...)
+ 			if (success) then
+ 				if (errormsg_or_result) then arr[i] = nil arr.bNeedsCompacting = true end 
+ 			else
+ 				local erroreventname = "lugre_error"
+ 				assert(eventname ~= erroreventname)
+-				NotifyListener(erroreventname,"pcall error in NotifyListener",eventname,unpack(arg),"\n",errormsg_or_result)
++				NotifyListener(erroreventname,"pcall error in NotifyListener",errormsg_or_result,"\n",...)
+ 			end
+ 		end
+ 		i = i+1
+diff --git a/lua/lib.netmessage.lua b/lua/lib.netmessage.lua
+index 6f5f6ef..bbc39cc 100644
+--- a/lua/lib.netmessage.lua
++++ b/lua/lib.netmessage.lua
+@@ -196,7 +196,7 @@ function SendNetMessage (con,msgtype,...)
+ 	if not con then return end
+ 	gSendFifo:Clear()
+ 	gSendFifo:PushUint8(msgtype)
+-	FPush(gSendFifo,gNetMessageParamFormat[msgtype],unpack(arg))
++	FPush(gSendFifo,gNetMessageParamFormat[msgtype],...)
+ 	--gSendFifo:HexDump()
+ 	con:Push(gSendFifo)
+ end
+diff --git a/lua/lib.tooltip.lua b/lua/lib.tooltip.lua
+index 3c50cba..2c9e186 100644
+--- a/lua/lib.tooltip.lua
++++ b/lua/lib.tooltip.lua
+@@ -54,7 +54,12 @@ function CreatePlainWidgetToolTip (widget,text,charh,backcol,textcol)
+ 	local x,y
+ 	if (widget.IsAlive and (not widget:IsAlive())) then return end
+ 	if (widget.GetDerivedPos) then 
+-			x,y = widget:GetDerivedPos() 
+-	else	x,y = widget.gfx:GetDerivedLeft(),widget.gfx:GetDerivedTop() end
++		x,y = widget:GetDerivedPos() 
++	elseif (widget and widget.gfx and widget.gfx:IsAlive())then
++		x,y = widget.gfx:GetDerivedLeft(),widget.gfx:GetDerivedTop()
++	else
++		x,y = 0,0
++	end
++	
+ 	return CreatePlainToolTip(x+(widget.tooltip_offx or 0),y+(widget.tooltip_offy or 0),text,charh,backcol,textcol, widget.stylesetname or "default")
+ end	
+diff --git a/lua/lib.util.lua b/lua/lib.util.lua
+index afe504e..48b7ef2 100644
+--- a/lua/lib.util.lua
++++ b/lua/lib.util.lua
+@@ -1,15 +1,15 @@
+---function printf(...) io.write(string.format("%d:",Client_GetTicks())..string.format(unpack(arg))) end
++--function printf(...) io.write(string.format("%d:",Client_GetTicks())..string.format(...)) end
+ -- protected call string fromatting, errors don't crash the program
+ function pformat(...) 
+-	local success,s = pcall(string.format,unpack(arg))
++	local success,s = pcall(string.format,...)
+ 	if (success) then return s end
+ 	s = "string.format error ("..s..") #"..strjoin(",",arg).."#"
+ 	print(s)
+ 	print(_TRACEBACK())
+ 	return s
+ end
+-function printf(...) io.write(pformat(unpack(arg))) end
+-function sprintf(...) return pformat(unpack(arg)) end
++function printf(...) io.write(pformat(...)) end
++function sprintf(...) return pformat(...) end
+ 
+ function beginswith (s,begin) return string.sub(s,1,string.len(begin)) == begin end
+ 
+@@ -166,7 +166,10 @@ end
+ 
+ 
+ -- get extended error info
+-function lugrepcall (fun,...) local myarg = arg return xpcall(function () return fun(unpack(myarg)) end,debug.traceback) end
++function lugrepcall (fun,...) 
++	local myarg = {...} 
++	return xpcall(function () return fun(unpack(myarg)) end,debug.traceback) 
++end
+ 
+ 
+ gDebugCategories = {} -- gDebugCategories.mycat = false to disable output
+@@ -179,7 +182,7 @@ function printdebug(category,...)
+ 			file:write("DEBUG["..category.."] "..s.."\n")
+ 			file:close()
+ 		else
+-			print("DEBUG["..category.."]",unpack(arg)) 
++			print("DEBUG["..category.."]",...) 
+ 		end
+ 	end
+ end
+diff --git a/lua/lugre.lua b/lua/lugre.lua
+index 739d30b..46d380d 100644
+--- a/lua/lugre.lua
++++ b/lua/lugre.lua
+@@ -1,3 +1,5 @@
++require("jit.opt").start()
++
+ gMyFrameCounter = 0
+ 
+ gFreeOldUnusedParticleSystemsTimeout = 10 * 1000
+@@ -66,7 +68,7 @@ function lugre_include_libs (basepath,lugrewidgetpath)
+ 	--dofile(libpath .. "lib.net.lua")
+ 	--dofile(libpath .. "lib.mousepick.lua")
+ 	
+-	RegisterListener("lugre_error",function (...) print("lugre_error",unpack(arg)) end)
++	RegisterListener("lugre_error",function (...) print("lugre_error",...) end)
+ 	
+ 	LoadWidgets(lugrewidgetpath)
+ 	

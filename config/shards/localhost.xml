@@ -1,0 +1,6 @@
+<table>
+    <number key="gLoginServerPort">2593</number>
+    <string key="gLoginname"></string>
+    <string key="gPassword"></string>
+    <string key="gLoginServerIP">localhost</string>
+</table>

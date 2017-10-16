@@ -1,0 +1,76 @@
+material diffuse_template
+{
+	technique lighting
+	{
+	    scheme lighting
+
+	    pass
+	    {
+            ambient  1 1 1
+            diffuse  0 0 0
+            specular 0 0 0 0
+            emissive 0 0 0
+
+            vertex_program_ref ambient_vs
+            {
+            }
+
+            fragment_program_ref ambient_ps
+            {
+            }
+
+            texture_unit ambient_tex
+            {
+            }
+	    }
+		pass
+		{
+		    max_lights 8
+			scene_blend add
+            iteration once_per_light
+
+            ambient  0 0 0
+            diffuse  1 1 1
+            specular 1 1 1 128
+
+            vertex_program_ref diffuse_vs
+            {
+            }
+
+            fragment_program_ref diffuse_ps
+            {
+            }
+
+			texture_unit diffuse_tex
+			{
+			}
+
+            texture_unit shadow_tex
+            {
+                content_type shadow
+                filtering anisotropic
+                max_anisotropy 16
+                tex_address_mode border
+                tex_border_colour 1 1 1
+            }
+		}
+	}
+
+    // this is the technique for the scheme "geom" that the SSAO
+    // compositor uses to render the geometry map
+	technique geom
+	{
+	    scheme geom
+
+	    pass
+	    {
+	        vertex_program_ref geom_vs
+	        {
+	        }
+
+	        fragment_program_ref geom_ps
+	        {
+	        }
+	    }
+	}
+}

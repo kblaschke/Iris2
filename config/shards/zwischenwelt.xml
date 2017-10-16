@@ -1,0 +1,23 @@
+<table>
+    <string key="gLoginname"></string>
+    <boolean key="gPolServer">false</boolean>
+    <number key="gServerSeed">4294967295</number>
+    <number key="gLoginServerPort">2593</number>
+    <string key="gPassword"></string>
+    <string key="gLoginServerIP">zwischenwelt.org</string>
+    <string key="gCustomArtFilterFile">iris.filter.lua</string>
+    <table key="gMaps" keytype="string">
+        <table key="0" keytype="number">
+            <string key="name">Trammel</string>
+            <number key="mapwidth">768</number>
+            <number key="mapheight">512</number>
+            <string key="skybox">cleansky</string>
+            <number key="fog_r">228</number>
+            <number key="fog_g">208</number>
+            <number key="fog_b">166</number>
+            <string key="mapfilename">_iris_online/map0.mul</string>
+            <string key="staidxfilename">_iris_online/staidx0.mul</string>
+            <string key="staticfilename">_iris_online/statics0.mul</string>
+        </table>
+    </table>
+</table>

@@ -1,0 +1,185 @@
+Iris2, Copyright (C) 2006 - 2011 Iris Team 
+__________________________________________
+
+Iris2 is a 2d/3d game client for Online Role Playing Game "Ultima Online" (tm)
+using the Ogre3D Engine.
+
+Iris Installation (Step 1-4):
+1. You need a legal copy of Ultima Online to use Iris2.
+   Supported Ultima Online expansions:
+	- Age of Shadows
+	- Samurai Empire and Gold Trial  (SE == Gold)
+	- Mondain's Legacy
+	- or later.
+
+2. Install and run Ultima Online and patch it to the newest Version.
+
+3. Run Iris2_Setup.exe
+
+3.1 Iris2 gets installed
+
+3.2 Visual Studio 2010 runtime gets installed during installation
+
+3.3 DirectX9 runtime gets installed or updated during installation via DirectX WebInstaller
+
+4. Fist run the updater.exe after installation
+
+== Iris on Linux ==
+
+for linux install see the file named INSTALL 
+
+== How to get Ultima Online data ==
+
+Get Ultima Online Mondain's Legacy :
+http://www.download.com/Ultima-Online-Mondain-s-Legacy-client/3000-7541_4-10432238.html
+http://games.mirrors.tds.net/pub/ea-games/uo/uoml_setup.exe
+http://www.fileplanet.com/156570/150000/fileinfo/Ultima-Online:-Mondain%5C's-Legacy-Client
+
+
+INSTALL SEE
+http://iris2.de/index.php/InstallationManual		(English)
+http://iris2.de/index.php/Installations_Anleitung	(deutsch)
+
+== controls ==
+arrow keys for moving the player
+u : walk to targetted position
+
+n	: toggle compass
+,&. : zoom compass
+
+mousebutton middle : rotate camera
+mousebutton left+right : rotate camera
+mousewheel up	: zoom camera
+mousewheel down : zoom camera
+
+return	: activate or send chatline (arrow keys UP, DOWN for last chatmessage)
+space	: run to and attack selected mobile
+q	: select neares mobile
+e	: select next mobile
+tab : toggle warmode
+l	: hold to show iris logo
+r	: say "vendor buy" (opens buymenus of nearby traders on most servers)
+c	: toggle cam mode (freefly,ego,3rdperson)
+x,z : zoom camera
+t	: toggle Stats
+k	: toggle Skills
+j	: toggle journal
+b	: toggle backpack
+p	: toggle paperdoll
+y	: toogle renderer 2D/3D
+v	: take a screenshot, saved to screenshots/iris*.jpg , where * is timestamp
+g	: repeat last chatline
+h	: repeat last doubleclick
+
+shift-click : simulates doubleclick (temporary, helpful for low framerates)
+
+f6 : in offline mode : teleport to position under mouse
+f10 : show dev tool
+f11 : fallbacktool : developer tool used for removing static-part-fallbacks (billboards) for which a model exists (important for combos)
+Left Shift + f12 : take highresscreenshot
+
+freefly cam mode :
+-hold left mouse button to look around
+-use w,a,s,d,r,f to move cam
+
+to set macros and edit keybinds, edit data/mymacros.lua
+
+= predefined Macros =
+Ctrl + F5 : Start Recording PacketVideo
+Ctrl + F6 : End Recording PacketVideo
+Ctrl + F7 : Playback PacketVideo
+
+Ctrl + s : Open Status window
+Alt + c : Toggle between War/Peace modes
+Alt + p : Open Paperdoll
+Alt + k : Open Skills
+Alt + j : Open Journal
+Alt + i : Open Backpack
+Alt + x : Quit
+
+Alt + b : *bow*
+Alt + s : *salute*
+
+== command line switches (mainly for debug) ==
+-c 								: shows console window under win32
+-g path/to/grannyfile.grn		: prints granny dump
+-gb path/to/grannyfile.grn		: prints granny bone info
+-so 							: start in offline mode
+-jt 							: journal-test (in mainmenu)
+-mt 							: macrolist-test (in mainmenu)
+-sd								: start in debug mode
+-sd -artid ARTID_INT			: start in debug mode and show the given artid (artid is given as int number not hex!!!!)
+-co GSHARDNAME					: connect to GSHARDNAME (only possible if shard profile has a username and password) 
+
+==== granny debug mode commandline param ====
+
+param1 : modelid
+param2 : animid
+
+==== static debug mode  commandline param ====
+
+param1 : modelid
+param2 : hueid
+
+=== debug mode ===
+a : show first model and anim 
+
+f : param1 -= 1 (one model back)
+g : param1 += 1 (one model ffw)
+j : param2 -= 1 (one anim back)
+k : param2 += 1 (one anim ffw)
+
+f1 : switch to Granny debug mode
+f2 : param1 -= 64
+f3 : param1 += 64
+f4 : param1 -= 4096
+f5 : param1 += 4096
+f6 : open art-overview
+
+t : svn rm GetModelPath(gDebugMenuModelIndex)  BE CAREFUL WITH THAT; must be activated in code
+b : note current model in debugstatic.txt
+holding shift while changing param1 makes skips all meshes with MORE than 6 triangles and empty meshes 
+	(this is for searching and destroying billboard-like models)
+	(careful with big changes to param1, will be slow, skipping tries to load all meshes in between)
+
+===  data ===
+there is currently no license for the models and textures in the data dir,
+they have been created by the iris1 team for use with the iris project.
+We are in the progress of replacing them with new art that will be made available 
+under a creative commons license like by-nc-sa or something similar.
+
+=== svn-ignore ===
+to filter out uninteresting files under linux call "svn propset svn:ignore -F svnignore . include/ src/"
+
+to compile under win you probably need the servicepack 1 for visual studio
+
+=== code documentation ===
+doxygen syntax has been used, might be interesting to generate documentation from the sourcecode
+
+http://www.zwischenwelt.org/~hagish/irisdocs/doc/html/
+
+== developer ==
+Florian Fischer (SiENcE) 
+Robert Noll (Ghoulsblade) 
+Sebastian Dorda (hagish)
+
+=== other projects of the iris-ogre-developers ===
+http://schattenkind.net/		- Our mainsite (a Game developer association)
+http://www.iris2.de/			- Iris Website
+http://sfz.sourceforge.net/		- Stressfree Zone (space game)
+http://lugre.sourceforge.net	- Lugre	(middelware for Ogre3D, Lua, Fmod, OpenAL, ODE, Boost)
+
+=== environment vars ===
+
+for additional compile options : IRIS_COMPILE_FLAGS , added to premake package.buildoptions
+
+=== license ===
+see COPYING for license of our code
+
+further take a look here:
+FMOD Sound System, copyright © Firelight Technologies Pty, Ltd., 1994-2007.
+http://www.fmod.org/index.php/sales
+
+Ogre3D see: README.ogre
+
+TinyXML see: README.tinyxml

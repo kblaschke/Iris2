@@ -1,0 +1,145 @@
+
+RegisterListener("mouse_right_down",		function () MouseStartWalkOnPressed() end)
+
+--- call this if right (walk on press) button is pressed the first time
+function MouseStartWalkOnPressed ()
+	gCurrentRenderer:MousePick()
+
+	-- dont start rightclickwalking if mobile or widget was clicked
+	if GetWidgetUnderMouse() or (gMousePickFoundHit and gMousePickFoundHit.hittype == kMousePickHitType_Mobile) then 
+		-- TODO : enable...
+	end
+end
+
+
+	if gKeyPressed[key_mouse2] and gMouseWalkOnPressed then 
+		-- walk to the cursor
+		--[[if (gNextAutoWalkCheck < gMyTicks) then
+			SetAutoWalkTarget()
+			gNextAutoWalkCheck = gMyTicks + gNextAutoWalkCheckTimeout
+			print("AUTOWALK")
+		end]]--
+		
+		if (not GetWidgetUnderMouse()) then
+			-- walk into the direction of the cursor
+			local mx, my = GetMousePos()
+			local vw, vh = GetViewportSize()
+		
+			local Phi = gCurrentRenderer:TranslateOsiWalkAngle(math.atan2( my-vh/2.0, mx-vw/2.0 ) / gfDeg2Rad + 450.0)
+			while (Phi < 0) do Phi = Phi + 360 end
+			while (Phi >= 360) do Phi = Phi - 360 end
+		
+			if (mx < vw/4.0) or (mx > vw*3.0/4.0) or (my < vh/4.0) or (my > vh*3.0/4.0) then
+				gWalk_Running = true
+			else
+				gWalk_Running = false
+			end
+		
+			local Direction
+			if ( Phi >= 337.5 ) or ( Phi < 22.5 ) then
+                        	Direction = 7
+	                elseif ( Phi >= 22.5 ) and ( Phi < 67.5 ) then
+        	                Direction = 0
+                	elseif ( Phi >= 67.5 ) and ( Phi < 112.5 ) then
+                        	Direction = 1
+	                elseif ( Phi >= 112.5 ) and ( Phi < 157.5 ) then
+        	        	Direction = 2
+                	elseif ( Phi >= 157.5 ) and ( Phi < 202.5 ) then
+                        	Direction = 3
+	                elseif ( Phi >= 202.5 ) and ( Phi < 247.5 ) then
+        	                Direction = 4
+                	elseif ( Phi >= 247.5 ) and ( Phi < 292.5 ) then
+                        	Direction = 5
+	                else --if ( Phi >= 292.5 ) and ( Phi < 237.5 ) then
+        	                Direction = 6
+			end
+		
+			Request_Movement( Direction, gWalk_Running )
+		end
+	end
+	
+	
+--[[
+request-move
+--The values in the enumeration run from 0 (Northeast) to 7 (North).
+--When used with a packet (such as the Request Movement packet),
+--the flag 0x80 will indicate that the character is running in the specified direction.
+
+The current value in a sequence of numbers ranging from 0 to 255.
+The value increases each time the player successfully moves.
+After this value reaches 255, it gets reset to 1 when the player next moves and the sequence is repeated.
+
+Note: sequence number starts at 0, after a reset.  However, if 255 is reached, the next seq # is 1, not 0.
+
+Fastwalk prevention notes: each 0x02 pops the top element from fastwalk key stack. 
+(0xbf sub1 init. fastwalk stack, 0xbf sub2 pushes an element to stack)
+If stack is empty key value is 0. (à never set keys to 0 in 0xbf sub 1/2)
+Because client sometimes sends bursts of 0x02's DON'T check for a certain top stack value.
+The only safe way to detect fastwalk: push a key after EACH x021, 0x22, (=send 0xbf sub 2) check in 0x02 for stack emptyness.
+If empty -> fastwalk alert.
+Note that actual key values are irrelevant. (just don't use 0)
+Of course without perfect 0x02/0x21/0x22 synch (serverside) it's useless to use fastwalk detection.
+
+Last but not least: fastwalk detection adds 9 bytes per step and player !
+
+The fastwalk prevention key is a number sent by the server into the MOVE ACK, 
+telling the client the next key to be used. 
+This is used to prevent exploits where client sends "MOVE" message without waitting for the MOVE ACK from the server. 
+Note: Sequence number starts at 0, is reseted when reaches 255. However, when it's reseted,
+the next sequence number is 1, not 0. 
+
+0x0A : edit world : for god client, also enables hackmove
+0x32  	Hack Mover  : informs godclient wether hackmove is on?
+0x37  	Move Object : This packet is sent by the god client to move a dynamic object.
+0x62  	Move Static  This packet is sent by the god client to move a static item.
+0x8E  	Move Character  ?? unknown
+0x38  	Follow Move ?? unknown
+
+-- from varans walk code
+MovingSpeed = 370; -- walk normal  (milliseconds to text packet)
+RunningSpeed = 175; -- run normal
+MountMovingSpeed = 185; -- walk mount
+MountRunningSpeed = 95; -- run mount
+MovingStepsPerField = 5;
+RunningStepsPerField = 2;
+MountMovingStepsPerField = 2;
+MountRunningStepsPerField = 1;
+MaxZClimb = 20;
+MaxZFall = 20;
+
+received lots of kPacket_Stamina 0xA3 : update stamina
+BYTE cmd
+BYTE[4] playerID
+BYTE[2] maxStamina
+BYTE[2] currentStamina
+]]--
+
+
+	--[[
+	gPacketHandler.kPacket_Accept_Movement_Resync_Request
+	if last byte is status : 
+	Normal = 0x00,
+	Unknown = 0x01,
+	CanAlterPaperdoll = 0x02,
+	Poisoned = 0x04,
+	GoldenHealth = 0x08,
+	Unknown2 = 0x10,
+	Unknown3 = 0x20,
+	WarMode = 0x40,
+	Hidden = 0x80
+	The CanAlterPaperdoll flag, if enabled in an Open Paperdoll packet (0x88), 
+	allows the player receiving the packet to add and remove the target's clothing.
+
+	if last byte is notoriety :
+	Note: notoriety: 0 = invalid/across server line
+	1 = innocent (blue)
+	2 = guilded/ally (green)
+	3 = attackable but not criminal (gray)
+	4 = criminal (gray)
+	5 = enemy (orange)
+	6 = murderer (red)
+	7 = Invulnerable/OSI Admin (translucent (like 0x4000 hue))
+	]]--
+	
+	
+	

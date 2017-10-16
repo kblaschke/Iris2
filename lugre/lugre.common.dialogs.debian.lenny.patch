@@ -1,0 +1,16 @@
+Index: src/lugre_commondialog.cpp
+===================================================================
+--- src/lugre_commondialog.cpp	(revisione 739)
++++ src/lugre_commondialog.cpp	(copia locale)
+@@ -235,9 +235,9 @@
+ 	// create and show dialog
+ 	
+ 	wxFileDialog* openFileDialog =
+-		new wxFileDialog( mainWindow, wxString::FromAscii(sTitle.c_str()), _(""), _(""), 
++		new wxFileDialog( mainWindow, wxString::FromAscii(sTitle.c_str()), wxString(), wxString(), 
+ 			wxString::FromAscii(sFilePattern.c_str()), 
+-			open ? (wxOPEN | wxFD_FILE_MUST_EXIST) : (wxSAVE | wxFD_OVERWRITE_PROMPT), 
++			open ? (wxOPEN | wxFILE_MUST_EXIST) : (wxSAVE | wxOVERWRITE_PROMPT), 
+ 			wxDefaultPosition);
+  
+  	bool ok = false;

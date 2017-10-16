@@ -1,0 +1,11 @@
+<table>
+    <string key="gLoginname"></string>
+    <boolean key="gPolServer">false</boolean>
+    <boolean key="gAlternateProtocolStart">true</boolean>
+    <boolean key="gAltenatePostLoginHandling">true</boolean>
+    <boolean key="gDisableAosToolTipRequests">true</boolean>
+    <number key="gServerSeed">4294967295</number>
+    <number key="gLoginServerPort">2593</number>
+    <string key="gPassword"></string>
+    <string key="gLoginServerIP">login.uogamers.com</string>
+</table>

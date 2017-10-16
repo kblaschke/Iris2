@@ -1,0 +1,31 @@
+import diffuse_template from "diffuse.material"
+
+material white : diffuse_template
+{
+    set_texture_alias ambient_tex white.bmp
+    set_texture_alias diffuse_tex white.bmp
+}
+
+material orange : diffuse_template
+{
+    set_texture_alias ambient_tex orange.bmp
+    set_texture_alias diffuse_tex orange.bmp
+}
+
+material red : diffuse_template
+{
+    set_texture_alias ambient_tex red.bmp
+    set_texture_alias diffuse_tex red.bmp
+}
+
+material blue : diffuse_template
+{
+    set_texture_alias ambient_tex blue.bmp
+    set_texture_alias diffuse_tex blue.bmp
+}
+
+material green : diffuse_template
+{
+    set_texture_alias ambient_tex green.bmp
+    set_texture_alias diffuse_tex green.bmp
+}

@@ -1,0 +1,261 @@
+
+	
+	
+	
+	--local bPlayerIsInWarMode = gActWarmode == gWarmode_Combat -- TODO : only player, not any mobile
+
+mount bodyid = 120  0x78      16047 = 0x00003eaf   1073742298=0x400001da  2147500545=0x80004201
+
+120	2	200	FFFFFFFF	0	1.5	1.5	1.5	equines_horse_war_minax
+lib.mount.lua gMountTranslate[0x3EAF] = 0x78 // war horse (blood red)
+
+mount   0       hue=0,unknown1=0,mobile=table: 0xb352298,mobile_serial=4,artid=16047,serial=1073742298,layer=25,        
+msName=hold,miUnknown=0,miHue=0,miQuantity=0,miFlags=2147500545,miWeight=-1,miAnimID=0,miQuality=0,miUnknown2=0,miUnknown1=0,miUnknown3=0,miHeight=3,
+N
+
+MOUNT   204     16034
+
+
+--print("equip",item.artid,tiledata and tiledata.miAnimID or 0)
+--local mountbodyid = tiledata and tiledata.miAnimID  -- this fails, animid is often zero, seems to be hardcoded
+
+
+
+--print("mountbodyid",mountbodyid,mount.artid)
+--print("mount",mountbodyid,vardump2(mount),tiledata and vardump2(tiledata))
+
+function MyGrannyTest_PreOgre ()
+	if (true) then return end
+
+	--local modelid = 73 -- 1700 -- 430 3006 400 
+	--local modelinfo = GetGrannyModelInfo(modelid)
+	--if (not modelinfo) then return end
+	--print("MyGrannyTest",vardump2(modelinfo))
+	--modelpath = "data/H_Female_LLegs_V2_LOD2.grn"
+	--local modelpath = CorrectGrannyPath(gGrannyTypeDirs[modelinfo.typeid] .. modelinfo.modelname .. "_LOD2.grn")
+	--local modelpath = CorrectGrannyPath("others/h_male_uarms_v2_lod2.grn")
+	--local modelpath = CorrectGrannyPath("Humans/H_Male_Walk_01.grn")
+	--local modelpath = CorrectGrannyPath("Others/H_Male_Boots_Thigh_V2_LOD2.grn")
+	--local modelpath = CorrectGrannyPath("Others/H_Male_UArms_V2_LOD2.grn")
+	local modelpath = CorrectGrannyPath("Humans/H_Male_Attackbow_01.grn")
+	--local modelpath = CorrectGrannyPath("Others/H_Male_FArms_V2_LOD2.grn")
+	--local modelpath = CorrectGrannyPath("Others/H_Male_Head_V2_LOD2.grn")
+	--print("modelpath",modelpath)
+	local mygranny = LoadGranny(modelpath)
+	if (not mygranny) then return end
+	--CheckGrannyModel(mygranny)
+
+	mygranny:Print()
+	
+	local paramgroups = GetGrannyParamGroups(mygranny)
+	for id,arr in pairs(paramgroups) do for k,v in pairs(arr) do print("param",id,k,v) end end
+	
+	Crash()
+end
+
+function MyGrannyTest_Ogre () end
+
+--[[
+TODO ! remove suffix after V2 ??
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_Faces_V2.tga ../uo/Models/Maps/UT256_H_Male_Faces_V2_m.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_Clothing_5_V2.tga ../uo/Models/Maps/UT256_Clothing_5_V2_m.tga 8ffe3e8 1147
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_Clothing_1_V2.tga ../uo/Models/Maps/UT256_Clothing_1_V2_m.tga 8ffe3e8 1728
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_Clothing_6_V2.tga ../uo/Models/Maps/UT256_Clothing_6_V2_m.tga 8ffe3e8 1652
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_Armor_Dragon_V2.tga ../uo/Models/Maps/UT256_Armor_Dragon_V2_m.tga 8ffe3e8 1147
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_Clothing_1_V2.tga ../uo/Models/Maps/UT256_Clothing_1_V2_m.tga 8ffe3e8 0
+hue 83f4
+hue 83f4
+hue 83f4
+hue 83f4
+hue 83f4
+hue 83f4
+hue 83f4
+hue 83f4
+hue 83f4 -- bodyskin hue in different id range ?
+hue 047b
+hue 06c0
+hue 0674
+hue 047b
+hue 0000
+]]--
+
+
+--[[
+interesting models
+3006	uo/Models/Others/H_Female_LLegs_V2_LOD2.grn has 2 submeshes, the last one is empty
+3007    uo/Models/Others/H_Female_Neck_V2_LOD2.grn WARNING ! unexpected sumeshcount        2
+
+430     uo/Models/Others/H_Male_Pants_Short_V2_LOD2.grn
+	irisogre: grannyparser.cpp:92: virtual void cGrannyVisitor::VisitChunk(int, int, int, const char*, int): 
+		Assertion `iSize == sizeof(GrannyTexInfo)' failed.  : 0xCA5E0303
+			a=16280 b=12 		(embedded texture ?!?)
+			width=256 height=256 depth=4
+			
+1700    uo/Models/Others/H_Female_Hair_Short_V2_LOD2.grn
+	irisogre: grannyloader_i2.cpp:188: virtual void cGrannyLoader_i2::VisitTexPolygonsBig(const GrannyTexturePolyBig*, int):
+		Assertion `mSubMeshes.size() > miNextTexPolySubmesh' failed.
+
+422 (not found)
+	
+			
+455		4	0	FFFFFFFF	0	1.3	1.3	1.3	H_Male_Kilt_XL_V2
+2525	4	0	FFFFFFFF	0	1.3	1.3	1.3	H_Male_Kilt_V2
+
+1455	4	0	FFFFFFFF	0	1.3	1.3	1.3	H_Female_Kilt_XL_V2
+3525	4	0	FFFFFFFF	0	1.3	1.3	1.3	H_Female_Kilt_V2
+
+female : mobile flag 0x02 ?
+##  Female wearables for polyorph from female to male    								
+924	4	0	FFE0A050	0	1.3	1.3	1.3	H_Male_Armor_Female_Bustier_Leather_V2
+]]--
+
+--[[
+TODO ! remove suffix after V2 ??
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_V2g.tga ../uo/models/Maps/UT256_H_Male_V2G_M.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_H_Male_Faces_V2.tga ../uo/Models/Maps/UT256_H_Male_Faces_V2_m.tga 8ffe3e8 33780
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_Clothing_5_V2.tga ../uo/Models/Maps/UT256_Clothing_5_V2_m.tga 8ffe3e8 1147
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_Clothing_1_V2.tga ../uo/Models/Maps/UT256_Clothing_1_V2_m.tga 8ffe3e8 1728
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_Clothing_6_V2.tga ../uo/Models/Maps/UT256_Clothing_6_V2_m.tga 8ffe3e8 1652
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_Armor_Dragon_V2.tga ../uo/Models/Maps/UT256_Armor_Dragon_V2_m.tga 8ffe3e8 1147
+l_CreateGrannyHuedTexture ../uo/Models/Maps/UT256_Clothing_1_V2.tga ../uo/Models/Maps/UT256_Clothing_1_V2_m.tga 8ffe3e8 0
+hue 83f4
+hue 83f4
+hue 83f4
+hue 83f4
+hue 83f4
+hue 83f4
+hue 83f4
+hue 83f4
+hue 83f4 -- bodyskin hue in different id range ?
+hue 047b
+hue 06c0
+hue 0674
+hue 047b
+hue 0000
+]]--
+--[[
+Human.lst
+
+# core animation set - 0-34	
+0	Walk_01
+1	WalkStaff_01
+2	Run_01
+3	RunStaff_01
+4	Idle_01
+5	Idle_01
+6	Fidget_Yawn_Stretch_01
+7	CombatIdle1H_01
+8	CombatIdle1H_01
+9	AttackSlash1H_01
+10	AttackPierce1H_01
+11	AttackBash1H_01
+12	AttackBash2H_01
+13	AttackSlash2H_01
+14	AttackPierce2H_01
+15	CombatAdvance_1H_01
+16	Spell1
+17	Spell2
+18	AttackBow_01
+19	AttackCrossbow_01
+20	GetHit_Fr_Hi_01
+21	Die_Hard_Fwd_01
+22	Die_Hard_Back_01
+30	Block_Shield_Hard_01
+31	Punch_Punch_Jab_01
+32	Bow_Lesser_01
+33	Salute_Armed1h_01
+34	Ingest_Eat_01
+
+# sitting animations - 35	
+35	sit_idle_01
+
+# extra core anims - 36
+#36	Idle_Hold_01
+36	Items_Idle_01
+37	Items_Idle2_01
+38	WalkStaff2_01
+39	RunStaff2_01
+]]--
+
+--[[
+-- one mount anim set :
+23	Horse_Walk_01
+24	Horse_Run_01
+25	Horse_Idle_01
+26	Horse_Attack1H_SlashRight_01
+27	Horse_AttackBow_01
+28	Horse_AttackCrossbow_01
+29	Horse_Attack2H_SlashRight_01
+
+-- known mounted anim sets
+23	Horse_Walk_01
+43	Llama_Walk_01
+53	Ostard_Walk_01
+63  Kirin_Walk_01
+73  Seahorse_Walk_01
+83  Ridgeback_Walk_01
+93  Giant_Beetle_Walk_01
+]]--
+
+
+
+--[[
+old anim descriptions
+--RunUO cmd: [animate 9 0 2 0 0 0	(animation, 0, repeats, 0, 0, 0)
+-- Animation IDs
+-- NOTE : the names and descriptions here are partially wrong, the animation names from uo/Models/Human.lst are better
+gAnimation_walk				= hex2num("0x00")	--walk
+gAnimation_walkrighthand	= hex2num("0x01")	--walk with right hand weapon in front
+gAnimation_run				= hex2num("0x02")	--run
+gAnimation_runrighthand		= hex2num("0x03")	--run with right hand weapon in front
+gAnimation_idle				= hex2num("0x04")	--idle	(standing)
+gAnimation_idlewarmode		= hex2num("0x05")	--warmode idle
+gAnimation_hands_on_hips	= hex2num("0x06")	--gähnen
+gAnimation_attack_stance1	= hex2num("0x07")	--attack (short)
+gAnimation_attack_stance2	= hex2num("0x08")	--attack (longer)
+gAnimation_swing1			= hex2num("0x09") 	--(attack with knife)
+gAnimation_stab1			= hex2num("0x0a") 	--(underhanded)
+gAnimation_swing2			= hex2num("0x0b")	--(attack overhand with sword)
+gAnimation_swing3 			= hex2num("0x0c")	--(attack with sword over and side)
+gAnimation_swing4			= hex2num("0x0d")	--(attack with sword side)
+gAnimation_stab2			= hex2num("0x0e")	--(stab with point of sword)
+gAnimation_ready_stance		= hex2num("0x0f")
+gAnimation_magic			= hex2num("0x10")	--(butter churn!)
+gAnimation_hands_over_head	= hex2num("0x11")	--(balerina)
+gAnimation_bow_shot			= hex2num("0x12")
+gAnimation_crossbow			= hex2num("0x13")
+gAnimation_get_hit1			= hex2num("0x14")
+gAnimation_die_forwards		= hex2num("0x15")	--fall down and die (forwards)
+gAnimation_die_backwards1	= hex2num("0x16")	--fall down and die (backwards)
+gAnimation_die_backwards2	= hex2num("0x17")	--=same!?
+gAnimation_horse_ride_idle	= hex2num("0x18")	--riding idle
+gAnimation_horse_riding		= hex2num("0x19")	--riding
+gAnimation_horse_swing		= hex2num("0x1a")	--swing sword from horse	- crash in iris1
+gAnimation_horse_bow		= hex2num("0x1b")	--normal bow shot on horse	- crash in iris1
+gAnimation_crossbow_shot	= hex2num("0x1c")
+gAnimation_horse_shield		= hex2num("0x1d")	--block #2 on horse with shield
+gAnimation_shield			= hex2num("0x1e")	--block on ground with shield
+gAnimation_get_hit2			= hex2num("0x1f")	--swing, and get hit in middle
+gAnimation_bow_deep			= hex2num("0x20")
+gAnimation_salute			= hex2num("0x21")
+gAnimation_scratch_head		= hex2num("0x22")
+gAnimation_one_foot			= hex2num("0x23")	--1 foot forward for 2 secs
+gAnimation_other_foot		= hex2num("0x24")	-- = same
+]]--
+
+

@@ -1,0 +1,173 @@
+Index: include/lugre_ogrewrapper.h
+===================================================================
+--- include/lugre_ogrewrapper.h	(revision 383)
++++ include/lugre_ogrewrapper.h	(working copy)
+@@ -109,6 +109,9 @@
+ 	
+ 	// utils
+ 	static std::string 		GetUniqueName	();
++	static std::string 		GetUniqueName	(std::string type);
++	static std::string 		GetUniqueName	(const char *type);
++
+ 	int		GetViewportHeight	(); ///< in pixels
+ 	int		GetViewportWidth	(); ///< in pixels
+ 	
+Index: src/lugre_spritelist.cpp
+===================================================================
+--- src/lugre_spritelist.cpp	(revision 383)
++++ src/lugre_spritelist.cpp	(working copy)
+@@ -257,6 +257,7 @@
+ 
+ 
+ cRenderManager2D::cRenderManager2D	(Ogre::SceneManager* pSceneMan,Ogre::uint8 iQueueGroupID) : mpSceneMan(pSceneMan), miQueueGroupID(iQueueGroupID) {
++	// TODO64BIT verliert genauigkeit
+ 	if (SPRITELIST_DEBUG) printf("cRenderManager2D::cRenderManager2D mpSceneMan=%x\n",(int)mpSceneMan);
+ 	if (mpSceneMan) mpSceneMan->addRenderQueueListener(this);
+ }
+Index: src/lugre_scripting.ogre.cpp
+===================================================================
+--- src/lugre_scripting.ogre.cpp	(revision 383)
++++ src/lugre_scripting.ogre.cpp	(working copy)
+@@ -28,6 +28,7 @@
+ #include <OgreTextAreaOverlayElement.h>
+ #include <OgreMeshSerializer.h>
+ #include <OgreCompositorManager.h>
++#include <OgreTexture.h>
+ #include "lugre_luaxml.h"
+ #include "lugre_meshshape.h"
+ #include "lugre_meshbuffer.h"
+@@ -190,6 +191,19 @@
+ 	return 1;
+ }
+ 
++/// for lua : void OgreSetFullscreen (fullscreen, w, h)
++static int l_OgreSetFullscreen (lua_State *L) { PROFILE
++	bool fullscreen = luaL_checkbool(L,1);
++	int w = luaL_checkint(L,2);
++	int h = luaL_checkint(L,3);
++	
++	// TODO not working under linux: see http://www.ogre3d.org/phpBB2/viewtopic.php?t=39492
++	
++	if(cOgreWrapper::GetSingleton().mWindow){
++		cOgreWrapper::GetSingleton().mWindow->setFullscreen(fullscreen, w, h);
++	}
++}
++
+ /// for lua :	ang,x,y,z 	  QuaternionToAngleAxis	(qw,qx,qy,qz)
+ static int					l_QuaternionToAngleAxis (lua_State *L) { PROFILE
+ 	static	Ogre::Radian	angle;
+@@ -1058,7 +1072,14 @@
+ 
+ /// for lua :   string  GetUniqueName  ()
+ static int l_GetUniqueName	(lua_State *L) { PROFILE  // TODO : move to seperate file ?
+-	std::string n = cOgreWrapper::GetSingleton().GetUniqueName();
++	std::string n;
++
++	if(lua_gettop(L) >= 1 && !lua_isnil(L,1)){
++		n = cOgreWrapper::GetSingleton().GetUniqueName(luaL_checkstring(L,1));
++	} else {
++		n = cOgreWrapper::GetSingleton().GetUniqueName();
++	}
++
+ 	lua_pushstring(L,n.c_str());
+ 	return 1;
+ }
+@@ -1209,6 +1230,25 @@
+ 	return 0;
+ }
+ 
++// lua :  int	  SceneMgr_GetShadowTextureCount	()
++static int 		l_OgreGetShadowTextureCount	(lua_State *L) { PROFILE 
++	lua_pushnumber(L,cOgreWrapper::GetSingleton().mSceneMgr->getShadowTextureCount());
++	return 1;
++}
++
++/*
++// lua :  texture	  SceneMgr_GetShadowTexture	(index)
++static int 		l_OgreGetShadowTexture	(lua_State *L) { PROFILE 
++	Ogre::TexturePtr p = cOgreWrapper::GetSingleton().mSceneMgr->getShadowTexture(luaL_checkint(L,1));
++	if(!p.isNull()){
++		cLuaBind<cTexture>::CreateUData(L,p.get());
++		return 1;
++	} else {
++		return 0;
++	}
++}
++*/
++
+ /// iPixelFormat can be constants like PF_X8R8G8B8, available in lua after calling OgrePixelFormatList() (e.g. in main)
+ /// lua :  void	  SceneMgr_SetShadowTextureSettings	(iSize,iCount,iPixelFormat)
+ static int 		l_OgreSetShadowTextureSettings	(lua_State *L) { PROFILE 
+@@ -1217,6 +1257,12 @@
+ }
+ 
+ 
++
++static int l_OgreUnloadAll (lua_State *L) { PROFILE
++	Ogre::MeshManager::getSingleton().reloadAll();
++	return 0;
++}
++
+ /*
+ static int l_Client_SetMouseSensitivity (lua_State *L) { PROFILE
+ 	cClient* client = cGame::GetSingleton().mpClient;
+@@ -1279,6 +1325,8 @@
+ 
+ void	RegisterLua_Ogre_GlobalFunctions	(lua_State*	L) {
+ 	lua_register(L,"InitOgre",									l_InitOgre);
++	lua_register(L,"OgreSetFullscreen",							l_OgreSetFullscreen);
++	
+ 	lua_register(L,"ExportOgreFont",							l_ExportOgreFont);
+ 	lua_register(L,"CloneMesh",									l_CloneMesh);
+ 	lua_register(L,"MeshBuildEdgeList",							l_MeshBuildEdgeList);
+@@ -1364,6 +1412,7 @@
+ 	lua_register(L,"OgreAmbientLight",				l_OgreAmbientLight);
+ 	lua_register(L,"Light_SetCastShadows",			l_Light_SetCastShadows);
+ 	lua_register(L,"OgreSetShadowTextureCount",		l_OgreSetShadowTextureCount);
++	lua_register(L,"OgreGetShadowTextureCount",		l_OgreGetShadowTextureCount);
+ 	lua_register(L,"OgreSetShadowTextureSettings",	l_OgreSetShadowTextureSettings);
+ 	// some statistic stuff
+ 	lua_register(L,"OgreLastFPS",					l_OgreLastFPS);
+@@ -1377,6 +1426,9 @@
+ 	lua_register(L,"OgreRenderSystemIsOpenGL",		l_OgreRenderSystemIsOpenGL);
+ 	lua_register(L,"OgreAddResLoc",					l_OgreAddResLoc);
+ 	lua_register(L,"OgreInitResLocs",				l_OgreInitResLocs);
++
++	lua_register(L,"OgreUnloadAll",					l_OgreUnloadAll);
++	
+ 	lua_register(L,"RayAABBQuery",				l_RayAABBQuery);
+ 	lua_register(L,"FreeOldUnusedParticleSystems",				l_FreeOldUnusedParticleSystems);
+ 	
+Index: src/lugre_ogrewrapper.cpp
+===================================================================
+--- src/lugre_ogrewrapper.cpp	(revision 383)
++++ src/lugre_ogrewrapper.cpp	(working copy)
+@@ -800,11 +800,26 @@
+ 	mWindow->writeContentsToFile(strprintf("%s%s_%03d.png",szPrefix,mybuf,cShell::GetTicks() % 1000));
+ }
+ 
+-std::string		cOgreWrapper::GetUniqueName () {PROFILE
++template<typename T> inline std::string stringify	(const T& x) {
++   std::ostringstream o;
++   o << x;
++   return o.str();
++}
++
++std::string		cOgreWrapper::GetUniqueName (std::string type) {PROFILE
+ 	static int iLastName = 0;
+-	return strprintf("n%04d",++iLastName);
++	return std::string("n_")+type+"_"+stringify(++iLastName);
++	//strprintf("n_%s_%04d",++iLastName);
+ }
+ 
++std::string		cOgreWrapper::GetUniqueName () {PROFILE
++	return GetUniqueName("unknown");
++}
++
++std::string		cOgreWrapper::GetUniqueName (const char *type) {PROFILE
++	return GetUniqueName(std::string(type));
++}
++
+ /// avoid using OverlayManager::getSingleton().GetViewportHeight() as it is one frame late
+ int		cOgreWrapper::GetViewportHeight	() { return mViewport->getActualHeight(); }
+ int		cOgreWrapper::GetViewportWidth	() { return mViewport->getActualWidth(); }

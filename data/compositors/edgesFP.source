@@ -1,0 +1,45 @@
+sampler RT;
+
+// One pixel offset
+float offset;
+
+
+
+
+
+
+float4 main( float2 TexCoord : TEXCOORD0): COLOR0
+{
+   float4 Color    ;
+   float4 base; 
+
+   float off = 1.0 / offset;
+
+   // Sample neighbor pixels
+   float s00 = tex2D(RT, TexCoord + float2(-off, -off));
+   float s01 = tex2D(RT, TexCoord + float2( 0,   -off));
+   float s02 = tex2D(RT, TexCoord + float2( off, -off));
+
+   float s10 = tex2D(RT, TexCoord + float2(-off,  0));
+   float s12 = tex2D(RT, TexCoord + float2( off,  0));
+
+   float s20 = tex2D(RT, TexCoord + float2(-off,  off));
+   float s21 = tex2D(RT, TexCoord + float2( 0,    off));
+   float s22 = tex2D(RT, TexCoord + float2( off,  off));
+
+   // Sobel filter in X direction
+   float sobelX = s00 + 2 * s10 + s20 - s02 - 2 * s12 - s22;
+   // Sobel filter in Y direction
+   float sobelY = s00 + 2 * s01 + s02 - s20 - 2 * s21 - s22;
+
+   // Find edge, skip sqrt() to improve performance ...
+   float edgeSqr = (sobelX * sobelX + sobelY * sobelY);
+
+   // ... and threshold against a squared value instead.
+   Color = 1-(edgeSqr );
+   base=tex2D(RT,TexCoord );
+ 
+  
+   return base*Color*1.3;
+}
+

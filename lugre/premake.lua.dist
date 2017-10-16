@@ -1,0 +1,334 @@
+-- this is a premake sample script to compile lugre/linux programs. 
+-- you need to put this file next to the lugre directory.
+
+gName = "lugregame"
+
+project.name = gName
+-- project.path = "build"
+-- project.bindir = "."
+
+-- default values
+gbExtraWarnings = false
+gbOptimize = true
+gOisPlatform = "linux"
+gbUseLuaJit = false
+gbUseSystemOis = false -- static compile ois segfaultet at mKeyboard->setTextTranslation, ois-headers in system incompatible ?
+gbNo64BitChecks = false
+gbDisableProfiling = true
+gbDisableAssert = false
+gLugreUseOpenAlSoft = false
+
+gbUseSoundOpenAl = true
+gbUseSoundFmod = true
+		
+-- ------------------------------------------------------------------
+-- ------------------------------------------------------------------
+
+-- removes the nil entries from tables like {nil,nil,a,b,c}, that were created using (bBlaEnabled and "Bla" or nil)
+function RemoveNilsFromArray (arr) 
+	local res = {}
+	for k,v in pairs(arr) do -- pairs lists all non-nil entries, whereas ipairs only lists the first n numerical ones until a nil is encountered
+		table.insert(res,v) 
+	end
+	return res
+end
+
+-- build options
+addoption("wall","very verbose report, most warnings enabled")
+addoption("nooptimize","don't use optmize compile flags")
+addoption("no64bitcheck","don't do any 64bit checks")
+addoption("usesystemois","use the systemwide installed ois not the one included in lugre")
+addoption("oisplatform","select OIS platform (linux,mac,SDL,win32, default:linux), only valid if lugre ois is used")
+addoption("noassert","don't use asserts")
+addoption("openalsoft","use openal-soft instead of openal")
+addoption("useluajit","use luajit (just in time compiler)")
+
+if (options["wall"]) then gbExtraWarnings = true print(">>> extra warnings enabled") end
+if (options["nooptimize"]) then gbOptimize = false print(">>> optimization disabled") end
+if (options["usesystemois"]) then gbUseSystemOis = true print(">>> using systemwide installed ois") end
+if (options["oisplatform"]) then gOisPlatform = options["oisplatform"] print(">>> using oisplatform: "..gOisPlatform) end
+if (options["no64bitcheck"]) then gbNo64BitChecks = true print(">>> disabled 64bit checks") end
+if (options["noassert"]) then gbDisableAssert = true print(">>> disabled asserts (NDEBUG)") end
+if (options["openalsoft"]) then gbUseSoundOpenAl = true gLugreUseOpenAlSoft = true print(">>> enabled openal-soft") end
+if (options["useluajit"]) then gbUseLuaJit = true print(">>> enabled luajit") end
+
+gLugreDir = "lugre"
+if (io.open("mylugre/lua/lugre.lua")) then print(">>> using mylugre dir override") gLugreDir = "mylugre" end
+
+if gbUseLuaJit then
+	gLugreLuaSrcDir = "./"..gLugreDir.."/lib/LuaJIT-1.1.5/"
+	if not os.fileexists(gLugreLuaSrcDir.."/jit/opt.lua") then
+		print("===============================================")
+		print("ERROR luajit is enabled but there is no jit directory next to your executable")
+		print("perhaps you forgot to link it? perhaps enter: cd bin && ln -s ../"..gLugreLuaSrcDir.."/jit")
+		print("===============================================")
+	end
+else
+	gLugreLuaSrcDir = "./"..gLugreDir.."/lib/lua-5.1.4/"
+end
+
+gLugreOisDir = "./"..gLugreDir.."/baselib/ois/"
+gLugreOpenAlSoftDir = "./"..gLugreDir.."/baselib/openal-soft-1.6.372/"
+
+-- list of easy libs inclusion (located in lugre/lib/NAME). this will add lugre/lib/NAME/src and lugre/lib/NAME/include.
+gLugreLibList = {
+	-- "cadune_tree",
+	-- "paged_geometry",
+	"md5",
+	-- "caelum",
+}
+
+-- returns true if the needle(value) is in the haystack-array
+function in_array (needle,haystack) 
+	assert(type(haystack) == "table")
+	for k,v in pairs(haystack) do if (v == needle) then return true end end
+	return false
+end
+
+-- display used sound system
+nosound = true
+if gbUseSoundOpenAl then print("sound: openal") nosound = false end
+if gbUseSoundFmod then print("sound: fmod") nosound = false end
+if nosound then print("sound: NO sound system defined") end
+
+-- lugre dependencies, ie. ogre
+function AddLugreDeps(package)
+	package.defines = RemoveNilsFromArray({  
+		gbUseSoundOpenAl and "USE_OPENAL" or "DUMMY_NONIL", -- no nil entries allowed
+		gbUseSoundFmod and "USE_FMOD" or "DUMMY_NONIL", -- no nil entries allowed
+		"MAIN_WORKING_DIR=\\\".\\\"",
+		"LUA_DIR=\\\"lua\\\"",
+		"LUGRE_DIR=\\\""..gLugreDir.."\\\"",
+		"DATA_DIR=\\\"data\\\"",
+ 		"ENABLE_THREADS",
+		gbDisableProfiling and "DISABLE_PROFILING" or "DUMMY_NONIL", -- no nil entries allowed
+		gbDisableAssert and "NDEBUG" or "DUMMY_NONIL", -- no nil entries allowed
+		"LUA_USE_POSIX", -- execute shellcommands
+	})
+
+	addpkgconfiglib(package, "OGRE")
+	if gbUseSystemOis then addpkgconfiglib(package, "OIS") end
+	
+	if in_array("USE_OPENAL", package.defines) then
+		-- openal	
+		addpkgconfiglib(package, "vorbisfile")
+	
+		if gLugreUseOpenAlSoft then
+			print("using openal-soft included in lugre instead of system openal")
+			if os.fileexists(gLugreOpenAlSoftDir.."/libopenal.so") then
+				tinsert (package.libpaths, gLugreOpenAlSoftDir)
+				tinsert (package.links, "openal")
+				tinsert (package.includepaths, gLugreOpenAlSoftDir.."/include")
+			else
+				print("===============================================")
+				print("ERROR openal-soft is enabled but there is no lib file")
+				print("perhaps you forgot to build it? to build enter: cd "..gLugreOpenAlSoftDir.." && cmake . && make")
+				print("===============================================")
+			end
+		else
+			addpkgconfiglib(package, "openal")
+		end
+	end
+	
+	if in_array("USE_FMOD", package.defines) then
+		-- fmod	
+		addcustomlib(package, "fmodex")
+	end
+		
+	addcustomconfiglib(package, "wx-config")
+
+	addcustomlib(package,"boost_thread")
+	addcustomlib(package,"boost_thread-mt")	
+
+	table.insert(package.links, "lugrelua")
+
+	-- add lib defines like USE_LUGRE_LIB_NAME
+	for k,v in pairs(gLugreLibList) do 
+		table.insert(package.defines, "USE_LUGRE_LIB_"..string.upper(v))
+		if gbDisableAssert then table.insert(package.defines, "NDEBUG") end
+		table.insert(package.links, v.."lib")
+		table.insert(package.includepaths, gLugreDir.."/lib/"..v.."/include/") 
+	end
+end
+
+function AddLugreLibDeps(package)
+	addpkgconfiglib(package, "OGRE")
+	package.defines = RemoveNilsFromArray({ 
+		gbDisableProfiling and "DISABLE_PROFILING" or "DUMMY_NONIL", -- no nil entries allowed
+		gbDisableAssert and "NDEBUG" or "DUMMY_NONIL", -- no nil entries allowed
+	})
+end
+
+-- add libs the linux way
+function addpkgconfiglib (package, libname)
+    if options.target == "gnu" and os.execute("pkg-config --exists "..libname) == 0 then
+      tinsert (package.buildoptions, "`pkg-config --cflags "..libname.."`")
+      tinsert (package.linkoptions, "`pkg-config --libs "..libname.."`")
+    else
+      tinsert (package.linkoptions, findlib (libname))
+    end
+  end
+
+function addcustomconfiglib (package, configcommand)
+    if options.target == "gnu" and os.execute(configcommand.." --version") == 0 then
+      tinsert (package.buildoptions, "`"..configcommand.." --cflags`")
+      tinsert (package.linkoptions, "`"..configcommand.." --libs`")
+    else
+      -- TODO tinsert (package.linkoptions, findlib (libname))
+    end
+  end
+
+function addcustomlib (package, libname)
+	local path = os.findlib(libname)
+	local lbase = {
+		"/usr/local/lib/",
+		"/usr/lib/",
+	}
+	local ibase = {
+		"/usr/local/include/%s",
+		"/usr/include/%s",
+	}
+	
+	-- brute force try
+	if not path then
+		for k,v in pairs(lbase) do
+			local p = string.format(v, libname)
+			local b = p.."/lib"..libname
+			if os.fileexists(b..".so") or os.fileexists(b..".a") then
+				tinsert (package.libpaths, p)
+				tinsert (package.links, libname)		
+				path = p
+				print("custom lib "..libname.." found at "..p)
+				break
+			end
+		end
+	end
+	
+    if path then
+		tinsert (package.libpaths,path)
+		tinsert (package.links, libname)
+		-- search for include path
+		for k,v in pairs(ibase) do
+			local x = string.format(v, libname)
+			if os.direxists(x) then
+				tinsert (package.includepaths, x)
+				print("using "..x.." as "..libname.." include path")
+			end
+		end
+    end
+ end
+
+-- ---------------------------------------------
+-- LUA
+-- ---------------------------------------------
+
+package = newpackage()
+package.name = "lugrelua"
+package.kind = "lib"
+package.language = "c++"
+package.buildflags = RemoveNilsFromArray({ gbExtraWarnings and "extra-warnings" or nil, gbOptimize and "optimize" or nil, gbNo64BitChecks and "no-64bit-checks" or nil }) -- todo : nil entries could cause problems ? (stopping iteration)
+package.buildoptions = {}
+package.includepaths = { gLugreLuaSrcDir.."/src", gLugreLuaSrcDir.."/dynasm" } -- dynasm is used for luajit
+package.defines = RemoveNilsFromArray({ 
+	"LUA_USE_POSIX", -- execute shellcommands
+	gbDisableAssert and "NDEBUG" or "DUMMY_NONIL", -- no nil entries allowed
+})
+package.files = {
+  matchfiles(gLugreLuaSrcDir.."/src/*.h", gLugreLuaSrcDir.."/src/*.c", gLugreLuaSrcDir.."/dynasm/*.h"),	-- dynasm is used for luajit
+}
+
+-- ---------------------------------------------
+-- OIS
+-- ---------------------------------------------
+if not gbUseSystemOis then
+	print("OIS platform: "..gOisPlatform.." (lugre)")
+	gOisPlatform = "linux"
+	glOisIncludeList = {gLugreOisDir.."/includes", gLugreOisDir.."/includes/"..gOisPlatform}
+	package = newpackage()
+	package.name = "lugreois"
+	package.kind = "lib"
+	package.language = "c++"
+	package.buildflags = RemoveNilsFromArray({ gbExtraWarnings and "extra-warnings" or nil, gbOptimize and "optimize" or nil, gbNo64BitChecks and "no-64bit-checks" or nil }) -- todo : nil entries could cause problems ? (stopping iteration)
+	package.buildoptions = {}
+	package.includepaths = { unpack(glOisIncludeList or {}) } -- nil entries might cause problems, don't use  "bCondition and upack(arr)" , this has unexpected effects for more than one value
+	package.defines = RemoveNilsFromArray({ 
+		"LUA_USE_POSIX", -- execute shellcommands
+		gbDisableAssert and "NDEBUG" or "DUMMY_NONIL", -- no nil entries allowed
+	})
+	package.files = {
+	  matchfiles(gLugreOisDir.."/src/*.h", gLugreOisDir.."/src/*.cpp"),
+	  matchfiles(gLugreOisDir.."/src/"..gOisPlatform.."/*.h", gLugreOisDir.."/src/"..gOisPlatform.."/*.cpp"),
+	}
+else
+	print("OIS platform: system wide installed")
+end
+-- ---------------------------------------------
+-- LUGRE LIBS
+-- ---------------------------------------------
+
+-- add lib packages
+for k,v in pairs(gLugreLibList) do 
+	package = newpackage()
+	package.name = v.."lib"
+	package.kind = "lib"
+	package.language = "c++"
+	package.buildflags = RemoveNilsFromArray({ gbExtraWarnings and "extra-warnings" or nil, gbOptimize and "optimize" or nil, gbNo64BitChecks and "no-64bit-checks" or nil }) -- todo : nil entries could cause problems ? (stopping iteration)
+	package.buildoptions = {}
+	package.includepaths = { gLugreDir.."/include", gLugreLuaSrcDir.."/src/", gLugreLuaSrcDir.."/dynasm", "include", unpack(glOisIncludeList or {}) }  -- todo : nil entries could cause problems ? (stopping iteration) -- dynasm is used for luajit 
+	package.files = {
+		matchfiles(gLugreLuaSrcDir.."/src/*.h", gLugreLuaSrcDir.."/src/*.c", gLugreLuaSrcDir.."/dynasm/*.h"), -- dynasm is used for luajit 
+	}
+	table.insert(package.files, matchrecursive(gLugreDir.."/lib/"..v.."/include/*.h")) 
+	table.insert(package.files, matchrecursive(gLugreDir.."/lib/"..v.."/src/*.cpp")) 
+	table.insert(package.files, matchrecursive(gLugreDir.."/lib/"..v.."/src/*.c")) 
+	table.insert(package.includepaths, gLugreDir.."/lib/"..v.."/include/") 
+	AddLugreLibDeps(package)
+end
+
+-- ---------------------------------------------
+-- LUGRE
+-- ---------------------------------------------
+
+package = newpackage()
+package.name = "lugrelib"
+package.kind = "lib"
+package.language = "c++"
+package.links = {  }
+package.buildflags = RemoveNilsFromArray({ bExtraWarnings and "extra-warnings" or nil, gbOptimize and "optimize" or nil, gbNo64BitChecks and "no-64bit-checks" or nil }) -- todo : nil entries could cause problems ? (stopping iteration)
+package.buildoptions = {}
+package.includepaths = { gLugreLuaSrcDir.."/src", gLugreLuaSrcDir.."/dynasm/*.h", gLugreDir.."/include", unpack(glOisIncludeList or {}) } -- nil entries might cause problems, also don't use  (bCondition and upack(arr)) , this has unexpected effects for more than one value -- dynasm is used for luajit
+package.files = {
+  matchrecursive(gLugreDir.."/include/*.h", gLugreDir.."/src/*.cpp"),
+}
+AddLugreDeps(package)
+
+-- ---------------------------------------------
+-- MAIN
+-- ---------------------------------------------
+
+package = newpackage()
+package.name = gName
+package.kind = "exe"
+package.language = "c++"
+-- package.bindir = "bin"
+package.buildflags = RemoveNilsFromArray({ gbExtraWarnings and "extra-warnings" or nil, gbOptimize and "optimize" or nil, gbNo64BitChecks and "no-64bit-checks" or nil }) -- todo : nil entries could cause problems ? (stopping iteration)
+package.buildoptions = {}
+
+package.includepaths = { gLugreDir.."/include", gLugreLuaSrcDir.."/src/",gLugreLuaSrcDir.."/dynasm", "include" } -- dynasm is used for luajit
+-- add lib includes
+for k,v in pairs(gLugreLibList) do 
+	table.insert(package.includepaths, gLugreDir.."/lib/"..v.."/include/") 
+end
+
+package.linkoptions = {}
+package.links = RemoveNilsFromArray({ "lugrelib", "lugrelua", (not gbUseSystemOis) and "lugreois" or ""  }) -- nil entry could cause problems
+AddLugreDeps(package)
+
+package.files = {
+  matchrecursive(gLugreDir.."/include/*.h"),
+  matchrecursive("include/*.h", "src/*.cpp"),
+}
+
+package.excludes = {
+--  "dont_build_this.c"
+}

@@ -1,0 +1,171 @@
+struct VIn
+{
+    float4 p    : POSITION;
+    float3 n    : NORMAL;
+    float2 uv   : TEXCOORD0;
+};
+
+struct VOut
+{
+    float4 p    : POSITION;
+
+    float2 uv   : TEXCOORD0;
+    float4 wp   : TEXCOORD1;
+    float3 n    : TEXCOORD2;
+    float4 lp   : TEXCOORD3;
+    float3 sdir : TEXCOORD4;
+};
+
+struct PIn
+{
+    float2 uv   : TEXCOORD0;
+    float4 wp   : TEXCOORD1;
+    float3 n    : TEXCOORD2;
+    float4 lp   : TEXCOORD3;
+    float3 sdir : TEXCOORD4;
+};
+
+struct POut
+{
+    float4 c : COLOR;
+};
+
+VOut diffuse_vs(VIn IN,
+    uniform float4x4 wMat,
+    uniform float4x4 wvpMat,
+    uniform float4x4 tvpMat,
+    uniform float4 spotlightDir
+)
+{
+    VOut OUT;
+    OUT.wp = mul(wMat, IN.p);
+    OUT.p = mul(wvpMat, IN.p);
+
+    OUT.uv = IN.uv;
+
+    OUT.n = mul(wMat, float4(IN.n, 0)).xyz; // world-space normal
+    OUT.sdir = mul(wMat, spotlightDir).xyz; // spotlight dir in world space
+
+    OUT.lp = mul(tvpMat, OUT.wp);
+
+    return OUT;
+}
+
+float4 btex2D(sampler2D map, float2 uv, float radius, float steps)
+{
+    half stepSize = 2.0 * radius / steps;
+    uv.xy -= radius.xx;
+
+    float4 total = float4(0, 0, 0, 0);
+    for (int x = 0; x < steps; ++x)
+        for (int y = 0; y < steps; ++y)
+            total +=
+                tex2D(map, float2(uv.xy + float2(x * stepSize, y * stepSize)));
+
+    return total / (steps * steps);
+}
+
+float computeShadow(
+    sampler2D shadowMap, float4 shadowMapPos, float ourDepth)
+{
+    float2 suv = shadowMapPos.xy / shadowMapPos.w;
+
+    float2 moments = btex2D(shadowMap, suv, 0.01, 4).rg;
+    float litFactor = (ourDepth <= moments.x ? 1 : 0);
+
+    // standard variance shadow mapping code
+    float E_x2 = moments.y;
+    float Ex_2 = moments.x * moments.x;
+    float vsmEpsilon = 0.0001;
+    float variance = min(max(E_x2 - Ex_2, 0.0) + vsmEpsilon, 1.0);
+    float m_d = moments.x - ourDepth;
+    float p = variance / (variance + m_d * m_d);
+
+    return smoothstep(0.2, 1, max(litFactor, p));
+}
+
+// to put it simply, this does 100% per pixel diffuse lighting
+POut diffuse_ps(
+    PIn IN,
+    uniform float3 lightDif0,
+    uniform float4 lightPos0,
+    uniform float4 lightAtt0,
+    uniform float3 lightSpec0,
+    uniform float shininess,
+    uniform float3 camPos,
+    uniform float4 invSMSize,
+    uniform float4 spotlightParams,
+    uniform sampler2D dMap : TEXUNIT0,
+    uniform sampler2D shadowMap : TEXUNIT1)
+{
+    POut OUT;
+
+    // direction
+    float3 ld0 = normalize(lightPos0.xyz - (lightPos0.w * IN.wp.xyz));
+
+    half lightDist = length(lightPos0.xyz - IN.wp.xyz) / lightAtt0.r;
+    // attenuation
+    half ila = lightDist * lightDist; // quadratic falloff
+    half la = 1.0 - ila;
+
+    float3 normal = normalize(IN.n);
+
+    float3 diffuse = max(dot(ld0, normal), 0);
+
+    // calculate the spotlight effect
+    float spot = (spotlightParams.x == 1 &&
+        spotlightParams.y == 0 &&
+        spotlightParams.z == 0 &&
+        spotlightParams.w == 1 ? 1 : // if so, then it's not a spot light
+        saturate(
+            (dot(ld0, normalize(-IN.sdir)) - spotlightParams.y) /
+            (spotlightParams.x - spotlightParams.y)));
+
+    float3 camDir = normalize(camPos - IN.wp.xyz);
+    float3 halfVec = normalize(ld0 + camDir);
+    float3 specular = pow(max(dot(normal, halfVec), 0), shininess);
+
+    float4 diffuseTex = tex2D(dMap, IN.uv);
+    //float4 specTex = tex2D(sMap, IN.uv);
+
+    float3 diffuseContrib = (diffuse * lightDif0 * diffuseTex.rgb);
+    float3 specularContrib = (specular * lightSpec0);// * specTex.rgb);
+    float3 light0C = (diffuseContrib + specularContrib) * la * spot;
+
+    float3 shadow = computeShadow(
+        // pass in the shadow map
+        shadowMap,
+        // the calculated shadow position in the shadow map
+        IN.lp,
+        // distance to light, done just as in the caster shader
+        lightDist).xxx; // 3 components
+
+    OUT.c = float4(light0C * shadow, 1);
+    //OUT.c = float4(1, 0, 0, 1);
+
+    return OUT;
+}
+
+void geom_vs(
+    in float4 p : POSITION, in float3 n : NORMAL,
+    out float4 cp : POSITION,
+    out float4 vp : TEXCOORD0, // view-space position
+    out float4 vn : TEXCOORD1,
+    uniform float4x4 wvpMat, uniform float4x4 wvMat)
+{
+    cp = mul(wvpMat, p);
+    vp = mul(wvMat, p);
+    vn = mul(wvMat, float4(n, 0));
+}
+
+struct geomOut
+{
+    float4 c : COLOR0;
+};
+
+geomOut geom_ps(in float4 vp : TEXCOORD0, in float4 vn : TEXCOORD1, uniform float far)
+{
+    geomOut OUT;
+    OUT.c = float4(length(vp.xyz) / far, normalize(vn.xyz).xyz);
+    return OUT;
+}

@@ -1,0 +1,26 @@
+NOTE: This file is way out of date and should probably be removed
+
+Changes in version 0.2:
+- Fixed issues:
+  - Infinite far clipping distance
+  - Shader profiles
+  - Linux compatibility issue in the prerequisites
+  - Issue with RenderQueueGroups. Now it's possible to use Caelum AND Ogre's built-in sky elements (skydome, skybox, skyplane)
+	- Issue when cleaning up before actually stop rendering.
+- Added Eihort compatibility when using TextureUnitState::setTextureName()
+- Added the CaelumListener interface to receive notifications of Caelum process state for custom operations
+- Added CaelumSystem::registerAllToTarget() and unregisterAllToTarget() so that it's possible to register all the RenderTargetListeners in Caelum to a RenderTarget in a single step
+- Added manual sizing to sky domes and starfields.
+- Addon stabilisation goes into user testing phase.
+- Some bug-fixing and small refactoring.
+- Added a new sky colour model, based on sun elevation.
+- Fixed an issue with uninitialised pointers, in case you didn't create ALL the Caelum elements.
+- Moved the Caelum resource group inside the system. It's not needed anymore to be created outside Caelum.
+- Compositor works (under Linux; untested in Windows)
+- Resource group management (creation/destruction) can be done externally to Caelum (optionally)
+- CaelumSystem is now the only RenderTargetListener. It will take responsibility of notifying all the other elements if needed.
+- Added sun positioning models. Now the sun direction is calculated by them instead of a fixed algorithm in the Sun class.
+- Shutdown method, instead of the usual destructor. Does a cleanup in the right way. If you want the cleanup not to be deferred, use 'true' as the param.
+- Moved the Caelum resource group name into the CaelumSystem class.
+- The time functions have been refactored out of CaelumSystem, to the UniversalClock class. To access its instance, call CaelumSystem::getUniversalClock().
+- Premake is now a requirement to build automatically the project scripts. You can still ignore this requirement by creating them manually, but will require extra work from you.

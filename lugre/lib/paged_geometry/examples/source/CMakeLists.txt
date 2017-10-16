@@ -1,0 +1,20 @@
+INCLUDE_DIRECTORIES(../../include)
+set(CMAKE_LIBRARY_PATH ../../source)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DOGRE_PLUGINDIR=\"${OGRE_LIBDIR}/OGRE/\"")
+
+add_executable(../bin/release/Example1 Example1.cpp)
+add_executable(../bin/release/Example2 Example2.cpp)
+add_executable(../bin/release/Example3 Example3.cpp)
+add_executable(../bin/release/Example4 Example4.cpp)
+add_executable(../bin/release/Example5 Example5.cpp)
+add_executable(../bin/release/Example6 Example6.cpp)
+add_executable(../bin/release/Example7 Example7.cpp)
+
+target_link_libraries (../bin/release/Example1 PagedGeometry)
+target_link_libraries (../bin/release/Example2 PagedGeometry)
+target_link_libraries (../bin/release/Example3 PagedGeometry)
+target_link_libraries (../bin/release/Example4 PagedGeometry)
+target_link_libraries (../bin/release/Example5 PagedGeometry)
+target_link_libraries (../bin/release/Example6 PagedGeometry)
+target_link_libraries (../bin/release/Example7 PagedGeometry)

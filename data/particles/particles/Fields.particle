@@ -1,0 +1,209 @@
+
+particle_system ParalyzeField
+{
+	quota	50
+	material	Particles/FlarePointSprite
+	particle_width	4
+	particle_height	4
+	cull_each	true
+	renderer	billboard
+	sorted	true
+	local_space	true
+	iteration_interval	0
+	nonvisible_update_timeout	0
+	billboard_type	point
+	billboard_origin	center
+	billboard_rotation_type	texcoord
+	common_up_vector	0 1 0
+	point_rendering	false
+	accurate_facing	true
+
+	emitter Cylinder
+	{
+		angle	0
+		colour	1 0.501961 0.752941 1
+		colour_range_start	1 0.501961 0.752941 1
+		colour_range_end	1 0 0.627451 1
+		direction	0 1 0
+		emission_rate	15
+		position	0 5 0
+		velocity	0
+		velocity_min	0
+		velocity_max	0
+		time_to_live	5
+		time_to_live_min	5
+		time_to_live_max	5
+		duration	1
+		duration_min	1
+		duration_max	1
+		repeat_delay	0
+		repeat_delay_min	0
+		repeat_delay_max	0
+		width	10
+		height	10
+		depth	1
+	}
+}
+
+
+particle_system PoisonField
+{
+	quota	50
+	material	Particles/Flare
+	particle_width	4
+	particle_height	4
+	cull_each	true
+	renderer	billboard
+	sorted	true
+	local_space	true
+	iteration_interval	0
+	nonvisible_update_timeout	0
+	billboard_type	oriented_common
+	billboard_origin	center
+	billboard_rotation_type	texcoord
+	common_direction	0 1 0
+	common_up_vector	0 1 0
+	point_rendering	false
+	accurate_facing	true
+
+	emitter Box
+	{
+		angle	0
+		colour	0 0.501961 1 1
+		colour_range_start	0 0.501961 1 1
+		colour_range_end	0 0.25098 0 1
+		direction	0 1 0
+		emission_rate	15
+		position	0 5 0
+		velocity	0
+		velocity_min	0
+		velocity_max	0
+		time_to_live	5
+		time_to_live_min	5
+		time_to_live_max	5
+		duration	1
+		duration_min	1
+		duration_max	1
+		repeat_delay	0
+		repeat_delay_min	0
+		repeat_delay_max	0
+		width	10
+		height	10
+		depth	1
+	}
+}
+
+
+particle_system FireField
+{
+	quota	50
+	material	Particles/explosion
+	particle_width	4
+	particle_height	4
+	cull_each	true
+	renderer	billboard
+	sorted	true
+	local_space	true
+	iteration_interval	0
+	nonvisible_update_timeout	0
+	billboard_type	point
+	billboard_origin	center
+	billboard_rotation_type	texcoord
+	common_up_vector	1 0 0
+	point_rendering	false
+	accurate_facing	true
+
+	emitter Box
+	{
+		angle	0
+		colour	1 1 1 1
+		colour_range_start	1 1 1 1
+		colour_range_end	1 0.501961 0 1
+		direction	0 1 0
+		emission_rate	12
+		position	0 5 0
+		velocity	0
+		velocity_min	0
+		velocity_max	0
+		time_to_live	5
+		time_to_live_min	5
+		time_to_live_max	5
+		duration	1
+		duration_min	1
+		duration_max	1
+		repeat_delay	0
+		repeat_delay_min	0
+		repeat_delay_max	0
+		width	10
+		height	10
+		depth	1
+	}
+}
+
+
+particle_system Moongate
+{
+	quota	100
+	material	Particles/FlarePointSprite
+	particle_width	1
+	particle_height	1
+	cull_each	false
+	renderer	billboard
+	sorted	false
+	local_space	false
+	iteration_interval	0
+	nonvisible_update_timeout	0
+	billboard_type	point
+	billboard_origin	center
+	billboard_rotation_type	texcoord
+	common_up_vector	0 1 0
+	point_rendering	false
+	accurate_facing	false
+
+	emitter Point
+	{
+		angle	180
+		colour	0 0 1 1
+		colour_range_start	0 0 1 1
+		colour_range_end	0.501961 0 1 1
+		direction	0 -1 0
+		emission_rate	10
+		position	0 0 0
+		velocity	1
+		velocity_min	1
+		velocity_max	1
+		time_to_live	3
+		time_to_live_min	3
+		time_to_live_max	3
+		duration	0
+		duration_min	0
+		duration_max	0
+		repeat_delay	0
+		repeat_delay_min	0
+		repeat_delay_max	0
+	}
+
+	emitter Point
+	{
+		angle	180
+		colour	1 1 1 1
+		colour_range_start	1 1 1 1
+		colour_range_end	1 0 0.501961 1
+		direction	0 -1 0
+		emission_rate	10
+		position	0 0 0
+		velocity	0.2
+		velocity_min	0.2
+		velocity_max	0.5
+		time_to_live	1
+		time_to_live_min	1
+		time_to_live_max	1
+		duration	0
+		duration_min	0
+		duration_max	0
+		repeat_delay	0
+		repeat_delay_min	0
+		repeat_delay_max	0
+	}
+}
+

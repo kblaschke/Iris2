@@ -1,0 +1,95 @@
+Index: include/lugre_SortedOverlayContainer.h
+===================================================================
+--- include/lugre_SortedOverlayContainer.h	(revision 382)
++++ include/lugre_SortedOverlayContainer.h	(working copy)
+@@ -60,7 +60,7 @@
+ 	virtual void removeChild(const Ogre::String& name);
+ 	
+ 	/** Overridden from OverlayElement. */
+-	virtual void _notifyZOrder(Ogre::ushort newZOrder);
++	virtual Ogre::ushort _notifyZOrder(Ogre::ushort newZOrder);
+ 	
+ 	/** See OverlayElement. */
+ 	virtual const Ogre::String& getTypeName(void) const;
+Index: include/lugre_fastbatch.h
+===================================================================
+--- include/lugre_fastbatch.h	(revision 382)
++++ include/lugre_fastbatch.h	(working copy)
+@@ -94,7 +94,8 @@
+ 	virtual const Ogre::AxisAlignedBox&	getBoundingBox			(void) const { return mBounds; }
+ 	Ogre::Real							getBoundingRadius		(void) const { return mfBoundRad; }
+ 	virtual const Ogre::String&			getMovableType			(void) const;
+-		
++	virtual void visitRenderables	(Renderable::Visitor* visitor, bool debugRenderables = false);
++	
+ 	// implementation details
+ 	private :
+ 	class cSubBatch;
+Index: src/lugre_SortedOverlayContainer.cpp
+===================================================================
+--- src/lugre_SortedOverlayContainer.cpp	(revision 382)
++++ src/lugre_SortedOverlayContainer.cpp	(working copy)
+@@ -112,7 +112,7 @@
+ }
+ 
+ //---------------------------------------------------------------------
+-void cSortedOverlayContainer::_notifyZOrder(Ogre::ushort newZOrder)
++Ogre::ushort cSortedOverlayContainer::_notifyZOrder(Ogre::ushort newZOrder)
+ {
+ 	mZOrder = newZOrder;
+ 	cColourClipPaneOverlay::_notifyZOrder(mZOrder);
+Index: src/lugre_ogrewrapper.cpp
+===================================================================
+--- src/lugre_ogrewrapper.cpp	(revision 382)
++++ src/lugre_ogrewrapper.cpp	(working copy)
+@@ -550,7 +550,8 @@
+ 	//printf("\n\n Ogre Viewport-Init Successful\n\n");
+ 	
+ 	
+-	if (0) { // mbRttHack
++	/*
++		// mbRttHack
+ 		// render to texture hack, required for hagish's weird gfx-setup only =)
+ 		RenderTexture* rttTex = mRoot->getRenderSystem()->createRenderTexture( "RttTex", 512, 512, TEX_TYPE_2D, PF_R8G8B8 );
+ 		Viewport* vp = rttTex->addViewport( mCamera );
+@@ -559,7 +560,7 @@
+ 		vp->setBackgroundColour( ColourValue::Black );
+ 		
+ 		//printf("\n\n Ogre RTT-HACK-Init Successful\n\n");
+-	}
++	*/
+ 	
+ 	if (bWinDebug) printf("windebug safepoint 5\n"); 
+ 	// Set default mipmap level (NB some APIs ignore this)
+Index: src/lugre_gfx3D.cpp
+===================================================================
+--- src/lugre_gfx3D.cpp	(revision 382)
++++ src/lugre_gfx3D.cpp	(working copy)
+@@ -597,7 +597,7 @@
+ 
+ void	cGfx3D::SetPosition		(const Vector3& vPos)		{ PROFILE if (mpSceneNode) mpSceneNode->setPosition(vPos); }
+ void	cGfx3D::SetScale		(const Vector3& vScale)		{  PROFILE if (mpSceneNode) mpSceneNode->setScale(vScale); }
+-void	cGfx3D::SetNormaliseNormals	(const bool bNormalise)	{  PROFILE if (mpEntity) mpEntity->setNormaliseNormals(bNormalise); }
++void	cGfx3D::SetNormaliseNormals	(const bool bNormalise)	{  PROFILE /* if (mpEntity) TODO removed in ogresvn mpEntity->setNormaliseNormals(bNormalise); */ }
+ void	cGfx3D::SetOrientation	(const Quaternion& qRot)	{ PROFILE if (mpSceneNode) mpSceneNode->setOrientation(qRot); }
+ void	cGfx3D::SetVisible		(const bool bVisible)		{ PROFILE if (mpSceneNode) mpSceneNode->setVisible(bVisible); }
+ void	cGfx3D::SetCastShadows		(const bool bCastShadows) { PROFILE 
+Index: src/lugre_fastbatch.cpp
+===================================================================
+--- src/lugre_fastbatch.cpp	(revision 382)
++++ src/lugre_fastbatch.cpp	(working copy)
+@@ -122,6 +122,14 @@
+ 
+ const Ogre::String&		cFastBatch::getMovableType	(void) const { static Ogre::String t = "LugreFastBatch"; return t; }
+ 
++void cFastBatch::visitRenderables	(Renderable::Visitor* visitor, bool debugRenderables ){
++	if (isVisible()) {
++		for (tSubBatchMapIterator itor=mSubBatches.begin();itor!=mSubBatches.end();++itor) {
++			visitor->visit( (*itor).second, 0, debugRenderables); 
++		}
++	}
++}
++
+ // ***** ***** ***** ***** ***** cSubBatch
+ 
+ 

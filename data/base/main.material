@@ -1,0 +1,547 @@
+//###########################################
+// TEMPLATES
+//###########################################
+
+material guibasemat
+{
+	technique
+	{
+		pass
+		{
+			ambient  1.0 1.0 1.0 1.0
+			specular 0.0 0.0 0.0 1.0
+			
+			// ambient vertexcolour
+			// diffuse vertexcolour
+			
+			cull_hardware none
+			cull_software none
+
+			scene_blend alpha_blend
+			
+			lighting off
+			depth_write off
+			depth_check off
+			
+			// alpha_rejection greater_equal 255
+
+			texture_unit
+			{
+				filtering point point none
+				tex_address_mode clamp
+				
+				//texture guibase.png 2d 0
+				//colour_op_ex modulate src_texture src_diffuse 
+				//alpha_op_ex  source1 src_texture src_texture
+			}
+		}
+	}
+}
+
+material guibasemat_plaincolor
+{
+	technique
+	{
+		pass
+		{
+			ambient  1.0 1.0 1.0 1.0
+			specular 0.0 0.0 0.0 1.0
+			
+			// ambient vertexcolour
+			// diffuse vertexcolour
+			
+			cull_hardware none
+			cull_software none
+
+			scene_blend alpha_blend
+			
+			// lighting off
+			depth_write off
+			depth_check off
+		}
+	}
+}
+
+// GUI BASE TEMPLATE
+material guibase
+{
+	technique
+	{
+		pass
+		{
+			ambient  1.0 1.0 1.0 1.0
+			specular 0.0 0.0 0.0 1.0
+			
+			cull_hardware none
+			cull_software none
+
+			scene_blend alpha_blend
+			
+			lighting off
+			depth_write off
+
+			texture_unit
+			{
+				texture guibase.png 2d 0
+				tex_address_mode clamp
+				filtering none
+			}
+		}
+	}
+}
+
+// TEMPMAP BASE TEMPLATE
+material tempmapbase
+{
+	technique
+	{
+		pass
+		{
+			ambient 1 1 1 1
+			specular 0 0 0 1
+			
+			cull_hardware none
+			cull_software none
+			
+			lighting off
+			//depth_write off
+			//depth_check off
+
+			texture_unit
+			{
+				texture guibase.png
+				tex_address_mode border
+				tex_border_colour 0.0 0.22 0.32
+				filtering none
+			}
+		}
+	}
+}
+
+// --------------- THIS IS THE END OF BASE MATERIALS ----------------------
+
+// material to show a simple 3D health bar
+material mobile/3d_healthbar : guibase
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				filtering anisotropic
+				max_anisotropy 8
+				texture bar.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material mobile/aura_base : guibase
+{
+	technique
+	{
+		pass
+		{
+			depth_bias 16
+
+			texture_unit
+			{
+				filtering anisotropic
+				max_anisotropy 8
+				texture aura2.png alpha
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material tracking_arrow : guibase
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				filtering anisotropic
+				max_anisotropy 8
+				texture trackarrow.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material mapdot : guibase
+{
+	technique
+	{
+		pass
+		{
+			depth_check off
+
+			texture_unit
+			{
+				texture mapdot.png 2d 0
+			}
+		}
+	}
+}
+
+material compassframe_static : guibase
+{
+	technique
+	{
+		pass
+		{
+			depth_check off
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture compassframe_static.png 2d 0
+			}
+		}
+	}
+}
+material compassframe_zoomin : guibase
+{
+	technique
+	{
+		pass
+		{
+			depth_check off
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture compassframe_zoomin.png 2d 0
+			}
+		}
+	}
+}
+material compassframe_zoomout : guibase
+{
+	technique
+	{
+		pass
+		{
+			depth_check off
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture compassframe_zoomout.png 2d 0
+			}
+		}
+	}
+}
+
+material compassframe_rot : guibase
+{
+	technique
+	{
+		pass
+		{
+			depth_check off
+
+			texture_unit
+			{
+				texture compassframe_rot.png 2d 0
+			}
+		}
+	}
+}
+
+material compassframe_mask : guibase
+{
+	technique
+	{
+		pass
+		{
+			depth_check off
+
+			texture_unit
+			{
+				texture compassframe_mask.png 2d 0
+			}
+		}
+	}
+}
+
+material irislogo : guibase
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture irislogo256x256bw.png 2d 0
+			}
+		}
+	}
+}
+
+material rtt_base : guibase
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				filtering anisotropic 
+				max_anisotropy 8
+				texture guibase.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+// ------------------- non standard materials -------------------
+
+// ART-FALLBACK
+material art_fallback
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1.0 1.0 1.0
+			diffuse 1.0 1.0 1.0
+			
+			cull_hardware none
+			cull_software none
+			scene_blend alpha_blend
+			alpha_rejection greater_equal 255
+			
+			texture_unit arttex
+			{
+				texture art_fallback.png 2d 0
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material fallbackbox
+{
+	technique
+	{
+		pass
+		{
+			lighting on
+			ambient 1.0 1.0 1.0
+			diffuse 1.0 1.0 1.0
+			
+			cull_hardware anticlockwise
+		
+			texture_unit arttex
+			{
+				texture art_fallback.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material debug_grid_3D
+{
+	technique
+	{
+		pass
+		{
+			ambient 1 1 1 1
+			specular 0 0 0 1
+
+			cull_hardware none
+			cull_software none
+
+			lighting off
+		}
+	}
+}
+			
+// don't use in 2d elements (deactivates depthwrite)
+material boundingboxmat
+{
+	technique
+	{
+		pass
+		{
+			//lighting off
+			
+			ambient 1.0 1.0 1.0
+			diffuse 1.0 1.0 1.0
+		}
+	}
+}
+
+// this automatically gets depth_write turned off when used in gui, so don't use as 3d texture, also not as boundingbox
+material hudUnknown
+{
+	technique
+	{
+		pass
+		{
+			//lighting off
+			
+			ambient 1.0 1.0 1.0
+			diffuse 1.0 1.0 1.0
+		}
+	}
+}
+
+material ghoulgreen
+{
+	technique
+	{
+		pass
+		{
+			//lighting off
+			
+			ambient 0.0 0.1 0.0
+			diffuse 0.0 1.0 0.0
+		}
+	}
+}
+
+material matDebugBoundingBox
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 0.0 0.0 0.0
+			diffuse 1.0 1.0 1.0
+			cull_hardware none
+			cull_software none
+		}
+	}
+}
+
+
+material ghoulgreentrans
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 1.0 0.0
+			diffuse 0.0 1.0 0.0
+			
+			scene_blend add
+			depth_write off
+		}
+	}
+}
+
+material plaincolor_base
+{
+	technique
+	{
+		pass
+		{
+			lighting on
+			ambient 1.0 1.0 1.0
+			diffuse 1.0 1.0 1.0
+		}
+	}
+}
+
+material renderer2dbillboard
+{
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+
+			scene_blend alpha_blend
+			// alpha_rejection less 128
+			alpha_rejection greater 128
+			lighting off
+			ambient 1.0 1.0 1.0 1.0
+			diffuse 1.0 1.0 1.0 1.0
+		}
+	}
+}
+
+material staticfallbackatlas
+{
+	receive_shadows off
+	
+	technique
+	{
+		pass
+		{
+			lighting on
+			ambient 1.0 1.0 1.0
+			diffuse 1.0 1.0 1.0
+
+			cull_hardware none
+			cull_software none
+
+			scene_blend alpha_blend
+			// alpha_rejection less 128
+			alpha_rejection greater 128
+		}
+	}
+}
+
+material tilefreewalk_markerbase
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			cull_hardware none
+			cull_software none
+			
+			ambient 1.0 1.0 1.0
+			diffuse 1.0 1.0 1.0
+		}
+	}
+}
+
+
+
+
+material Water2D
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend  
+			ambient 1.0 1.0 1.0 1.0
+			specular 0 0 0 1.0
+
+			texture_unit
+			{
+				//texture water.jpg 
+				texture watertrans.png 
+				// watertrans.png
+				tex_address_mode wrap
+				
+				// animate using texcoords
+				// wave_xform <xform_type> <wave_type> <base> <frequency> <phase> <amplitude>
+				wave_xform scroll_x sine 1.0 0.1 0.0 0.1
+				wave_xform scroll_y sine 1.0 0.1 0.1 0.1
+				//scroll_anim 0.2 0.1
+			}
+		}
+	}
+}
+
+
+

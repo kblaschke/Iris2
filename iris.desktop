@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Iris
+Comment=An open source 2d/3d mmorpg client
+Exec=iris
+Icon=iris
+Terminal=true
+Type=Application
+Encoding=UTF-8
+Categories=Application;Game;RolePlaying;
+X-Desktop-File-Install-Version=0.15

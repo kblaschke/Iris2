@@ -1,0 +1,22 @@
+import atlas_base from textures.material
+
+material tex_atlas_med0 : atlas_base 
+{ 
+	set_texture_alias MainTexture tex_atlas_med0.dds  
+}
+material tex_atlas_med1 : atlas_base 
+{ 
+	set_texture_alias MainTexture tex_atlas_med1.dds  
+}
+material tex_atlas_med2 : atlas_base 
+{ 
+	set_texture_alias MainTexture tex_atlas_med2.dds  
+}
+material tex_atlas_med3 : atlas_base 
+{ 
+	set_texture_alias MainTexture tex_atlas_med3.dds  
+}
+material tex_atlas_med4 : atlas_base 
+{ 
+	set_texture_alias MainTexture tex_atlas_med4.dds  
+}

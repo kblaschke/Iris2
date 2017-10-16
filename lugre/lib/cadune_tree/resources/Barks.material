@@ -1,0 +1,33 @@
+material BarkNoLighting
+{
+	lod_distances 75.0
+	receive_shadows off
+
+	technique fixed_function
+	{
+		pass
+		{
+			texture_unit
+			{
+				filtering trilinear
+				texture bark2.png
+				tex_address_mode wrap
+			}
+		}
+	}
+
+	technique fixed_function_lod
+	{
+		lod_index 1
+
+		pass
+		{
+			texture_unit
+			{
+				filtering trilinear
+				texture bark2.png
+				tex_address_mode wrap
+			}
+		}
+	}
+}

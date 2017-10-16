@@ -1,0 +1,57 @@
+
+particle_system PoisonStrike
+{
+	quota	10
+	material	Particles/explosion
+	particle_width	1
+	particle_height	1
+	cull_each	false
+	renderer	billboard
+	sorted	false
+	local_space	false
+	iteration_interval	0
+	nonvisible_update_timeout	0
+	billboard_type	point
+	billboard_origin	center
+	billboard_rotation_type	texcoord
+	common_up_vector	0 1 0
+	point_rendering	false
+	accurate_facing	false
+
+	emitter Point
+	{
+		angle	0
+		colour	0.321569 0.643137 0 1
+		colour_range_start	0.321569 0.643137 0 1
+		colour_range_end	0 0.501961 0 1
+		direction	0 0 0
+		emission_rate	10
+		position	0 0 0
+		velocity	1
+		velocity_min	1
+		velocity_max	1
+		time_to_live	3
+		time_to_live_min	3
+		time_to_live_max	3
+		duration	3
+		duration_min	3
+		duration_max	5
+		repeat_delay	0
+		repeat_delay_min	0
+		repeat_delay_max	0
+	}
+
+	affector Scaler
+	{
+		rate	1
+	}
+
+	affector Rotator
+	{
+		rotation_speed_range_start	800
+		rotation_speed_range_end	800
+		rotation_range_start	360
+		rotation_range_end	360
+	}
+}
+

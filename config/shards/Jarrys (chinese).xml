@@ -1,0 +1,8 @@
+<table>
+    <string key="gLoginname"></string>
+    <boolean key="gPolServer">false</boolean>
+    <number key="gServerSeed">1</number>
+    <number key="gLoginServerPort">2593</number>
+    <string key="gPassword"></string>
+    <string key="gLoginServerIP">login.uofans.com</string>
+</table>

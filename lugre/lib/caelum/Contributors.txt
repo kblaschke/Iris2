@@ -1,0 +1,63 @@
+This file keeps track of contributors on Caelum. Contributors are
+identifier by their username on the ogre forum.
+See also this caelum thread:
+    http://www.ogre3d.org/phpBB2/viewtopic.php?t=24961
+
+Maintainers:
+    - Jesus Alonso Abad (kencho, kenchoweb@hotmail.com):
+        Original maintainer.
+    - Crestez Dan Leonard (cdleonard, cdleonard@gmail.com):
+        Fix for exporting/importing issues with static members.
+        Fix for various building issues under VisualStudio.
+        Project scripts.
+        New maintainer.
+
+Contributors:
+    - er:
+        VC7.1 Eihort scripts.
+        Eihort compatibility when dealing with texture unit states and textures.
+        Infinite far clipping distance issue.
+    - MWeb:
+        Linux compatibility issue in the prerequisites.
+        Resource group name changed from static to extern.
+        Virtual destructors.
+    - gerds:
+        Shader profiles issue.
+    - Azatoth:
+        Preprocessor issues.
+        Version code issues.
+        CaelumSystem constructor stability.
+    - pricorde:
+        Manual sizing for sky domes and starfields (patch).
+    - M: 
+        Bug-fixing.
+        Linux makefiles.
+    - trilobite:
+        Fix for the colour interpolation (overflow was producing a result of "white").
+        Fix for the sky shaders deletion (or rather, persistence) issue.
+        Fix clouds shader global variables.
+        Suggestions to improve starfield rotation.
+    - LAva, syedhs:
+        Fix for the cleanup problem.
+        Various bugfixes.
+    - Proutix:
+        Fix for a leak in the image based sky colour model.
+    - webteca:
+        Fixed the Earth Sun position model.
+        Sun colour gradients.
+        Fix for cloud colour in Direct3D mode.
+    - merick:
+        Fix for sample 1 crash.
+    - eugene:
+        Fix compilation on apple systems.
+        Added a custom root node for all sky components.
+        Fix wrong sun direction calculation from azimuth/altitude.
+        Sprite-based sun.
+        Disable shadows to improve performance.
+    - Mihail Baesu:
+        Initial moon support.
+        Multiple cloud layers.
+        Cloud shading improvements.
+        Precipitation support.
+    - Thor22:
+        Improved moon phase calculations.

@@ -1,0 +1,23 @@
+FreeMono
+{
+	type 		truetype
+	source 		FreeMono.ttf
+	size 		16
+	resolution 	96
+}
+
+FreeSans
+{
+	type 		truetype
+	source 		FreeSans.ttf
+	size 		16
+	resolution 	96
+}
+
+FreeSerif
+{
+	type 		truetype
+	source 		FreeSerif.ttf
+	size 		16
+	resolution 	96
+}

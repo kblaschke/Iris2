@@ -1,0 +1,52 @@
+
+particle_system Explosion
+{
+	quota	10
+	material	Generic/Fire
+	particle_width	1
+	particle_height	1
+	cull_each	false
+	renderer	billboard
+	sorted	true
+	local_space	false
+	iteration_interval	0
+	nonvisible_update_timeout	0
+	billboard_type	point
+	billboard_origin	center
+	billboard_rotation_type	vertex
+	common_up_vector	0 1 0
+	point_rendering	false
+	accurate_facing	false
+
+	emitter Box
+	{
+		angle	47
+		colour	1 0.54902 0.333333 1
+		colour_range_start	1 0.54902 0.333333 1
+		colour_range_end	1 0.501961 0 1
+		direction	0 -1 0
+		emission_rate	10
+		position	0 0 0
+		velocity	0
+		velocity_min	0
+		velocity_max	0
+		time_to_live	0.5
+		time_to_live_min	0.5
+		time_to_live_max	0.5
+		duration	0.3
+		duration_min	0.3
+		duration_max	0.3
+		repeat_delay	0
+		repeat_delay_min	0
+		repeat_delay_max	0
+		width	1
+		height	1
+		depth	1
+	}
+
+	affector Scaler
+	{
+		rate	1
+	}
+}
+

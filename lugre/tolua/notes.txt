@@ -1,0 +1,15 @@
+== usage ==
+php tolua.php HEADERFILE > bind.cpp
+
+context: namespace, comment, class, function
+
+namespace ID { 
+
+	class ID : ID ID {
+		TYPE ID ( PARAMS ) ;
+		TYPE ID ( PARAMS ) { 
+			...
+		} ;
+	}
+	
+}

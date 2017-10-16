@@ -1,0 +1,4005 @@
+//###########################################
+// TEMPLATES
+//###########################################
+
+//import * from "diffuse.material"
+
+// --------------- THESE ARE THE ATLAS STANDARD MATERIALS ----------------------
+// MESH BASE MATERIAL TEMPLATE
+material atlas_base
+{
+	receive_shadows off
+
+	technique default
+	{
+		pass
+		{
+			lighting on
+
+			ambient vertexcolour
+			diffuse vertexcolour
+			
+			texture_unit MainTexture
+			{
+				filtering anisotropic
+				max_anisotropy 8
+				texture checker.png
+				texture_alias MainTexture
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+// MESH BASE ALPHA MATERIAL TEMPLATE
+material atlas_base_alpha : atlas_base
+{
+	technique default
+	{
+		pass Decal
+		{
+			lighting on
+
+			ambient vertexcolour
+			diffuse vertexcolour
+
+			alpha_rejection greater_equal 128
+			alpha_to_coverage on
+		}
+	}
+}
+
+// --------------- THESE ARE THE STANDARD NON-ATLAS MATERIALS ----------------------
+
+material diffuse_template
+{
+	receive_shadows off
+
+	technique default
+	{
+		pass Decal
+		{
+			lighting on
+
+			ambient vertexcolour
+			diffuse vertexcolour
+			
+			texture_unit
+			{
+				filtering anisotropic
+				max_anisotropy 8
+				texture checker.png
+				texture_alias diffuse_tex
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+// MESH BASE ALPHA MATERIAL TEMPLATE
+material diffuse_template_alpha : diffuse_template
+{
+	technique default
+	{
+		pass Decal
+		{
+			lighting on
+
+			ambient vertexcolour
+			diffuse vertexcolour
+
+			alpha_rejection greater_equal 128
+			alpha_to_coverage on
+		}
+	}
+}
+
+material diffuse_template_foliage : diffuse_template
+{
+	technique default
+	{
+		pass Decal
+		{
+			lighting on
+
+			ambient vertexcolour
+			diffuse vertexcolour
+
+			cull_hardware none
+			cull_software none
+			
+			alpha_rejection greater_equal 128
+			alpha_to_coverage on
+
+			texture_unit
+			{
+				filtering anisotropic
+				max_anisotropy 8
+				texture checker.png
+				texture_alias diffuse_tex
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
+material diffuse_template_sceneblend : diffuse_template
+{
+	technique default
+	{
+		pass Decal
+		{
+			lighting on
+
+			ambient vertexcolour
+			diffuse vertexcolour
+
+			cull_hardware none
+			cull_software none
+
+			scene_blend alpha_blend
+			depth_write off
+			depth_check on
+		}
+	}
+}
+// --------------- THIS IS THE END OF BASE MATERIALS ----------------------
+
+material tex_0 : diffuse_template
+{
+	set_texture_alias ambient_tex tex_0.png
+	set_texture_alias diffuse_tex tex_0.png
+}
+
+material tex_100 : diffuse_template
+{
+	set_texture_alias ambient_tex tex_100.png
+	set_texture_alias diffuse_tex tex_100.png 
+}
+
+material tex_101 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_101.png
+	set_texture_alias diffuse_tex tex_101.png 
+}
+
+material tex_102 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_102.png
+	set_texture_alias diffuse_tex tex_102.png 
+}
+
+material tex_103 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_103.png
+	set_texture_alias diffuse_tex tex_103.png 
+}
+
+material tex_104 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_104.png
+	set_texture_alias diffuse_tex tex_104.png 
+}
+
+material tex_105 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_105.png
+	set_texture_alias diffuse_tex tex_105.png 
+}
+
+material tex_106 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_106.png
+	set_texture_alias diffuse_tex tex_106.png 
+}
+
+material tex_107 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_107.png
+	set_texture_alias diffuse_tex tex_107.png 
+}
+
+material tex_108 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_108.png
+	set_texture_alias diffuse_tex tex_108.png 
+}
+
+material tex_109 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_109.png
+	set_texture_alias diffuse_tex tex_109.png 
+}
+
+material tex_10 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_10.png
+	set_texture_alias diffuse_tex tex_10.png 
+}
+
+material tex_110 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_110.png
+	set_texture_alias diffuse_tex tex_110.png 
+}
+
+material tex_111 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_111.png
+	set_texture_alias diffuse_tex tex_111.png 
+}
+
+material tex_112 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_112.png
+	set_texture_alias diffuse_tex tex_112.png 
+}
+
+material tex_113 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_113.png
+	set_texture_alias diffuse_tex tex_113.png 
+}
+
+material tex_114 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_114.png
+	set_texture_alias diffuse_tex tex_114.png 
+}
+
+material tex_115 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_115.png
+	set_texture_alias diffuse_tex tex_115.png 
+}
+
+material tex_116 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_116.png
+	set_texture_alias diffuse_tex tex_116.png 
+}
+
+material tex_117 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_117.png
+	set_texture_alias diffuse_tex tex_117.png 
+}
+
+material tex_118 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_118.png
+	set_texture_alias diffuse_tex tex_118.png 
+}
+
+material tex_119 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_119.png
+	set_texture_alias diffuse_tex tex_119.png 
+}
+
+material tex_11 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_11.png
+	set_texture_alias diffuse_tex tex_11.png 
+}
+
+material tex_120 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_120.png
+	set_texture_alias diffuse_tex tex_120.png 
+}
+
+material tex_121 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_121.png
+	set_texture_alias diffuse_tex tex_121.png 
+}
+
+material tex_122 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_122.png
+	set_texture_alias diffuse_tex tex_122.png 
+}
+
+material tex_123 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_123.png
+	set_texture_alias diffuse_tex tex_123.png 
+}
+
+material tex_124 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_124.png
+	set_texture_alias diffuse_tex tex_124.png 
+}
+
+material tex_125 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_125.png
+	set_texture_alias diffuse_tex tex_125.png 
+}
+
+material tex_126 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_126.png
+	set_texture_alias diffuse_tex tex_126.png 
+}
+
+material tex_127 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_127.png
+	set_texture_alias diffuse_tex tex_127.png 
+}
+
+material tex_128 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_128.png
+	set_texture_alias diffuse_tex tex_128.png 
+}
+
+material tex_129 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_129.png
+	set_texture_alias diffuse_tex tex_129.png 
+}
+
+material tex_12 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_12.png
+	set_texture_alias diffuse_tex tex_12.png 
+}
+
+material tex_130 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_130.png
+	set_texture_alias diffuse_tex tex_130.png 
+}
+
+material tex_131 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_131.png
+	set_texture_alias diffuse_tex tex_131.png 
+}
+
+material tex_132 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_132.png
+	set_texture_alias diffuse_tex tex_132.png 
+}
+
+material tex_133 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_133.png
+	set_texture_alias diffuse_tex tex_133.png 
+}
+
+material tex_134 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_134.png
+	set_texture_alias diffuse_tex tex_134.png 
+}
+
+material tex_135 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_135.png
+	set_texture_alias diffuse_tex tex_135.png 
+}
+
+material tex_136 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_136.png
+	set_texture_alias diffuse_tex tex_136.png 
+}
+
+material tex_137 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_137.png
+	set_texture_alias diffuse_tex tex_137.png 
+}
+
+material tex_138 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_138.png
+	set_texture_alias diffuse_tex tex_138.png 
+}
+
+material tex_139 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_139.png
+	set_texture_alias diffuse_tex tex_139.png 
+}
+
+material tex_13 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_13.png
+	set_texture_alias diffuse_tex tex_13.png 
+}
+
+material tex_140 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_140.png
+	set_texture_alias diffuse_tex tex_140.png 
+}
+
+material tex_141 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_141.png
+	set_texture_alias diffuse_tex tex_141.png 
+}
+
+material tex_142 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_142.png
+	set_texture_alias diffuse_tex tex_142.png 
+}
+
+material tex_143 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_143.png
+	set_texture_alias diffuse_tex tex_143.png 
+}
+
+material tex_144 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_144.png
+	set_texture_alias diffuse_tex tex_144.png 
+}
+
+material tex_145 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_145.png
+	set_texture_alias diffuse_tex tex_145.png
+}
+
+material tex_146 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_146.png
+	set_texture_alias diffuse_tex tex_146.png 
+}
+
+material tex_147 : diffuse_template 
+{
+	set_texture_alias ambient_tex tex_147.png
+	set_texture_alias diffuse_tex tex_147.png 
+}
+
+material tex_148 : diffuse_template 
+{
+	set_texture_alias ambient_tex tex_148.png
+	set_texture_alias diffuse_tex tex_148.png 
+}
+
+material tex_149 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_149.png
+	set_texture_alias diffuse_tex tex_149.png 
+}
+
+material tex_14 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_14.png
+	set_texture_alias diffuse_tex tex_14.png 
+}
+
+material tex_150 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_150.png
+	set_texture_alias diffuse_tex tex_150.png 
+}
+
+material tex_151 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_151.png
+	set_texture_alias diffuse_tex tex_151.png 
+}
+
+material tex_152 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_152.png
+	set_texture_alias diffuse_tex tex_152.png 
+}
+
+material tex_153 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_153.png
+	set_texture_alias diffuse_tex tex_153.png 
+}
+
+material tex_154 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_154.png
+	set_texture_alias diffuse_tex tex_154.png 
+}
+
+material tex_155 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_155.png
+	set_texture_alias diffuse_tex tex_155.png 
+}
+
+material tex_156 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_156.png
+	set_texture_alias diffuse_tex tex_156.png 
+}
+
+material tex_157 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_157.png
+	set_texture_alias diffuse_tex tex_157.png 
+}
+
+material tex_158 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_158.png
+	set_texture_alias diffuse_tex tex_158.png 
+}
+
+material tex_159 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_159.png
+	set_texture_alias diffuse_tex tex_159.png 
+}
+
+material tex_15 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_15.png
+	set_texture_alias diffuse_tex tex_15.png 
+}
+
+material tex_160 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_160.png
+	set_texture_alias diffuse_tex tex_160.png 
+}
+
+material tex_161 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_161.png
+	set_texture_alias diffuse_tex tex_161.png 
+}
+
+material tex_162 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_162.png
+	set_texture_alias diffuse_tex tex_162.png 
+}
+
+material tex_163 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_163.png
+	set_texture_alias diffuse_tex tex_163.png 
+}
+
+material tex_164 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_164.png
+	set_texture_alias diffuse_tex tex_164.png 
+}
+
+material tex_165 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_165.png
+	set_texture_alias diffuse_tex tex_165.png 
+}
+
+material tex_166 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_166.png
+	set_texture_alias diffuse_tex tex_166.png 
+}
+
+material tex_167 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_167.png
+	set_texture_alias diffuse_tex tex_167.png 
+}
+
+material tex_168 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_168.png
+	set_texture_alias diffuse_tex tex_168.png 
+}
+
+material tex_169 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_169.png
+	set_texture_alias diffuse_tex tex_169.png 
+}
+
+material tex_16 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_16.png
+	set_texture_alias diffuse_tex tex_16.png 
+}
+
+material tex_170 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_170.png
+	set_texture_alias diffuse_tex tex_170.png 
+}
+
+material tex_171 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_171.png
+	set_texture_alias diffuse_tex tex_171.png 
+}
+
+material tex_172 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_172.png
+	set_texture_alias diffuse_tex tex_172.png 
+}
+
+material tex_173 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_173.png
+	set_texture_alias diffuse_tex tex_173.png 
+}
+
+material tex_174 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_174.png
+	set_texture_alias diffuse_tex tex_174.png 
+}
+
+material tex_175 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_175.png
+	set_texture_alias diffuse_tex tex_175.png 
+}
+
+material tex_176 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_176.png
+	set_texture_alias diffuse_tex tex_176.png 
+}
+
+material tex_177 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_177.png
+	set_texture_alias diffuse_tex tex_177.png 
+}
+
+material tex_178 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_178.png
+	set_texture_alias diffuse_tex tex_178.png 
+}
+
+material tex_179 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_179.png
+	set_texture_alias diffuse_tex tex_179.png 
+}
+
+material tex_17 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_17.png
+	set_texture_alias diffuse_tex tex_17.png 
+}
+
+material tex_180 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_180.png
+	set_texture_alias diffuse_tex tex_180.png 
+}
+
+material tex_181 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_181.png
+	set_texture_alias diffuse_tex tex_181.png 
+}
+
+material tex_182 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_182.png
+	set_texture_alias diffuse_tex tex_182.png 
+}
+
+material tex_183 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_183.png
+	set_texture_alias diffuse_tex tex_183.png 
+}
+
+material tex_184 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_184.png
+	set_texture_alias diffuse_tex tex_184.png 
+}
+
+material tex_185 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_185.png
+	set_texture_alias diffuse_tex tex_185.png 
+}
+
+material tex_186 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_186.png
+	set_texture_alias diffuse_tex tex_186.png 
+}
+
+material tex_187 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_187.png
+	set_texture_alias diffuse_tex tex_187.png 
+}
+
+material tex_188 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_188.png
+	set_texture_alias diffuse_tex tex_188.png 
+}
+
+material tex_189 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_189.png
+	set_texture_alias diffuse_tex tex_189.png 
+}
+
+material tex_18 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_18.png
+	set_texture_alias diffuse_tex tex_18.png 
+}
+
+material tex_190 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_190.png
+	set_texture_alias diffuse_tex tex_190.png 
+}
+
+material tex_191 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_191.png
+	set_texture_alias diffuse_tex tex_191.png 
+}
+
+material tex_192 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_192.png
+	set_texture_alias diffuse_tex tex_192.png 
+}
+
+material tex_193 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_193.png
+	set_texture_alias diffuse_tex tex_193.png 
+}
+
+material tex_194 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_194.png
+	set_texture_alias diffuse_tex tex_194.png 
+}
+
+material tex_195 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_195.png
+	set_texture_alias diffuse_tex tex_195.png 
+}
+
+material tex_196 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_196.png
+	set_texture_alias diffuse_tex tex_196.png 
+}
+
+material tex_197 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_197.png
+	set_texture_alias diffuse_tex tex_197.png 
+}
+
+material tex_198 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_198.png
+	set_texture_alias diffuse_tex tex_198.png 
+}
+
+material tex_199 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_199.png
+	set_texture_alias diffuse_tex tex_199.png 
+}
+
+material tex_19 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_19.png
+	set_texture_alias diffuse_tex tex_19.png 
+}
+
+material tex_1 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_1.png
+	set_texture_alias diffuse_tex tex_1.png 
+}
+
+material tex_200 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_200.png
+	set_texture_alias diffuse_tex tex_200.png 
+}
+
+material tex_201 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_201.png
+	set_texture_alias diffuse_tex tex_201.png 
+}
+
+material tex_202 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_202.png
+	set_texture_alias diffuse_tex tex_202.png 
+}
+
+material tex_203 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_203.png
+	set_texture_alias diffuse_tex tex_203.png 
+}
+
+material tex_204 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_204.png
+	set_texture_alias diffuse_tex tex_204.png 
+}
+
+material tex_205 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_205.png
+	set_texture_alias diffuse_tex tex_205.png 
+}
+
+material tex_206 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_206.png
+	set_texture_alias diffuse_tex tex_206.png 
+}
+
+material tex_207 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_207.png
+	set_texture_alias diffuse_tex tex_207.png 
+}
+
+material tex_208 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_208.png
+	set_texture_alias diffuse_tex tex_208.png 
+}
+
+material tex_209 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_208.png
+	set_texture_alias diffuse_tex tex_209.png 
+}
+
+material tex_20 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_20.png
+	set_texture_alias diffuse_tex tex_20.png 
+}
+
+material tex_210 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_210.png
+	set_texture_alias diffuse_tex tex_210.png 
+}
+
+material tex_211 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_211.png
+	set_texture_alias diffuse_tex tex_211.png 
+}
+
+material tex_212 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_212.png
+	set_texture_alias diffuse_tex tex_212.png 
+}
+
+material tex_213 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_213.png
+	set_texture_alias diffuse_tex tex_213.png 
+}
+
+material tex_214 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_214.png
+	set_texture_alias diffuse_tex tex_214.png 
+}
+
+material tex_215 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_215.png
+	set_texture_alias diffuse_tex tex_215.png 
+}
+
+material tex_216 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_216.png
+	set_texture_alias diffuse_tex tex_216.png 
+}
+
+material tex_217 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_217.png
+	set_texture_alias diffuse_tex tex_217.png 
+}
+
+material tex_218 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_218.png
+	set_texture_alias diffuse_tex tex_218.png 
+}
+
+material tex_219 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_219.png
+	set_texture_alias diffuse_tex tex_219.png 
+}
+
+material tex_21 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_21.png
+	set_texture_alias diffuse_tex tex_21.png 
+}
+
+material tex_220 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_220.png
+	set_texture_alias diffuse_tex tex_220.png 
+}
+
+material tex_221 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_221.png
+	set_texture_alias diffuse_tex tex_221.png 
+}
+
+material tex_222 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_222.png
+	set_texture_alias diffuse_tex tex_222.png 
+}
+
+material tex_223 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_223.png
+	set_texture_alias diffuse_tex tex_223.png 
+}
+
+material tex_224 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_224.png
+	set_texture_alias diffuse_tex tex_224.png 
+}
+
+material tex_225 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_225.png
+	set_texture_alias diffuse_tex tex_225.png 
+}
+
+material tex_226 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_226.png
+	set_texture_alias diffuse_tex tex_226.png 
+}
+
+material tex_227 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_227.png
+	set_texture_alias diffuse_tex tex_227.png 
+}
+
+material tex_228 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_228.png
+	set_texture_alias diffuse_tex tex_228.png 
+}
+
+material tex_229 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_229.png
+	set_texture_alias diffuse_tex tex_229.png 
+}
+
+material tex_22 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_22.png
+	set_texture_alias diffuse_tex tex_22.png 
+}
+
+material tex_230 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_230.png
+	set_texture_alias diffuse_tex tex_230.png 
+}
+
+material tex_231 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_231.png
+	set_texture_alias diffuse_tex tex_231.png 
+}
+
+material tex_232 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_232.png
+	set_texture_alias diffuse_tex tex_232.png 
+}
+
+material tex_233 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_233.png
+	set_texture_alias diffuse_tex tex_233.png 
+}
+
+material tex_234 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_234.png
+	set_texture_alias diffuse_tex tex_234.png 
+}
+
+material tex_235 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_235.png
+	set_texture_alias diffuse_tex tex_235.png 
+}
+
+material tex_236 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_236.png
+	set_texture_alias diffuse_tex tex_236.png 
+}
+
+material tex_237 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_237.png
+	set_texture_alias diffuse_tex tex_237.png 
+}
+
+material tex_238 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_238.png
+	set_texture_alias diffuse_tex tex_238.png 
+}
+
+material tex_239 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_239.png
+	set_texture_alias diffuse_tex tex_239.png 
+}
+
+material tex_23 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_23.png
+	set_texture_alias diffuse_tex tex_23.png 
+}
+
+material tex_240 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_240.png
+	set_texture_alias diffuse_tex tex_240.png 
+}
+
+material tex_241 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_241.png
+	set_texture_alias diffuse_tex tex_241.png 
+}
+
+material tex_242 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_242.png
+	set_texture_alias diffuse_tex tex_242.png 
+}
+
+material tex_243 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_243.png
+	set_texture_alias diffuse_tex tex_243.png 
+}
+
+material tex_244 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_244.png
+	set_texture_alias diffuse_tex tex_244.png 
+}
+
+material tex_245 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_245.png
+	set_texture_alias diffuse_tex tex_245.png 
+}
+
+material tex_246 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_246.png
+	set_texture_alias diffuse_tex tex_246.png 
+}
+
+material tex_247 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_247.png
+	set_texture_alias diffuse_tex tex_247.png 
+}
+
+material tex_248 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_248.png
+	set_texture_alias diffuse_tex tex_248.png 
+}
+
+material tex_249 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_249.png
+	set_texture_alias diffuse_tex tex_249.png 
+}
+
+material tex_24 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_24.png
+	set_texture_alias diffuse_tex tex_24.png 
+}
+
+material tex_250 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_250.png
+	set_texture_alias diffuse_tex tex_250.png 
+}
+
+material tex_251 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_251.png
+	set_texture_alias diffuse_tex tex_251.png 
+}
+
+material tex_252 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_252.png
+	set_texture_alias diffuse_tex tex_252.png 
+}
+
+material tex_253 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_253.png
+	set_texture_alias diffuse_tex tex_253.png 
+}
+
+material tex_254 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_254.png
+	set_texture_alias diffuse_tex tex_254.png 
+}
+
+material tex_255 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_255.png
+	set_texture_alias diffuse_tex tex_255.png 
+}
+
+material tex_256 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_256.png
+	set_texture_alias diffuse_tex tex_256.png 
+}
+
+material tex_257 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_257.png
+	set_texture_alias diffuse_tex tex_257.png 
+}
+
+material tex_258 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_258.png
+	set_texture_alias diffuse_tex tex_258.png 
+}
+
+material tex_259 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_259.png
+	set_texture_alias diffuse_tex tex_259.png 
+}
+
+material tex_25 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_25.png
+	set_texture_alias diffuse_tex tex_25.png 
+}
+
+material tex_260 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_260.png
+	set_texture_alias diffuse_tex tex_260.png 
+}
+
+material tex_261 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_261.png
+	set_texture_alias diffuse_tex tex_261.png 
+}
+
+material tex_262 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_262.png
+	set_texture_alias diffuse_tex tex_262.png 
+}
+
+material tex_263 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_263.png
+	set_texture_alias diffuse_tex tex_263.png 
+}
+
+material tex_264 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_264.png
+	set_texture_alias diffuse_tex tex_264.png 
+}
+
+material tex_265 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_265.png
+	set_texture_alias diffuse_tex tex_265.png 
+}
+
+material tex_266 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_266.png
+	set_texture_alias diffuse_tex tex_266.png 
+}
+
+material tex_267 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_267.png
+	set_texture_alias diffuse_tex tex_267.png 
+}
+
+material tex_268 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_268.png
+	set_texture_alias diffuse_tex tex_268.png 
+}
+
+material tex_269 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_269.png
+	set_texture_alias diffuse_tex tex_269.png 
+}
+
+material tex_26 : diffuse_template 
+{ 
+	set_texture_alias diffuse_tex tex_26.png 
+}
+
+material tex_270 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_270.png
+	set_texture_alias diffuse_tex tex_270.png 
+}
+
+material tex_271 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_271.png
+	set_texture_alias diffuse_tex tex_271.png 
+}
+
+material tex_272 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_272.png
+	set_texture_alias diffuse_tex tex_272.png 
+}
+
+material tex_273 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_273.png
+	set_texture_alias diffuse_tex tex_273.png 
+}
+
+material tex_274 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_274.png
+	set_texture_alias diffuse_tex tex_274.png 
+}
+
+material tex_275 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_275.png
+	set_texture_alias diffuse_tex tex_275.png 
+}
+
+material tex_276 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_276.png
+	set_texture_alias diffuse_tex tex_276.png 
+}
+
+material tex_277 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_277.png
+	set_texture_alias diffuse_tex tex_277.png 
+}
+
+material tex_278 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_278.png
+	set_texture_alias diffuse_tex tex_278.png 
+}
+
+material tex_279 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_279.png
+	set_texture_alias diffuse_tex tex_279.png 
+}
+
+material tex_27 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_27.png
+	set_texture_alias diffuse_tex tex_27.png 
+}
+
+material tex_280 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_280.png
+	set_texture_alias diffuse_tex tex_280.png 
+}
+
+material tex_281 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_281.png
+	set_texture_alias diffuse_tex tex_281.png 
+}
+
+material tex_282 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_282.png
+	set_texture_alias diffuse_tex tex_282.png 
+}
+
+material tex_283 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_283.png
+	set_texture_alias diffuse_tex tex_283.png 
+}
+
+material tex_284 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_284.png
+	set_texture_alias diffuse_tex tex_284.png 
+}
+
+material tex_285 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_285.png
+	set_texture_alias diffuse_tex tex_285.png 
+}
+
+material tex_286 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_286.png
+	set_texture_alias diffuse_tex tex_286.png 
+}
+
+material tex_287 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_287.png
+	set_texture_alias diffuse_tex tex_287.png 
+}
+
+material tex_288 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_288.png
+	set_texture_alias diffuse_tex tex_288.png 
+}
+
+material tex_289 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_289.png
+	set_texture_alias diffuse_tex tex_289.png 
+}
+
+material tex_28 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_28.png
+	set_texture_alias diffuse_tex tex_28.png 
+}
+
+material tex_290 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_290.png
+	set_texture_alias diffuse_tex tex_290.png 
+}
+
+material tex_291 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_291.png
+	set_texture_alias diffuse_tex tex_291.png 
+}
+
+material tex_292 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_292.png
+	set_texture_alias diffuse_tex tex_292.png 
+}
+
+material tex_293 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_293.png
+	set_texture_alias diffuse_tex tex_293.png 
+}
+
+material tex_294 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_294.png
+	set_texture_alias diffuse_tex tex_294.png 
+}
+
+material tex_295 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_295.png
+	set_texture_alias diffuse_tex tex_295.png 
+}
+
+material tex_296 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_296.png
+	set_texture_alias diffuse_tex tex_296.png 
+}
+
+material tex_297 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_297.png
+	set_texture_alias diffuse_tex tex_297.png 
+}
+
+material tex_298 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_298.png
+	set_texture_alias diffuse_tex tex_298.png 
+}
+
+material tex_299 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_299.png
+	set_texture_alias diffuse_tex tex_299.png 
+}
+
+material tex_29 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_29.png
+	set_texture_alias diffuse_tex tex_29.png 
+}
+
+material tex_2 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_2.png
+	set_texture_alias diffuse_tex tex_2.png 
+}
+
+material tex_300 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_300.png
+	set_texture_alias diffuse_tex tex_300.png 
+}
+
+material tex_301 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_301.png
+	set_texture_alias diffuse_tex tex_301.png 
+}
+
+material tex_302 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_302.png
+	set_texture_alias diffuse_tex tex_302.png 
+}
+
+material tex_303 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_303.png
+	set_texture_alias diffuse_tex tex_303.png 
+}
+
+material tex_304 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_304.png
+	set_texture_alias diffuse_tex tex_304.png 
+}
+
+material tex_305 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_305.png
+	set_texture_alias diffuse_tex tex_305.png 
+}
+
+material tex_306 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_306.png
+	set_texture_alias diffuse_tex tex_306.png 
+}
+
+material tex_307 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_307.png
+	set_texture_alias diffuse_tex tex_307.png 
+}
+
+material tex_308 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_308.png
+	set_texture_alias diffuse_tex tex_308.png 
+}
+
+material tex_309 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_309.png
+	set_texture_alias diffuse_tex tex_309.png 
+}
+
+material tex_30 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_30.png
+	set_texture_alias diffuse_tex tex_30.png 
+}
+
+material tex_310 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_310.png
+	set_texture_alias diffuse_tex tex_310.png 
+}
+
+material tex_311 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_311.png
+	set_texture_alias diffuse_tex tex_311.png 
+}
+
+material tex_312 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_312.png
+	set_texture_alias diffuse_tex tex_312.png 
+}
+
+material tex_313 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_313.png
+	set_texture_alias diffuse_tex tex_313.png 
+}
+
+material tex_314 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_314.png
+	set_texture_alias diffuse_tex tex_314.png 
+}
+
+material tex_315 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_315.png
+	set_texture_alias diffuse_tex tex_315.png 
+}
+
+material tex_316 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_316.png
+	set_texture_alias diffuse_tex tex_316.png 
+}
+
+material tex_317 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_317.png
+	set_texture_alias diffuse_tex tex_317.png 
+}
+
+material tex_318 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_318.png
+	set_texture_alias diffuse_tex tex_318.png 
+}
+
+material tex_319 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_319.png
+	set_texture_alias diffuse_tex tex_319.png 
+}
+
+material tex_31 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_31.png
+	set_texture_alias diffuse_tex tex_31.png 
+}
+
+material tex_320 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_320.png
+	set_texture_alias diffuse_tex tex_320.png 
+}
+
+material tex_321 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_321.png
+	set_texture_alias diffuse_tex tex_321.png 
+}
+
+material tex_322 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_322.png
+	set_texture_alias diffuse_tex tex_322.png 
+}
+
+material tex_323 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_323.png
+	set_texture_alias diffuse_tex tex_323.png 
+}
+
+material tex_324 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_324.png
+	set_texture_alias diffuse_tex tex_324.png 
+}
+
+material tex_325 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_325.png
+	set_texture_alias diffuse_tex tex_325.png 
+}
+
+material tex_326 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_326.png
+	set_texture_alias diffuse_tex tex_326.png 
+}
+
+material tex_327 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_327.png
+	set_texture_alias diffuse_tex tex_327.png 
+}
+
+material tex_328 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_328.png
+	set_texture_alias diffuse_tex tex_328.png 
+}
+
+material tex_329 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_329.png
+	set_texture_alias diffuse_tex tex_329.png 
+}
+
+material tex_32 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_32.png
+	set_texture_alias diffuse_tex tex_32.png 
+}
+
+material tex_330 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_330.png
+	set_texture_alias diffuse_tex tex_330.png 
+}
+
+material tex_331 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_331.png
+	set_texture_alias diffuse_tex tex_331.png 
+}
+
+material tex_332 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_332.png
+	set_texture_alias diffuse_tex tex_332.png 
+}
+
+material tex_333 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_333.png
+	set_texture_alias diffuse_tex tex_333.png 
+}
+
+material tex_334 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_334.png
+	set_texture_alias diffuse_tex tex_334.png 
+}
+
+material tex_335 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_335.png
+	set_texture_alias diffuse_tex tex_335.png 
+}
+
+material tex_336 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_336.png
+	set_texture_alias diffuse_tex tex_336.png 
+}
+
+material tex_337 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_337.png
+	set_texture_alias diffuse_tex tex_337.png 
+}
+
+material tex_338 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_338.png
+	set_texture_alias diffuse_tex tex_338.png 
+}
+
+material tex_339 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_339.png
+	set_texture_alias diffuse_tex tex_339.png 
+}
+
+material tex_33 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_33.png
+	set_texture_alias diffuse_tex tex_33.png 
+}
+
+material tex_340 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_340.png
+	set_texture_alias diffuse_tex tex_340.png 
+}
+
+material tex_341 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_341.png
+	set_texture_alias diffuse_tex tex_341.png 
+}
+
+material tex_342 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_342.png
+	set_texture_alias diffuse_tex tex_342.png 
+}
+
+material tex_343 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_343.png
+	set_texture_alias diffuse_tex tex_343.png 
+}
+
+material tex_344 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_344.png
+	set_texture_alias diffuse_tex tex_344.png 
+}
+
+material tex_345 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_345.png
+	set_texture_alias diffuse_tex tex_345.png 
+}
+
+material tex_346 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_346.png
+	set_texture_alias diffuse_tex tex_346.png 
+}
+
+material tex_347 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_347.png
+	set_texture_alias diffuse_tex tex_347.png 
+}
+
+material tex_348 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_348.png
+	set_texture_alias diffuse_tex tex_348.png 
+}
+
+material tex_349 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_349.png
+	set_texture_alias diffuse_tex tex_349.png 
+}
+
+material tex_34 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_34.png
+	set_texture_alias diffuse_tex tex_34.png 
+}
+
+material tex_350 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_350.png
+	set_texture_alias diffuse_tex tex_350.png 
+}
+
+material tex_351 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_351.png
+	set_texture_alias diffuse_tex tex_351.png 
+}
+
+material tex_352 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_352.png
+	set_texture_alias diffuse_tex tex_352.png 
+}
+
+material tex_353 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_353.png
+	set_texture_alias diffuse_tex tex_353.png 
+}
+
+material tex_354 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_354.png
+	set_texture_alias diffuse_tex tex_354.png 
+}
+
+material tex_355 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_355.png
+	set_texture_alias diffuse_tex tex_355.png 
+}
+
+material tex_356 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_356.png
+	set_texture_alias diffuse_tex tex_356.png 
+}
+
+material tex_357 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_357.png
+	set_texture_alias diffuse_tex tex_357.png 
+}
+
+material tex_358 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_358.png
+	set_texture_alias diffuse_tex tex_358.png 
+}
+
+material tex_359 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_359.png
+	set_texture_alias diffuse_tex tex_359.png 
+}
+
+material tex_35 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_35.png
+	set_texture_alias diffuse_tex tex_35.png 
+}
+
+material tex_360 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_360.png
+	set_texture_alias diffuse_tex tex_360.png 
+}
+
+material tex_361 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_361.png
+	set_texture_alias diffuse_tex tex_361.png
+}
+
+material tex_362 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_362.png
+	set_texture_alias diffuse_tex tex_362.png
+}
+
+material tex_363 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_363.png
+	set_texture_alias diffuse_tex tex_363.png
+}
+
+material tex_364 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_364.png
+	set_texture_alias diffuse_tex tex_364.png
+}
+
+material tex_365 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_365.png
+	set_texture_alias diffuse_tex tex_365.png
+}
+
+material tex_366 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_366.png
+	set_texture_alias diffuse_tex tex_366.png
+}
+
+material tex_367 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_367.png
+	set_texture_alias diffuse_tex tex_367.png
+}
+
+material tex_368 : diffuse_template 
+{
+    set_texture_alias ambient_tex tex_368.png
+    set_texture_alias diffuse_tex tex_368.png
+}
+
+material tex_369 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_369.png
+    set_texture_alias diffuse_tex tex_369.png
+}
+
+material tex_36 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_36.png
+    set_texture_alias diffuse_tex tex_36.png
+}
+
+material tex_370 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_370.png
+    set_texture_alias diffuse_tex tex_370.png
+}
+
+material tex_371 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_371.png
+    set_texture_alias diffuse_tex tex_371.png
+}
+
+material tex_372 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_372.png
+    set_texture_alias diffuse_tex tex_372.png
+}
+
+material tex_373 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_373.png
+    set_texture_alias diffuse_tex tex_373.png
+}
+
+material tex_374 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_374.png
+    set_texture_alias diffuse_tex tex_374.png
+}
+
+material tex_375 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_375.png
+    set_texture_alias diffuse_tex tex_375.png
+}
+
+material tex_376 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_376.png
+    set_texture_alias diffuse_tex tex_376.png
+}
+
+material tex_377 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_377.png
+    set_texture_alias diffuse_tex tex_377.png
+}
+
+material tex_378 : diffuse_template_sceneblend 
+{
+    set_texture_alias ambient_tex tex_378.png
+    set_texture_alias diffuse_tex tex_378.png
+}
+
+material tex_379 : diffuse_template_sceneblend 
+{ 
+    set_texture_alias ambient_tex tex_379.png
+    set_texture_alias diffuse_tex tex_379.png
+}
+
+material tex_37 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_37.png
+    set_texture_alias diffuse_tex tex_37.png
+}
+
+material tex_380 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_380.png
+    set_texture_alias diffuse_tex tex_380.png
+}
+
+material tex_381 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_381.png
+    set_texture_alias diffuse_tex tex_381.png
+}
+
+material tex_382 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_382.png
+    set_texture_alias diffuse_tex tex_382.png
+}
+
+material tex_383 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_383.png
+    set_texture_alias diffuse_tex tex_383.png
+}
+
+material tex_384 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_384.png
+    set_texture_alias diffuse_tex tex_384.png
+}
+
+material tex_385 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_385.png
+    set_texture_alias diffuse_tex tex_385.png
+}
+
+material tex_386 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_386.png
+    set_texture_alias diffuse_tex tex_386.png
+}
+
+material tex_387 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_387.png
+    set_texture_alias diffuse_tex tex_387.png
+}
+
+material tex_388 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_388.png
+    set_texture_alias diffuse_tex tex_388.png
+}
+
+material tex_389 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_389.png
+    set_texture_alias diffuse_tex tex_389.png
+}
+
+material tex_38 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_38.png
+    set_texture_alias diffuse_tex tex_38.png
+}
+
+material tex_390 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_390.png
+    set_texture_alias diffuse_tex tex_390.png
+}
+
+material tex_391 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_391.png
+    set_texture_alias diffuse_tex tex_391.png
+}
+
+material tex_392 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_392.png
+    set_texture_alias diffuse_tex tex_392.png
+}
+
+material tex_393 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_393.png
+    set_texture_alias diffuse_tex tex_393.png
+}
+
+material tex_394 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_394.png
+    set_texture_alias diffuse_tex tex_394.png
+}
+
+material tex_395 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_395.png
+    set_texture_alias diffuse_tex tex_395.png
+}
+
+material tex_396 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_396.png
+    set_texture_alias diffuse_tex tex_396.png
+}
+
+material tex_397 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_397.png
+    set_texture_alias diffuse_tex tex_397.png
+}
+
+material tex_398 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_398.png
+    set_texture_alias diffuse_tex tex_398.png
+}
+
+material tex_399 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_399.png
+    set_texture_alias diffuse_tex tex_399.png
+}
+
+material tex_39 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_39.png
+    set_texture_alias diffuse_tex tex_39.png
+}
+
+material tex_3 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_3.png
+    set_texture_alias diffuse_tex tex_3.png
+}
+
+material tex_400 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_400.png
+    set_texture_alias diffuse_tex tex_400.png
+}
+
+material tex_401 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_401.png
+    set_texture_alias diffuse_tex tex_401.png
+}
+
+material tex_402 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_402.png
+    set_texture_alias diffuse_tex tex_402.png
+}
+
+material tex_403 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_403.png
+    set_texture_alias diffuse_tex tex_403.png
+}
+
+material tex_404 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_404.png
+    set_texture_alias diffuse_tex tex_404.png
+}
+
+material tex_405 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_405.png
+    set_texture_alias diffuse_tex tex_405.png
+}
+
+material tex_406 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_406.png
+    set_texture_alias diffuse_tex tex_406.png
+}
+
+material tex_407 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_407.png
+    set_texture_alias diffuse_tex tex_407.png
+}
+
+material tex_408 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_408.png
+    set_texture_alias diffuse_tex tex_408.png
+}
+
+material tex_409 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_409.png
+    set_texture_alias diffuse_tex tex_409.png
+}
+
+material tex_40 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_40.png
+    set_texture_alias diffuse_tex tex_40.png
+}
+
+material tex_410 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_410.png
+    set_texture_alias diffuse_tex tex_410.png
+}
+
+material tex_411 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_411.png
+    set_texture_alias diffuse_tex tex_411.png
+}
+
+material tex_412 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_412.png
+    set_texture_alias diffuse_tex tex_412.png
+}
+
+material tex_413 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_413.png
+    set_texture_alias diffuse_tex tex_413.png
+}
+
+material tex_414 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_414.png
+    set_texture_alias diffuse_tex tex_414.png
+}
+
+material tex_415 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_415.png
+    set_texture_alias diffuse_tex tex_415.png
+}
+
+material tex_416 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_416.png
+    set_texture_alias diffuse_tex tex_416.png
+}
+
+material tex_417 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_417.png
+    set_texture_alias diffuse_tex tex_417.png
+}
+
+material tex_418 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_418.png
+    set_texture_alias diffuse_tex tex_418.png
+}
+
+material tex_419 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_419.png
+    set_texture_alias diffuse_tex tex_419.png
+}
+
+material tex_41 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_41.png
+    set_texture_alias diffuse_tex tex_41.png
+}
+
+material tex_420 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_420.png
+    set_texture_alias diffuse_tex tex_420.png
+}
+
+material tex_421 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_421.png
+    set_texture_alias diffuse_tex tex_421.png
+}
+
+material tex_422 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_422.png
+    set_texture_alias diffuse_tex tex_422.png
+}
+
+material tex_423 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_423.png
+    set_texture_alias diffuse_tex tex_423.png
+}
+
+material tex_424 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_424.png
+    set_texture_alias diffuse_tex tex_424.png
+}
+
+material tex_425 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_425.png
+    set_texture_alias diffuse_tex tex_425.png
+}
+
+material tex_426 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_426.png
+    set_texture_alias diffuse_tex tex_426.png
+}
+
+material tex_427 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_427.png
+    set_texture_alias diffuse_tex tex_427.png
+}
+
+material tex_428 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_428.png
+    set_texture_alias diffuse_tex tex_428.png
+}
+
+material tex_429 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_429.png
+    set_texture_alias diffuse_tex tex_429.png
+}
+
+material tex_42 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_42.png
+    set_texture_alias diffuse_tex tex_42.png
+}
+
+material tex_430 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_430.png
+    set_texture_alias diffuse_tex tex_430.png
+}
+
+material tex_431 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_431.png
+    set_texture_alias diffuse_tex tex_431.png
+}
+
+material tex_432 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_432.png
+    set_texture_alias diffuse_tex tex_432.png
+}
+
+material tex_433 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_433.png
+    set_texture_alias diffuse_tex tex_433.png
+}
+
+material tex_434 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_434.png
+    set_texture_alias diffuse_tex tex_434.png
+}
+
+material tex_435 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_435.png
+    set_texture_alias diffuse_tex tex_435.png
+}
+
+material tex_436 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_436.png
+    set_texture_alias diffuse_tex tex_436.png
+}
+
+material tex_437 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_437.png
+    set_texture_alias diffuse_tex tex_437.png
+}
+
+material tex_438 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_438.png
+    set_texture_alias diffuse_tex tex_438.png
+}
+
+material tex_439 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_439.png
+    set_texture_alias diffuse_tex tex_439.png
+}
+
+material tex_43 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_43.png
+    set_texture_alias diffuse_tex tex_43.png
+}
+
+material tex_442 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_442.png
+    set_texture_alias diffuse_tex tex_442.png
+}
+
+material tex_443 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_443.png
+    set_texture_alias diffuse_tex tex_443.png
+}
+
+material tex_444 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_444.png
+    set_texture_alias diffuse_tex tex_444.png
+}
+
+material tex_445 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_445.png
+    set_texture_alias diffuse_tex tex_445.png
+}
+
+material tex_446 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_446.png
+    set_texture_alias diffuse_tex tex_446.png
+}
+
+material tex_447 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_447.png
+    set_texture_alias diffuse_tex tex_447.png
+}
+
+material tex_448 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_448.png
+    set_texture_alias diffuse_tex tex_448.png
+}
+
+material tex_449 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_449.png
+    set_texture_alias diffuse_tex tex_449.png
+}
+
+material tex_44 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_44.png
+    set_texture_alias diffuse_tex tex_44.png
+}
+
+material tex_450 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_450.png
+    set_texture_alias diffuse_tex tex_450.png
+}
+
+material tex_451 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_451.png
+    set_texture_alias diffuse_tex tex_451.png
+}
+
+material tex_452 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_452.png
+    set_texture_alias diffuse_tex tex_452.png
+}
+
+material tex_453 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_453.png
+    set_texture_alias diffuse_tex tex_453.png
+}
+
+material tex_454 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_454.png
+    set_texture_alias diffuse_tex tex_454.png
+}
+
+material tex_455 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_455.png
+    set_texture_alias diffuse_tex tex_455.png
+}
+
+material tex_456 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_456.png
+    set_texture_alias diffuse_tex tex_456.png
+}
+
+material tex_457 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_457.png
+    set_texture_alias diffuse_tex tex_457.png
+}
+
+material tex_458 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_458.png
+    set_texture_alias diffuse_tex tex_458.png
+}
+
+material tex_459 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_459.png
+    set_texture_alias diffuse_tex tex_459.png
+}
+
+material tex_45 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_45.png
+    set_texture_alias diffuse_tex tex_45.png
+}
+
+material tex_460 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_460.png
+    set_texture_alias diffuse_tex tex_460.png
+}
+
+material tex_461 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_461.png
+    set_texture_alias diffuse_tex tex_461.png
+}
+
+material tex_462 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_462.png
+    set_texture_alias diffuse_tex tex_462.png
+}
+
+material tex_463 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_463.png
+    set_texture_alias diffuse_tex tex_463.png
+}
+
+material tex_464 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_464.png
+    set_texture_alias diffuse_tex tex_464.png
+}
+
+material tex_465 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_465.png
+    set_texture_alias diffuse_tex tex_465.png
+}
+
+material tex_466 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_466.png
+    set_texture_alias diffuse_tex tex_466.png
+}
+
+material tex_467 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_467.png
+    set_texture_alias diffuse_tex tex_467.png
+}
+
+material tex_468 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_468.png
+    set_texture_alias diffuse_tex tex_468.png
+}
+
+material tex_469 : diffuse_template_alpha
+{ 
+    set_texture_alias ambient_tex tex_469.png
+    set_texture_alias diffuse_tex tex_469.png
+}
+
+material tex_46 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_46.png
+    set_texture_alias diffuse_tex tex_46.png
+}
+
+material tex_470 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_470.png
+    set_texture_alias diffuse_tex tex_470.png
+}
+
+material tex_471 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_471.png
+    set_texture_alias diffuse_tex tex_471.png
+}
+
+material tex_472 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_472.png
+    set_texture_alias diffuse_tex tex_472.png
+}
+
+material tex_473 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_473.png
+    set_texture_alias diffuse_tex tex_473.png
+}
+
+material tex_474 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_474.png
+    set_texture_alias diffuse_tex tex_474.png
+}
+
+material tex_475 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_475.png
+    set_texture_alias diffuse_tex tex_475.png
+}
+
+material tex_476 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_476.png
+    set_texture_alias diffuse_tex tex_476.png
+}
+
+material tex_477 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_477.png
+    set_texture_alias diffuse_tex tex_477.png
+}
+
+material tex_478 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_478.png
+    set_texture_alias diffuse_tex tex_478.png
+}
+
+material tex_479 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_479.png
+    set_texture_alias diffuse_tex tex_479.png
+}
+
+material tex_47 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_47.png
+    set_texture_alias diffuse_tex tex_47.png
+}
+
+material tex_480 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_480.png
+    set_texture_alias diffuse_tex tex_480.png
+}
+
+material tex_481 : diffuse_template 
+{
+    set_texture_alias ambient_tex tex_481.png
+    set_texture_alias diffuse_tex tex_481.png
+}
+
+material tex_482 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_482.png
+    set_texture_alias diffuse_tex tex_482.png
+}
+
+material tex_483 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_483.png
+    set_texture_alias diffuse_tex tex_483.png
+}
+
+material tex_484 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_484.png
+    set_texture_alias diffuse_tex tex_484.png
+}
+
+material tex_485 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_485.png
+    set_texture_alias diffuse_tex tex_485.png
+}
+
+material tex_486 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_486.png
+    set_texture_alias diffuse_tex tex_486.png
+}
+
+material tex_487 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_487.png
+    set_texture_alias diffuse_tex tex_487.png
+}
+
+material tex_488 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_488.png
+    set_texture_alias diffuse_tex tex_488.png
+}
+
+material tex_489 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_489.png
+    set_texture_alias diffuse_tex tex_489.png
+}
+
+material tex_48 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_48.png
+    set_texture_alias diffuse_tex tex_48.png
+}
+
+material tex_490 : diffuse_template_alpha 
+{
+    set_texture_alias ambient_tex tex_490.png
+    set_texture_alias diffuse_tex tex_490.png
+}
+
+material tex_491 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_491.png
+    set_texture_alias diffuse_tex tex_491.png
+}
+
+material tex_492 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_492.png
+    set_texture_alias diffuse_tex tex_492.png
+}
+
+material tex_493 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_493.png
+    set_texture_alias diffuse_tex tex_493.png
+}
+
+material tex_494 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_494.png
+    set_texture_alias diffuse_tex tex_494.png
+}
+
+material tex_495 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_495.png
+    set_texture_alias diffuse_tex tex_495.png
+}
+
+material tex_496 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_496.png
+    set_texture_alias diffuse_tex tex_496.png
+}
+
+material tex_497 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_497.png
+	set_texture_alias diffuse_tex tex_497.png 
+}
+
+material tex_498 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_498.png
+	set_texture_alias diffuse_tex tex_498.png 
+}
+
+material tex_499 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_499.png
+	set_texture_alias diffuse_tex tex_499.png 
+}
+
+material tex_49 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_49.png
+	set_texture_alias diffuse_tex tex_49.png 
+}
+
+material tex_4 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_4.png
+	set_texture_alias diffuse_tex tex_4.png 
+}
+
+material tex_500 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_500.png
+	set_texture_alias diffuse_tex tex_500.png 
+}
+
+material tex_501 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_501.png
+	set_texture_alias diffuse_tex tex_501.png 
+}
+
+material tex_502 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_502.png
+	set_texture_alias diffuse_tex tex_502.png 
+}
+
+material tex_503 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_503.png
+	set_texture_alias diffuse_tex tex_503.png 
+}
+
+material tex_504 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_504.png
+	set_texture_alias diffuse_tex tex_504.png 
+}
+
+material tex_505 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_505.png
+	set_texture_alias diffuse_tex tex_505.png 
+}
+
+material tex_506 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_506.png
+	set_texture_alias diffuse_tex tex_506.png 
+}
+
+material tex_507 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_507.png
+	set_texture_alias diffuse_tex tex_507.png 
+}
+
+material tex_508 : diffuse_template_alpha
+{ 
+    set_texture_alias ambient_tex tex_508.png
+	set_texture_alias diffuse_tex tex_508.png 
+}
+
+material tex_509 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_509.png
+	set_texture_alias diffuse_tex tex_509.png 
+}
+
+material tex_50 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_50.png
+	set_texture_alias diffuse_tex tex_50.png 
+}
+
+material tex_510 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_510.png
+	set_texture_alias diffuse_tex tex_510.png 
+}
+
+material tex_511 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_511.png
+	set_texture_alias diffuse_tex tex_511.png 
+}
+
+material tex_512 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_512.png
+	set_texture_alias diffuse_tex tex_512.png 
+}
+
+material tex_513 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_513.png
+	set_texture_alias diffuse_tex tex_513.png 
+	technique 
+}
+
+material tex_514 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_514.png
+	set_texture_alias diffuse_tex tex_514.png 
+}
+
+material tex_515 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_515.png
+	set_texture_alias diffuse_tex tex_515.png 
+}
+
+material tex_516 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_516.png
+	set_texture_alias diffuse_tex tex_516.png 
+}
+
+material tex_517 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_517.png
+	set_texture_alias diffuse_tex tex_517.png 
+}
+
+material tex_518 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_518.png
+	set_texture_alias diffuse_tex tex_518.png 
+}
+
+material tex_519 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_519.png
+	set_texture_alias diffuse_tex tex_519.png 
+}
+
+material tex_51 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_51.png
+	set_texture_alias diffuse_tex tex_51.png 
+}
+
+material tex_520 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_520.png
+	set_texture_alias diffuse_tex tex_520.png 
+}
+
+material tex_521 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_521.png
+	set_texture_alias diffuse_tex tex_521.png 
+}
+
+material tex_522 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_522.png
+	set_texture_alias diffuse_tex tex_522.png 
+}
+
+material tex_523 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_523.png
+	set_texture_alias diffuse_tex tex_523.png 
+}
+
+material tex_524 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_524.png
+	set_texture_alias diffuse_tex tex_524.png 
+}
+
+material tex_525 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_525.png
+	set_texture_alias diffuse_tex tex_525.png 
+}
+
+material tex_526 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_526.png
+	set_texture_alias diffuse_tex tex_526.png 
+}
+
+material tex_527 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_527.png
+	set_texture_alias diffuse_tex tex_527.png 
+}
+
+material tex_528 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_528.png
+	set_texture_alias diffuse_tex tex_528.png 
+}
+
+material tex_529 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_529.png
+	set_texture_alias diffuse_tex tex_529.png 
+}
+
+material tex_52 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_52.png
+	set_texture_alias diffuse_tex tex_52.png 
+}
+
+material tex_530 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_530.png
+	set_texture_alias diffuse_tex tex_530.png 
+}
+
+material tex_531 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_531.png
+	set_texture_alias diffuse_tex tex_531.png 
+}
+
+material tex_532 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_532.png
+	set_texture_alias diffuse_tex tex_532.png 
+}
+
+material tex_533 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_533.png
+	set_texture_alias diffuse_tex tex_533.png 
+}
+
+material tex_534 : diffuse_template_alpha
+{ 
+    set_texture_alias ambient_tex tex_534.png
+	set_texture_alias diffuse_tex tex_534.png 
+}
+
+material tex_535 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_535.png
+	set_texture_alias diffuse_tex tex_535.png 
+}
+
+material tex_536 : diffuse_template_alpha
+{ 
+    set_texture_alias ambient_tex tex_536.png
+	set_texture_alias diffuse_tex tex_536.png 
+}
+
+material tex_537 : diffuse_template_alpha
+{ 
+    set_texture_alias ambient_tex tex_537.png
+	set_texture_alias diffuse_tex tex_537.png 
+}
+
+material tex_538 : diffuse_template_alpha
+{ 
+    set_texture_alias ambient_tex tex_538.png
+	set_texture_alias diffuse_tex tex_538.png 
+}
+
+material tex_539 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_539.png
+	set_texture_alias diffuse_tex tex_539.png 
+}
+
+material tex_53 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_53.png
+	set_texture_alias diffuse_tex tex_53.png 
+}
+
+material tex_540 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_540.png
+	set_texture_alias diffuse_tex tex_540.png 
+}
+
+material tex_541 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_541.png
+	set_texture_alias diffuse_tex tex_541.png 
+}
+
+material tex_542 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_542.png
+	set_texture_alias diffuse_tex tex_542.png 
+}
+
+material tex_543 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_543.png
+	set_texture_alias diffuse_tex tex_543.png 
+}
+
+material tex_544 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_544.png
+	set_texture_alias diffuse_tex tex_544.png 
+}
+
+material tex_545 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_545.png
+	set_texture_alias diffuse_tex tex_545.png 
+}
+
+material tex_546 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_546.png
+	set_texture_alias diffuse_tex tex_546.png 
+}
+
+material tex_547 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_547.png
+	set_texture_alias diffuse_tex tex_547.png 
+}
+
+material tex_548 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_548.png
+	set_texture_alias diffuse_tex tex_548.png 
+}
+
+material tex_549 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_549.png
+	set_texture_alias diffuse_tex tex_549.png 
+}
+
+material tex_54 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_54.png
+	set_texture_alias diffuse_tex tex_54.png 
+}
+
+material tex_550 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_550.png
+	set_texture_alias diffuse_tex tex_550.png 
+}
+
+material tex_551 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_551.png
+	set_texture_alias diffuse_tex tex_551.png 
+}
+
+material tex_552 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_552.png
+	set_texture_alias diffuse_tex tex_552.png 
+}
+
+material tex_553 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_553.png
+	set_texture_alias diffuse_tex tex_553.png 
+}
+
+material tex_554 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_554.png
+	set_texture_alias diffuse_tex tex_554.png 
+}
+
+material tex_555 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_555.png
+	set_texture_alias diffuse_tex tex_555.png 
+}
+
+material tex_5552 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_5552.png
+	set_texture_alias diffuse_tex tex_5552.png 
+}
+
+material tex_556 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_556.png
+	set_texture_alias diffuse_tex tex_556.png 
+}
+
+material tex_557 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_557.png
+	set_texture_alias diffuse_tex tex_557.png 
+}
+
+material tex_558 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_558.png
+	set_texture_alias diffuse_tex tex_558.png 
+}
+
+material tex_559 : diffuse_template_alpha
+{ 
+    set_texture_alias ambient_tex tex_559.png
+	set_texture_alias diffuse_tex tex_559.png 
+}
+
+material tex_55 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_55.png
+	set_texture_alias diffuse_tex tex_55.png 
+}
+
+material tex_561 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_561.png
+	set_texture_alias diffuse_tex tex_561.png 
+}
+
+material tex_562 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_562.png
+	set_texture_alias diffuse_tex tex_562.png 
+}
+
+material tex_563 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_563.png
+	set_texture_alias diffuse_tex tex_563.png 
+}
+
+material tex_564 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_564.png
+	set_texture_alias diffuse_tex tex_564.png 
+}
+
+material tex_565 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_565.png
+	set_texture_alias diffuse_tex tex_565.png 
+}
+
+material tex_566 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_566.png
+	set_texture_alias diffuse_tex tex_566.png 
+}
+
+material tex_567 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_567.png
+	set_texture_alias diffuse_tex tex_567.png 
+}
+
+material tex_568 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_568.png
+	set_texture_alias diffuse_tex tex_568.png 
+}
+
+material tex_569 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_569.png
+	set_texture_alias diffuse_tex tex_569.png 
+}
+
+material tex_56 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_56.png
+	set_texture_alias diffuse_tex tex_56.png 
+}
+
+material tex_570 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_570.png
+	set_texture_alias diffuse_tex tex_570.png 
+}
+
+material tex_571 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_571.png
+	set_texture_alias diffuse_tex tex_571.png 
+}
+
+material tex_572 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_572.png
+	set_texture_alias diffuse_tex tex_572.png 
+}
+
+material tex_57 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_57.png
+	set_texture_alias diffuse_tex tex_57.png 
+}
+
+material tex_58 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_58.png
+	set_texture_alias diffuse_tex tex_58.png 
+}
+
+material tex_59 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_59.png
+	set_texture_alias diffuse_tex tex_59.png 
+}
+
+material tex_5 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_5.png
+	set_texture_alias diffuse_tex tex_5.png 
+}
+
+material tex_60 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_60.png
+	set_texture_alias diffuse_tex tex_60.png 
+}
+
+material tex_61 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_61.png
+	set_texture_alias diffuse_tex tex_61.png 
+}
+
+material tex_62 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_62.png
+	set_texture_alias diffuse_tex tex_62.png 
+}
+
+material tex_63 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_63.png
+	set_texture_alias diffuse_tex tex_63.png 
+}
+
+material tex_64 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_64.png
+	set_texture_alias diffuse_tex tex_64.png 
+}
+
+material tex_65 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_65.png
+	set_texture_alias diffuse_tex tex_65.png 
+}
+
+material tex_66 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_66.png
+	set_texture_alias diffuse_tex tex_66.png 
+}
+
+material tex_67 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_67.png
+	set_texture_alias diffuse_tex tex_67.png 
+}
+
+material tex_68 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_68.png
+	set_texture_alias diffuse_tex tex_68.png 
+}
+
+material tex_69 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_69.png
+	set_texture_alias diffuse_tex tex_69.png 
+}
+
+material tex_6 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_6.png
+	set_texture_alias diffuse_tex tex_6.png 
+}
+
+material tex_70 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_70.png
+	set_texture_alias diffuse_tex tex_70.png 
+}
+
+material tex_71 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_71.png
+	set_texture_alias diffuse_tex tex_71.png 
+}
+
+material tex_72 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_72.png
+	set_texture_alias diffuse_tex tex_72.png 
+}
+
+material tex_73 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_73.png
+	set_texture_alias diffuse_tex tex_73.png 
+}
+
+material tex_74 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_74.png
+	set_texture_alias diffuse_tex tex_74.png 
+}
+
+material tex_75 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_75.png
+	set_texture_alias diffuse_tex tex_75.png 
+}
+
+material tex_76 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_76.png
+	set_texture_alias diffuse_tex tex_76.png 
+}
+
+material tex_77 : diffuse_template_alpha 
+{ 
+    set_texture_alias ambient_tex tex_77.png
+	set_texture_alias diffuse_tex tex_77.png 
+}
+
+material tex_78 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_78.png
+	set_texture_alias diffuse_tex tex_78.png 
+}
+
+material tex_79 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_79.png
+	set_texture_alias diffuse_tex tex_79.png 
+}
+
+material tex_7 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_7.png
+	set_texture_alias diffuse_tex tex_7.png 
+}
+
+material tex_80 : diffuse_template 
+{ 
+    set_texture_alias ambient_tex tex_80.png
+	set_texture_alias diffuse_tex tex_80.png 
+}
+
+material tex_81 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_81.png
+	set_texture_alias diffuse_tex tex_81.png
+}
+
+material tex_82 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_82.png
+	set_texture_alias diffuse_tex tex_82.png
+}
+
+material tex_83 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_83.png
+	set_texture_alias diffuse_tex tex_83.png
+}
+
+material tex_84 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_84.png
+	set_texture_alias diffuse_tex tex_84.png
+}
+
+material tex_85 : diffuse_template_alpha 
+{
+	set_texture_alias ambient_tex tex_85.png
+	set_texture_alias diffuse_tex tex_85.png
+}
+
+material tex_86 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_86.png
+	set_texture_alias diffuse_tex tex_86.png
+}
+
+material tex_87 : diffuse_template 
+{
+	set_texture_alias ambient_tex tex_87.png
+	set_texture_alias diffuse_tex tex_87.png
+}
+
+material tex_88 : diffuse_template 
+{
+	set_texture_alias ambient_tex tex_88.png
+	set_texture_alias diffuse_tex tex_88.png
+}
+
+material tex_89 : diffuse_template 
+{
+	set_texture_alias ambient_tex tex_89.png
+	set_texture_alias diffuse_tex tex_89.png
+}
+
+material tex_8 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_8.png
+	set_texture_alias diffuse_tex tex_8.png
+}
+
+material tex_90 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_90.png
+	set_texture_alias diffuse_tex tex_90.png
+}
+
+material tex_91 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_91.png
+	set_texture_alias diffuse_tex tex_91.png
+}
+
+material tex_92 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_92.png
+	set_texture_alias diffuse_tex tex_92.png
+}
+
+material tex_93 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_93.png
+	set_texture_alias diffuse_tex tex_93.png
+}
+
+material tex_94 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_94.png
+	set_texture_alias diffuse_tex tex_94.png
+}
+
+material tex_95 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_95.png
+	set_texture_alias diffuse_tex tex_95.png
+}
+
+material tex_96 : diffuse_template_alpha 
+{
+	set_texture_alias ambient_tex tex_96.png
+	set_texture_alias diffuse_tex tex_96.png
+}
+
+material tex_97 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_97.png
+	set_texture_alias diffuse_tex tex_97.png
+}
+
+material tex_98 : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_98.png
+	set_texture_alias diffuse_tex tex_98.png
+}
+
+material tex_99 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_99.png
+	set_texture_alias diffuse_tex tex_99.png
+}
+
+material tex_9 : diffuse_template_alpha 
+{
+	set_texture_alias ambient_tex tex_9.png
+	set_texture_alias diffuse_tex tex_9.png
+}
+
+material tex_996 : diffuse_template_sceneblend
+{ 
+	technique default
+	{
+		pass Decal
+		{
+			depth_bias 5
+			
+			texture_unit
+			{ 
+				texture blood.png
+			}
+		}
+	} 
+}
+
+material tex_997 : diffuse_template_sceneblend
+{ 
+	technique default
+	{
+		pass Decal
+		{
+			depth_bias 5
+			
+			texture_unit
+			{ 
+				texture blood_spot.png
+			}
+		}
+	} 
+}
+
+material tex_998 : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_998.png
+	set_texture_alias diffuse_tex tex_998.png
+}
+
+material armoire_2637 : diffuse_template
+{
+	set_texture_alias ambient_tex tex_armoire_2637.png
+	set_texture_alias diffuse_tex tex_armoire_2637.png
+}
+
+material armoire_2639 : diffuse_template
+{
+	set_texture_alias ambient_tex tex_armoire_2639.png
+	set_texture_alias diffuse_tex tex_armoire_2639.png
+}
+
+
+material tex_5351 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_5351.png
+	set_texture_alias diffuse_tex tex_5351.png
+}
+
+material tex_5634 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_5634.png
+	set_texture_alias diffuse_tex tex_5634.png
+}
+
+material tex_5632 : diffuse_template 
+{
+	set_texture_alias ambient_tex tex_5634.png
+	set_texture_alias diffuse_tex tex_5634.png
+}
+
+material tex_2481 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_2481.png
+	set_texture_alias diffuse_tex tex_2481.png
+}
+
+material tex_grass : diffuse_template_sceneblend
+{ 
+	// set_texture_alias diffuse_tex tex_grass.png
+	
+	technique default
+	{
+		pass Decal
+		{
+			cull_hardware none   
+			cull_software none
+			
+			texture_unit
+			{
+				filtering anisotropic
+				max_anisotropy 8
+				texture tex_grass.png
+				tex_address_mode clamp
+				wave_xform scale_x sine 1.0 0.1 0.0 1.0
+			}
+		}
+	} 
+}
+
+material tex_bramble
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			specular 0.000000 0.000000 0.000000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			
+			alpha_rejection greater_equal 128
+			alpha_to_coverage on
+			
+			texture_unit
+			{
+				texture tex_bramble.png
+				tex_address_mode wrap
+				filtering trilinear
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+
+material tex_mushroom : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_mushroom.png
+	set_texture_alias diffuse_tex tex_mushroom.png
+}
+
+material tex_mushroom2 : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_mushroom2.png
+	set_texture_alias diffuse_tex tex_mushroom2.png
+}
+
+material tex_slidingdoor : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_slidingdoor.png
+	set_texture_alias diffuse_tex tex_slidingdoor.png
+}
+
+material tex_pylon : diffuse_template
+{
+	set_texture_alias ambient_tex tex_pylon.png
+	set_texture_alias diffuse_tex tex_pylon.png
+}
+
+material tex_flowers2 : diffuse_template
+{
+	set_texture_alias ambient_tex tex_flowers2.png
+	set_texture_alias diffuse_tex tex_flowers2.png
+}
+
+material tex_lilypads : diffuse_template
+{
+	set_texture_alias ambient_tex tex_lilypads.png
+	set_texture_alias diffuse_tex tex_lilypads.png
+}
+
+material tex_lantern : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_lantern.png
+	set_texture_alias diffuse_tex tex_lantern.png
+}
+
+material tex_vase : diffuse_template
+{
+	set_texture_alias ambient_tex tex_vase.png
+	set_texture_alias diffuse_tex tex_vase.png
+}
+
+material tex_gravestone_big : diffuse_template
+{
+	set_texture_alias ambient_tex tex_gravestone_big.png
+	set_texture_alias diffuse_tex tex_gravestone_big.png
+}
+
+material tex_mud : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_mud.png
+	set_texture_alias diffuse_tex tex_mud.png
+}
+
+material tex_flowers : diffuse_template_sceneblend
+{
+	set_texture_alias ambient_tex tex_flowers.png
+	set_texture_alias diffuse_tex tex_flowers.png
+}
+
+material tex_stoneplate : diffuse_template
+{
+	set_texture_alias ambient_tex tex_stoneplate.png
+	set_texture_alias diffuse_tex tex_stoneplate.png
+}
+
+material tex_marblewall : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_marblewall.png
+	set_texture_alias diffuse_tex tex_marblewall.png
+}
+
+material tex_sattel : diffuse_template
+{
+	set_texture_alias ambient_tex tex_sattel.png
+	set_texture_alias diffuse_tex tex_sattel.png
+}
+
+material tex_table : diffuse_template
+{
+	set_texture_alias ambient_tex tex_table.png
+	set_texture_alias diffuse_tex tex_table.png
+}
+
+material tex_paperwall : diffuse_template
+{
+	set_texture_alias ambient_tex tex_paperwall.png
+	set_texture_alias diffuse_tex tex_paperwall.png
+}
+
+material tex_gravestone2 : diffuse_template
+{
+	set_texture_alias ambient_tex tex_gravestone2.png
+	set_texture_alias diffuse_tex tex_gravestone2.png
+}
+
+material tex_woodwalls : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_woodwalls.png
+	set_texture_alias diffuse_tex tex_woodwalls.png
+}
+
+material tex_woodwalls2 : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_woodwalls2.png
+	set_texture_alias diffuse_tex tex_woodwalls2.png
+}
+
+material tex_gravestone3 : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_gravestone3.png
+	set_texture_alias diffuse_tex tex_gravestone3.png
+}
+
+material tex_portrait : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_portrait.png
+	set_texture_alias diffuse_tex tex_portrait.png
+}
+
+material tex_sculpture : diffuse_template
+{
+	set_texture_alias ambient_tex tex_sculpture.png
+	set_texture_alias diffuse_tex tex_sculpture.png
+}
+
+material fern : diffuse_template_sceneblend
+{
+	set_texture_alias ambient_tex tex_fernleaf.png
+	set_texture_alias diffuse_tex tex_fernleaf.png
+}
+
+material tex_will1 : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_rune1.png
+	set_texture_alias diffuse_tex tex_rune1.png
+}
+
+material tex_sunrice_wood : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_sunrice_wood.png
+	set_texture_alias diffuse_tex tex_sunrice_wood.png
+}
+
+material cedar_bark : diffuse_template
+{
+	set_texture_alias ambient_tex tex_550.png
+	set_texture_alias diffuse_tex tex_550.png
+}
+
+material palm01_bark : diffuse_template
+{
+	technique default
+	{
+		pass Decal
+		{
+			texture_unit
+			{
+				tex_address_mode wrap
+				texture tex_palmbark.png
+			}
+		}
+	}
+}
+
+material palm01_crown : diffuse_template_foliage
+{
+	set_texture_alias ambient_tex tex_palmcrown.png
+	set_texture_alias diffuse_tex tex_palmcrown.png
+}
+
+material palm01_leaf : diffuse_template_foliage
+{
+	set_texture_alias ambient_tex tex_palmleaf.png
+	set_texture_alias diffuse_tex tex_palmleaf.png
+}
+
+material Atlas_Will : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_atlas_william.png
+	set_texture_alias diffuse_tex tex_atlas_william.png
+}
+
+material tex_elephantplant : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_elphlen_ear_plant.png
+	set_texture_alias diffuse_tex tex_elphlen_ear_plant.png
+}
+
+material tex_big_elven_chair : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_big_elven_chair.png
+	set_texture_alias diffuse_tex tex_big_elven_chair.png
+}
+
+material tex_elven_table : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_elven_table.png
+	set_texture_alias diffuse_tex tex_elven_table.png
+}
+
+material tex_orccart : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_orccart.png
+	set_texture_alias diffuse_tex tex_orccart.png
+}
+
+material tex_roof_red_0 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_roof_red_0.png
+	set_texture_alias diffuse_tex tex_roof_red_0.png
+}
+
+material tex_roof_red_1 : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_roof_red_1.png
+	set_texture_alias diffuse_tex tex_roof_red_1.png
+}
+
+material tex_runestone : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_runestone.png
+	set_texture_alias diffuse_tex tex_runestone.png
+}
+
+material tex_osterhead : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_osterhead.png
+	set_texture_alias diffuse_tex tex_osterhead.png
+}
+
+material tex_pumpkin : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_pumpkin.png
+	set_texture_alias diffuse_tex tex_pumpkin.png
+}
+
+material tex_oak_bark : diffuse_template 
+{ 
+	set_texture_alias ambient_tex tex_oak_bark.png
+	set_texture_alias diffuse_tex tex_oak_bark.png
+}
+
+material tex_oak_leaves : diffuse_template_alpha 
+{ 
+	set_texture_alias ambient_tex tex_oak_leaves.png
+	set_texture_alias diffuse_tex tex_oak_leaves.png
+}
+
+material tex_003287 : diffuse_template_alpha
+{ 
+	set_texture_alias ambient_tex tex_003287.png
+	set_texture_alias diffuse_tex tex_003287.png
+}
+
+material tex_crystal : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_crystal.png
+	set_texture_alias diffuse_tex tex_crystal.png
+}
+
+material tex_powercrystal : diffuse_template
+{
+	set_texture_alias ambient_tex tex_powercrystal.png
+	set_texture_alias diffuse_tex tex_powercrystal.png
+}
+
+material tex_CommCrystal : diffuse_template
+{
+	set_texture_alias ambient_tex tex_RedCommCrystal.png
+	set_texture_alias diffuse_tex tex_RedCommCrystal.png
+}
+
+material tex_PurplePotion : diffuse_template
+{
+	set_texture_alias ambient_tex tex_PurplePotion.png
+	set_texture_alias diffuse_tex tex_PurplePotion.png
+}
+
+material tex_004033 : diffuse_template
+{ 
+	set_texture_alias ambient_tex tex_004033.png
+	set_texture_alias diffuse_tex tex_004033.png 
+}
+
+material tex_004551 : diffuse_template_foliage
+{ 
+	set_texture_alias ambient_tex tex_004551.png
+	set_texture_alias diffuse_tex tex_004551.png 
+}
+
+material tex_008750 : diffuse_template_foliage
+{ 
+	set_texture_alias ambient_tex tex_008750.png
+	set_texture_alias diffuse_tex tex_008750.png 
+}
+
+material tex_009002 : diffuse_template_alpha
+{ 
+	set_texture_alias ambient_tex tex_009002.png
+	set_texture_alias diffuse_tex tex_009002.png 
+}

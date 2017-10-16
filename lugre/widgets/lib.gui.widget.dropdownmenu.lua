@@ -1,0 +1,2 @@
+-- aka combobox in java/win32
+-- also menubar : multiple dropdown

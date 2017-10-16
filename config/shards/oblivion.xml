@@ -1,0 +1,10 @@
+<table>
+    <string key="gLoginname"></string>
+    <string key="gPassword"></string>
+    <string key="gClientVersion">5.0.0.0</string>
+	<table key="gBaseHues"></table>
+    <boolean key="gPolServer">false</boolean>
+    <number key="gServerSeed">4294967295</number>
+    <number key="gLoginServerPort">2593</number>
+    <string key="gLoginServerIP">shard.aleknights.com</string>
+</table>

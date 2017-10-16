@@ -1,0 +1,10 @@
+import atlas_base_alpha from textures.material
+
+material tex_atlas_alpha_med0 : atlas_base_alpha 
+{ 
+	set_texture_alias MainTexture tex_atlas_alpha_med0.dds  
+}
+material tex_atlas_alpha_med1 : atlas_base_alpha 
+{ 
+	set_texture_alias MainTexture tex_atlas_alpha_med1.dds  
+}

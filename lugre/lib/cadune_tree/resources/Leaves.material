@@ -1,0 +1,72 @@
+material Leaves
+{
+	lod_distances 75.0
+	receive_shadows off
+
+	technique glslhlsl
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+
+			//alpha_blend depthsorting is not correct, but it looks a lot better
+			alpha_rejection greater 128
+//			scene_blend alpha_blend
+//			depth_write off
+//			depth_check on
+
+			vertex_program_ref WindyGrassVS
+			{
+				param_named fMaxMovementFactor float 0.08
+			}
+			texture_unit leaf
+			{
+				texture orange.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+
+	technique fixed_function
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+
+			alpha_rejection greater 128
+//			scene_blend alpha_blend
+//			depth_write off
+//			depth_check on
+
+			texture_unit leaf
+			{
+				texture orange.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+
+	technique fixed_function_lod
+	{
+		lod_index 1
+
+		pass
+		{
+			cull_hardware none
+			cull_software none
+
+			alpha_rejection greater 128
+
+			texture_unit leaf
+			{
+				texture orange.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+}

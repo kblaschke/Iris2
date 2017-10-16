@@ -1,0 +1,38 @@
+fragment_program edgesFP  hlsl
+{
+	source edgesFP.source
+	target ps_2_0
+	entry_point main
+}
+vertex_program edgesVP hlsl
+{
+	source edgesVP.source
+	target vs_1_1
+	entry_point main
+}
+
+material EdgeDetection
+{
+	technique
+	{
+	
+	pass
+		{
+		scene_blend add
+
+			fragment_program_ref edgesFP
+			{
+		
+				param_named offset float 1024
+			}
+		
+			vertex_program_ref edgesVP
+			{
+			}
+
+			texture_unit
+			{
+			}
+		}
+	}
+}

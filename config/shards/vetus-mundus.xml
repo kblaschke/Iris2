@@ -1,0 +1,10 @@
+<table>
+    <string key="gLoginname"></string>
+    <string key="gClientVersion">7.0.6.5</string>
+    <boolean key="gPolServer">false</boolean>
+    <number key="gServerSeed">4294967295</number>
+    <number key="gLoginServerPort">2594</number>
+    <number key="gWalkMinDiagonalBlock">2</number>
+    <string key="gPassword"></string>
+    <string key="gLoginServerIP">shard.vetus-mundus.de</string>
+</table>

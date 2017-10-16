@@ -1,0 +1,156 @@
+//###########################################
+// TEMPLATES
+//###########################################
+
+// PARTICLE BASE MATERIAL
+material particlebase
+{
+	technique
+	{
+		pass
+		{
+			fog_override true
+			lighting off
+			depth_write off
+			scene_blend add
+
+			texture_unit particletex
+			{
+				texture stone512.dds
+			}
+		}
+	}
+}
+
+// --------------- THIS IS THE END OF BASE MATERIALS ----------------------
+
+material Particles/explosion : particlebase
+{
+	set_texture_alias particletex explosion.png
+}
+
+material Particles/bigFlame : particlebase
+{
+	set_texture_alias particletex bigflame.png
+}
+
+material Particles/Flare : particlebase
+{
+	set_texture_alias particletex flaretrail.png
+}
+
+material Particles/Fireball : particlebase
+{
+	set_texture_alias particletex fireball.tga
+}
+
+material Particles/Fibres : particlebase
+{
+	set_texture_alias particletex fibres.png
+}
+
+material Generic/Fire : particlebase
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture firesmoke.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material Particles/SpinBeam : particlebase
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture spinbeam.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material Particles/FlarePointSprite : particlebase
+{
+	technique
+	{
+		pass
+		{
+			point_sprites on
+			point_size 10
+			//point_size 20
+			//point_size_attenuation on
+
+			texture_unit
+			{
+				texture flare.png
+			}
+		}
+	}
+}
+
+material Particles/Skull : particlebase
+{
+	technique
+	{
+		pass
+		{
+			//scene_blend alpha_blend
+			alpha_rejection greater_equal 200
+			
+			cull_hardware clockwise
+			cull_software back
+
+			texture_unit
+			{
+				texture skull.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material Particles/Swords : particlebase
+{
+	technique
+	{
+		pass
+		{
+			//scene_blend alpha_blend
+			alpha_rejection greater_equal 200
+
+			cull_hardware clockwise
+			cull_software back
+
+			texture_unit
+			{
+				texture swords.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material Particles/Twirl : particlebase
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture twirl.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}

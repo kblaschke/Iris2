@@ -1,0 +1,58 @@
+vertex_program diffuse_vs cg
+{
+    source diffuse.cg
+    profiles vs_1_1 arbvp1
+    entry_point diffuse_vs
+
+    default_params
+    {
+        param_named_auto wMat world_matrix
+        param_named_auto wvpMat worldviewproj_matrix
+        param_named_auto tvpMat texture_viewproj_matrix 0
+        param_named_auto spotlightDir light_direction_object_space 0
+    }
+}
+
+fragment_program diffuse_ps cg
+{
+    source diffuse.cg
+    profiles ps_2_x arbfp1
+    entry_point diffuse_ps
+
+    default_params
+    {
+        param_named_auto lightDif0 light_diffuse_colour 0
+        param_named_auto lightSpec0 light_specular_colour 0
+        param_named_auto camPos camera_position
+        param_named_auto shininess surface_shininess
+        param_named_auto lightPos0 light_position 0
+        param_named_auto lightAtt0 light_attenuation 0
+        //param_named_auto invSMSize inverse_texture_size 1
+        param_named_auto spotlightParams spotlight_params 0
+    }
+}
+
+vertex_program geom_vs cg
+{
+    source diffuse.cg
+    profiles vs_1_1 arbvp1
+    entry_point geom_vs
+
+    default_params
+    {
+        param_named_auto wvpMat worldviewproj_matrix
+        param_named_auto wvMat worldview_matrix
+    }
+}
+
+fragment_program geom_ps cg
+{
+    source diffuse.cg
+    profiles ps_2_0 arbfp1
+    entry_point geom_ps
+
+    default_params
+    {
+        param_named_auto far far_clip_distance
+    }
+}

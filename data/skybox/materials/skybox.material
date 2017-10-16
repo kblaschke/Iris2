@@ -1,0 +1,87 @@
+//###########################################
+// TEMPLATES
+//###########################################
+
+// SKYBOX BASE TEMPLATE
+material skyboxbase
+{
+	// FIXED FUNCTION
+	technique
+	{
+		pass
+		{
+			fog_override true
+			lighting off
+			depth_write off
+
+			texture_unit
+			{
+				//filtering none
+				cubic_texture stone512.dds stone512.dds stone512.dds stone512.dds stone512.dds stone512.dds separateUV
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+// --------------- THIS IS THE END OF BASE MATERIALS ----------------------
+
+material bluesky : skyboxbase
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				cubic_texture skybox_north.dds skybox_south.dds skybox_west.dds skybox_east.dds skybox_top.dds stone512.dds separateUV
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material darksun : skyboxbase
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				cubic_texture darksun_north.dds darksun_south.dds darksun_west.dds darksun_east.dds darksun_top.dds stone512.dds separateUV
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material sunset : skyboxbase
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				cubic_texture sunset_north.dds sunset_south.dds sunset_west.dds sunset_east.dds sunset_top.dds stone512.dds separateUV
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material cleansky : skyboxbase
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				cubic_texture cleansky_fr.dds cleansky_bk.dds cleansky_lf.dds cleansky_rt.dds cleansky_up.dds stone512.dds separateUV
+				tex_address_mode clamp
+			}
+		}
+	}
+}

@@ -1,0 +1,224 @@
+
+	{artid=400 , content={{artid=7035},{artid=3934},}}, 	-- human,shield,sword
+	{artid=400 , content={{artid=hex2num("0x1442")},}}, 	-- human,twohandedaxe
+	{artid=400 , content={{artid=3934},}}, 	-- human,sword
+	{artid=400 , content={{artid=7035},}}, 	-- human,shield
+	{artid=400 , content={{artid=7028},}}, 	-- human,kiteshield
+	{artid=400 , content={{artid=3917},}}, 	-- human,bradiche
+	{artid=400 , content={{artid=2576},}}, 	-- human,candle
+	{artid=400 , content={{artid=2577},}}, 	-- human,candle
+	{artid=400 , content={{artid=2578},}}, 	-- human,torch
+	{artid=400 , content={{artid=2581},}}, 	-- human,lantern
+	{artid=400 , content={{artid=2582},}}, 	-- human,lantern
+	{artid=400 , content={{artid=2583},}}, 	-- human,lantern
+	{artid=400 , content={{artid=2584},}}, 	-- human,lantern
+	
+	
+	--~ local onehand	= self:GetEquipmentAtLayer(kLayer_OneHanded)
+	--~ local bHasStaff = (not onehand) and twohand and TestBit(GetStaticTileTypeFlags(twohand.artid) or 0,kTileDataFlag_Weapon)
+	
+	
+
+--[[
+t:u2,2575,miFlags=0x00c04002,miQuality=2,miUnknown=0x00000000,miUnknown3=0x00000002,msName=candle,
+t:u2,2576,miFlags=0x00c04002,miQuality=2,miUnknown=0x00000000,miUnknown3=0x00000002,msName=candle,
+t:u2,2577,miFlags=0x00c04002,miQuality=2,miUnknown=0x00000000,miUnknown3=0x00000002,msName=candle,
+t:u2,2578,miFlags=0x04c04002,miQuality=2,miUnknown=0x00000000,miUnknown3=0x0000001d,msName=torch,
+t:u2,2579,miFlags=0x00c04002,miQuality=2,miUnknown=0x00000000,miUnknown3=0x0000001d,msName=torch,
+t:u2,2580,miFlags=0x00c04002,miQuality=2,miUnknown=0x00000000,miUnknown3=0x0000001d,msName=torch,
+t:u2,2581,miFlags=0x01c04000,miQuality=2,miUnknown=0x00000000,miUnknown3=0x00000008,msName=lantern,
+t:u2,2582,miFlags=0x01c04002,miQuality=2,miUnknown=0x00000000,miUnknown3=0x00000006,msName=lantern,
+t:u2,2583,miFlags=0x01c08002,miQuality=2,miUnknown=0x00000000,miUnknown3=0x00000006,msName=lantern,
+t:u2,2584,miFlags=0x00400000,miQuality=2,miUnknown=0x00000000,miUnknown3=0x00000006,msName=lantern,
+t:u2,2594,miFlags=0x00c04000,miQuality=2,miUnknown=0x00000000,miUnknown3=0x00000001,msName=lantern,
+t:u2,2595,miFlags=0x00c04000,miQuality=2,miUnknown=0x00000000,miUnknown3=0x00000001,msName=lantern,
+t:u2,2596,miFlags=0x00c04000,miQuality=2,miUnknown=0x00000000,miUnknown3=0x00000001,msName=lantern,
+t:u2,2597,miFlags=0x00400000,miQuality=2,miUnknown=0x00000000,msName=lantern,
+t:u2,3519,miFlags=0x00404002,miQuality=2,miUnknown=0x00000033,miUnknown3=0x00000008,msName=fishing pole,
+t:u2,3520,miFlags=0x00404002,miQuality=2,miUnknown=0x00000033,miUnknown3=0x00000008,msName=fishing pole,
+t:u2,3568,miFlags=0x00404002,miQuality=2,miUnknown=0x00000028,miUnknown3=0x00000008,msName=black staff,
+t:u2,3569,miFlags=0x00404002,miQuality=2,miUnknown=0x00000028,miUnknown3=0x00000008,msName=black staff,
+t:u2,3713,miFlags=0x00404002,miQuality=2,miUnknown=0x00000038,msName=shepherd's crook,
+t:u2,3714,miFlags=0x00404002,miQuality=2,miUnknown=0x00000038,msName=shepherd's crook,
+t:u2,3719,miFlags=0x04444002,miQuality=2,miUnknown=0x00000019,miUnknown3=0x00000007,msName=pitchfork,
+t:u2,3720,miFlags=0x00444002,miQuality=2,miUnknown=0x00000019,miUnknown3=0x00000007,msName=pitchfork,
+t:u2,3721,miFlags=0x04404002,miQuality=2,miUnknown=0x00000027,miUnknown3=0x00000006,msName=quarter staff,
+t:u2,3722,miFlags=0x04404002,miQuality=2,miUnknown=0x00000027,miUnknown3=0x00000006,msName=quarter staff,
+t:u2,3907,miFlags=0x00404002,miQuality=2,miUnknown=0x00000037,miUnknown3=0x00000006,msName=hatchet,
+t:u2,3908,miFlags=0x00404002,miQuality=2,miUnknown=0x00000037,miUnknown3=0x00000006,msName=hatchet,
+t:u2,3909,miFlags=0x00440002,miQuality=2,miUnknown=0x0000000f,miUnknown3=0x0000000f,msName=executioner's axe,
+t:u2,3910,miFlags=0x00440002,miQuality=2,miUnknown=0x0000000f,miUnknown3=0x0000000f,msName=executioner's axe,
+t:u2,3913,miFlags=0x04408002,miQuality=2,miUnknown=0x0000000b,miUnknown3=0x0000000f,msName=axe,
+t:u2,3914,miFlags=0x00408002,miQuality=2,miUnknown=0x0000000b,miUnknown3=0x0000000f,msName=axe,
+t:u2,3915,miFlags=0x00404002,miQuality=2,miUnknown=0x0000000a,miUnknown3=0x00000009,msName=double axe,
+t:u2,3916,miFlags=0x00404002,miQuality=2,miUnknown=0x0000000a,miUnknown3=0x00000009,msName=double axe,
+t:u2,3917,miFlags=0x00440002,miQuality=2,miUnknown=0x00000010,miUnknown3=0x0000001e,msName=bardiche,
+t:u2,3918,miFlags=0x00444002,miQuality=2,miUnknown=0x00000010,miUnknown3=0x0000001e,msName=bardiche,
+t:u2,3938,miFlags=0x04404002,miQuality=2,miUnknown=0x0000001b,miUnknown3=0x0000000b,msName=spear,
+t:u2,3939,miFlags=0x00404002,miQuality=2,miUnknown=0x0000001b,miUnknown3=0x0000000b,msName=spear,
+t:u2,3940,miFlags=0x00404802,miQuality=2,miUnknown=0x00000000,miUnknown3=0x00000003,msName=torch%es%,
+t:u2,3947,miFlags=0x00404802,miQuality=2,miUnknown=0x00000000,miUnknown3=0x00000003,msName=torch%es%,
+t:u2,5108,miFlags=0x04404002,miQuality=2,miUnknown=0x00000038,miUnknown3=0x00000007,msName=crook,
+t:u2,5109,miFlags=0x00404002,miQuality=2,miUnknown=0x00000038,miUnknown3=0x00000007,msName=crook,
+t:u2,5112,miFlags=0x00404002,miQuality=2,miUnknown=0x00000026,miUnknown3=0x00000005,msName=gnarled staff,
+t:u2,5113,miFlags=0x00404002,miQuality=2,miUnknown=0x00000026,miUnknown3=0x00000005,msName=gnarled staff,
+t:u2,5114,miFlags=0x04404002,miQuality=2,miUnknown=0x0000000d,miUnknown3=0x00000009,msName=large battle axe,
+t:u2,5115,miFlags=0x04404002,miQuality=2,miUnknown=0x0000000d,miUnknown3=0x00000009,msName=large battle axe,
+t:u2,5122,miFlags=0x00404002,miQuality=2,miUnknown=0x0000001a,miUnknown3=0x00000007,msName=short spear,
+t:u2,5123,miFlags=0x00404002,miQuality=2,miUnknown=0x0000001a,miUnknown3=0x00000007,msName=short spear,
+t:u2,5182,miFlags=0x00444002,miQuality=2,miUnknown=0x00000011,miUnknown3=0x0000000f,msName=halberd,
+t:u2,5183,miFlags=0x04444002,miQuality=2,miUnknown=0x00000011,miUnknown3=0x0000000f,msName=halberd,
+t:u2,5186,miFlags=0x00444002,miQuality=2,miUnknown=0x0000000c,miUnknown3=0x00000007,msName=two handed axe,
+t:u2,5187,miFlags=0x00444002,miQuality=2,miUnknown=0x0000000c,miUnknown3=0x00000007,msName=two handed axe,
+t:u2,5703,miFlags=0x04c00000,miQuality=2,miUnknown=0x00000001,miUnknown3=0x0000001d,msName=light source,
+t:u2,7026,miFlags=0x00404002,miQuality=2,miUnknown=0x0000004a,miUnknown3=0x0000000a,msName=bronze shield,
+t:u2,7027,miFlags=0x00404002,miQuality=2,miUnknown=0x00000048,miUnknown3=0x00000008,msName=buckler,
+t:u2,7028,miFlags=0x00444002,miQuality=2,miUnknown=0x0000004c,miUnknown3=0x0000000f,msName=kite shield,
+t:u2,7029,miFlags=0x00444002,miQuality=2,miUnknown=0x0000004c,miUnknown3=0x0000000f,msName=kite shield,
+t:u2,7030,miFlags=0x00404002,miQuality=2,miUnknown=0x0000004d,miUnknown3=0x00000011,msName=heater shield,
+t:u2,7031,miFlags=0x00404002,miQuality=2,miUnknown=0x0000004d,miUnknown3=0x00000011,msName=heater shield,
+t:u2,7032,miFlags=0x00404002,miQuality=2,miUnknown=0x00000047,miUnknown3=0x0000000c,msName=kite shield,
+t:u2,7033,miFlags=0x00404002,miQuality=2,miUnknown=0x00000047,miUnknown3=0x0000000c,msName=kite shield,
+t:u2,7034,miFlags=0x00404002,miQuality=2,miUnknown=0x00000049,miUnknown3=0x00000009,msName=wooden shield,
+t:u2,7035,miFlags=0x00404002,miQuality=2,miUnknown=0x0000004e,miUnknown3=0x0000000a,msName=metal shield,
+t:u2,7107,miFlags=0x00404002,miQuality=2,miUnknown=0x00000050,msName=Chaos shield,
+t:u2,7108,miFlags=0x00408002,miQuality=2,miUnknown=0x0000004f,msName=Order shield,
+t:u2,7109,miFlags=0x00408002,miQuality=2,miUnknown=0x0000004f,msName=Order shield,
+t:u2,7110,miFlags=0x00444002,miQuality=2,miUnknown=0x00000000,msName=scale shield,
+t:u2,7111,miFlags=0x00404002,miQuality=2,miUnknown=0x00000000,msName=scale shield,
+t:u2,9556,miFlags=0x00404002,miQuality=2,miUnknown=0x0000012d,miUnknown3=0x00000001,msName=daemon sword,
+t:u2,9557,miFlags=0x00408002,miQuality=2,miUnknown=0x0000012e,miUnknown3=0x00000001,msName=ettin hammer,
+t:u2,9558,miFlags=0x00404002,miQuality=2,miUnknown=0x00000132,miUnknown3=0x00000001,msName=liche's staff,
+t:u2,9560,miFlags=0x00404002,miQuality=2,miUnknown=0x00000134,miUnknown3=0x00000001,msName=lizardman's spear,
+t:u2,9561,miFlags=0x00408002,miQuality=2,miUnknown=0x0000013b,miUnknown3=0x00000001,msName=ogre's club,
+t:u2,9562,miFlags=0x00408002,miQuality=2,miUnknown=0x0000013c,miUnknown3=0x00000001,msName=ophidian staff,
+t:u2,9563,miFlags=0x00408002,miQuality=2,miUnknown=0x0000013d,miUnknown3=0x00000001,msName=ophidian bardiche,
+t:u2,9564,miFlags=0x00408002,miQuality=2,miUnknown=0x0000013e,miUnknown3=0x00000001,msName=orc club,
+t:u2,9569,miFlags=0x00404002,miQuality=2,miUnknown=0x0000014c,miUnknown3=0x00000001,msName=terathan staff,
+t:u2,9570,miFlags=0x00404002,miQuality=2,miUnknown=0x0000014b,miUnknown3=0x00000001,msName=terathan spear,
+t:u2,9572,miFlags=0x00404002,miQuality=2,miUnknown=0x0000014d,miUnknown3=0x00000001,msName=troll axe,
+t:u2,9573,miFlags=0x00404002,miQuality=2,miUnknown=0x0000014e,miUnknown3=0x00000001,msName=troll maul,
+t:u2,9574,miFlags=0x00404002,miQuality=2,miUnknown=0x0000012f,miUnknown3=0x00000001,msName=frost troll club,
+t:u2,9575,miFlags=0x00408002,miQuality=2,miUnknown=0x0000013f,miUnknown3=0x00000001,msName=orc lord battleaxe,
+t:u2,9576,miFlags=0x00408002,miQuality=2,miUnknown=0x00000140,miUnknown3=0x00000001,msName=orc mage staff,
+t:u2,9577,miFlags=0x00404002,miQuality=2,miUnknown=0x00000144,miUnknown3=0x00000001,msName=bone mage staff,
+t:u2,9578,miFlags=0x00404002,miQuality=2,miUnknown=0x0000014f,miUnknown3=0x00000001,msName=scale shield,
+t:u2,9579,miFlags=0x00404002,miQuality=2,miUnknown=0x00000146,miUnknown3=0x00000001,msName=magic staff,
+t:u2,9580,miFlags=0x00404002,miQuality=2,miUnknown=0x00000147,miUnknown3=0x00000001,msName=magic staff,
+t:u2,9581,miFlags=0x00404002,miQuality=2,miUnknown=0x00000148,miUnknown3=0x00000001,msName=magic staff,
+t:u2,9582,miFlags=0x00404002,miQuality=2,miUnknown=0x00000149,miUnknown3=0x00000001,msName=magic staff,
+t:u2,9584,miFlags=0x00404002,miQuality=2,miUnknown=0x00000037,miUnknown3=0x00000006,msName=hatchet,
+t:u2,9585,miFlags=0x00404002,miQuality=2,miUnknown=0x00000130,miUnknown3=0x00000001,msName=horseman's bow,
+t:u2,9586,miFlags=0x00404002,miQuality=2,miUnknown=0x00000131,miUnknown3=0x00000001,msName=javelin,
+t:u2,9591,miFlags=0x00404002,miQuality=2,miUnknown=0x00000139,miUnknown3=0x00000001,msName=naginata,
+t:u2,9592,miFlags=0x00404002,miQuality=2,miUnknown=0x0000013a,miUnknown3=0x00000001,msName=no-dachi,
+t:u2,9594,miFlags=0x00404002,miQuality=2,miUnknown=0x0000001b,miUnknown3=0x0000000b,msName=spear,
+t:u2,9595,miFlags=0x00404002,miQuality=2,miUnknown=0x0000001b,miUnknown3=0x0000000b,msName=spear,
+t:u2,9914,miFlags=0x00404002,miQuality=2,miUnknown=0x00000012,miUnknown3=0x00000014,msName=scythe,
+t:u2,9917,miFlags=0x00404002,miQuality=2,miUnknown=0x0000002b,miUnknown3=0x00000014,msName=bladed staff,
+t:u2,9918,miFlags=0x00404002,miQuality=2,miUnknown=0x00000018,miUnknown3=0x00000014,msName=pike,
+t:u2,9919,miFlags=0x00404002,miQuality=2,miUnknown=0x0000001c,miUnknown3=0x00000014,msName=double bladed staff,
+t:u2,9921,miFlags=0x00404002,miQuality=2,miUnknown=0x0000001d,miUnknown3=0x00000014,msName=crescent blade,
+t:u2,9922,miFlags=0x00404002,miQuality=2,miUnknown=0x00000031,miUnknown3=0x00000014,msName=composite bow,
+t:u2,9923,miFlags=0x00404002,miQuality=2,miUnknown=0x00000032,miUnknown3=0x00000014,msName=repeating crossbow,
+t:u2,9924,miFlags=0x00404002,miQuality=2,miUnknown=0x00000012,miUnknown3=0x00000014,msName=scythe,
+t:u2,9927,miFlags=0x00404002,miQuality=2,miUnknown=0x0000002b,miUnknown3=0x00000014,msName=bladed staff,
+t:u2,9928,miFlags=0x00404002,miQuality=2,miUnknown=0x00000018,miUnknown3=0x00000014,msName=pike,
+t:u2,9929,miFlags=0x00404002,miQuality=2,miUnknown=0x0000001c,miUnknown3=0x00000014,msName=double bladed staff,
+t:u2,9931,miFlags=0x00404002,miQuality=2,miUnknown=0x0000001d,miUnknown3=0x00000014,msName=crescent blade,
+t:u2,9932,miFlags=0x00404002,miQuality=2,miUnknown=0x00000031,miUnknown3=0x00000014,msName=composite bow,
+t:u2,9933,miFlags=0x00404002,miQuality=2,miUnknown=0x00000032,miUnknown3=0x00000014,msName=repeating crossbow,
+t:u2,10146,miFlags=0x00404002,miQuality=2,miUnknown=0x00000190,miUnknown3=0x00000012,msName=No-Dachi,
+t:u2,10147,miFlags=0x00404002,miQuality=2,miUnknown=0x00000191,miUnknown3=0x00000010,msName=Tessen,
+t:u2,10149,miFlags=0x00404002,miQuality=2,miUnknown=0x00000193,miUnknown3=0x0000000a,msName=Yumi,
+t:u2,10150,miFlags=0x00404002,miQuality=2,miUnknown=0x00000194,miUnknown3=0x00000008,msName=Tetsubo,
+t:u2,10151,miFlags=0x00404002,miQuality=2,miUnknown=0x00000195,miUnknown3=0x00000019,msName=Lajatang,
+t:u2,10153,miFlags=0x00404002,miQuality=2,miUnknown=0x00000197,miUnknown3=0x0000000f,msName=Daisho,
+t:u2,10155,miFlags=0x00404002,miQuality=2,miUnknown=0x00000199,miUnknown3=0x0000000c,msName=Tekagi,
+t:u2,10157,miFlags=0x00404002,miQuality=2,miUnknown=0x0000019b,miUnknown3=0x0000000e,msName=Kama,
+t:u2,10158,miFlags=0x00404002,miQuality=2,miUnknown=0x0000019c,miUnknown3=0x00000008,msName=Nunchaku,
+t:u2,10159,miFlags=0x00404002,miQuality=2,miUnknown=0x0000019d,miUnknown3=0x0000000c,msName=Sai,
+t:u2,10221,miFlags=0x00404002,miQuality=2,miUnknown=0x00000190,miUnknown3=0x00000012,msName=No-Dachi,
+t:u2,10222,miFlags=0x00404002,miQuality=2,miUnknown=0x00000191,miUnknown3=0x00000010,msName=Tessen,
+t:u2,10224,miFlags=0x00404002,miQuality=2,miUnknown=0x00000193,miUnknown3=0x0000000a,msName=Yumi,
+t:u2,10225,miFlags=0x00404002,miQuality=2,miUnknown=0x00000194,miUnknown3=0x00000008,msName=Tetsubo,
+t:u2,10226,miFlags=0x00404002,miQuality=2,miUnknown=0x00000195,miUnknown3=0x00000019,msName=Lajatang,
+t:u2,10228,miFlags=0x00404002,miQuality=2,miUnknown=0x00000197,miUnknown3=0x0000000f,msName=Daisho,
+t:u2,10230,miFlags=0x00404002,miQuality=2,miUnknown=0x00000199,miUnknown3=0x0000000c,msName=Tekagi,
+t:u2,10232,miFlags=0x00404002,miQuality=2,miUnknown=0x0000019b,miUnknown3=0x0000000e,msName=Kama,
+t:u2,10233,miFlags=0x00404002,miQuality=2,miUnknown=0x0000019c,miUnknown3=0x00000008,msName=Nunchaku,
+t:u2,10234,miFlags=0x00404002,miQuality=2,miUnknown=0x0000019d,miUnknown3=0x0000000c,msName=Sai,
+t:u2,11009,miFlags=0x00404002,miQuality=2,miUnknown=0x000000ec,miUnknown3=0x0000001e,msName=Dupres Shield,
+t:u2,11550,miFlags=0x00400002,miQuality=2,miUnknown=0x00000226,miUnknown3=0x00000019,msName=Elven Composite Lo,
+t:u2,11551,miFlags=0x00400002,miQuality=2,miUnknown=0x00000227,miUnknown3=0x00000014,msName=Magical Shortbow,
+t:u2,11552,miFlags=0x00400002,miQuality=2,miUnknown=0x00000228,miUnknown3=0x00000012,msName=Elven Spellblade,
+t:u2,11558,miFlags=0x00400002,miQuality=2,miUnknown=0x0000022e,miUnknown3=0x0000000f,msName=Rune Blade,
+t:u2,11560,miFlags=0x00400002,miQuality=2,miUnknown=0x00000230,miUnknown3=0x00000015,msName=Ornate Axe,
+t:u2,11562,miFlags=0x00400002,miQuality=2,miUnknown=0x00000226,miUnknown3=0x00000019,msName=Elven Composite Lo,
+t:u2,11563,miFlags=0x00400002,miQuality=2,miUnknown=0x00000227,miUnknown3=0x00000014,msName=Magical Shortbow,
+t:u2,11564,miFlags=0x00400002,miQuality=2,miUnknown=0x00000228,miUnknown3=0x00000012,msName=Elven Spellblade,
+t:u2,11570,miFlags=0x00400002,miQuality=2,miUnknown=0x0000022e,miUnknown3=0x0000000f,msName=Rune Blade,
+t:u2,11572,miFlags=0x00400002,miQuality=2,miUnknown=0x00000230,miUnknown3=0x00000015,msName=Ornate Axe,
+
+
+
+	if (false) then
+		local mask2 = hex2num("0xffffFFFF") - kTileDataFlag_Prefix_A - kTileDataFlag_Wearable - 
+					kTileDataFlag_Partial_Hue - kTileDataFlag_LightSource - kTileDataFlag_Prefix_An
+		local mask = hex2num("0xffffFFFF")
+		for iArtID = 0,32768-32*512-1 do
+			local tiledata = GetStaticTileType(iArtID)
+			if (tiledata	and TestBit(tiledata.miFlags,kTileDataFlag_Wearable)
+							--~ and (not string.find(tiledata.msName,"shield"))
+							--~ and TestBit(tiledata.miUnknown,hex2num("0x40"))
+							--~ and 
+							and (tiledata.miQuality == 2)) then
+				--~ tiledata.miFlags = BitwiseAND(mask2,tiledata.miFlags)
+				tiledata.miQuality = ""..tiledata.miQuality
+				tiledata.miAnimID = nil
+				tiledata.miWeight = nil
+				tiledata.miHeight = nil
+				--~ tiledata.miUnknown = nil
+				--~ tiledata.miUnknown3 = nil
+				--~ tiledata.miU2 = TestBit(tiledata.miFlags,kTileDataFlag_Unknown2) and "1" or "0"
+				if (tiledata.miUnknown1 == 0) then tiledata.miUnknown1 = nil end
+				if (tiledata.miUnknown2 == 0) then tiledata.miUnknown2 = nil end
+				if (tiledata.miUnknown3 == 0) then tiledata.miUnknown3 = nil end
+				if (tiledata.miQuality == 0) then tiledata.miQuality = nil end
+				if (tiledata.miQuantity == 0) then tiledata.miQuantity = nil end 
+				tiledata.miHue= nil
+				print("t:u2,"..iArtID..","..vardump(tiledata))
+				mask = BitwiseAND(mask,tiledata.miFlags)
+			end
+		end
+		printf("0x%08x\n",mask)
+		--[[
+
+		t:u2,5187,miFlags=0x00444002,miQuality=2,miUnknown=0x0000000c,miUnknown3=0x00000007,msName=two handed axe,
+		t:u2,7028,miFlags=0x00444002,miQuality=2,miUnknown=0x0000004c,miUnknown3=0x0000000f,msName=kite shield,
+		t:u2,7027,miFlags=0x00404002,miQuality=2,miUnknown=0x00000048,miUnknown3=0x00000008,msName=buckler,
+		t:u2,5182,miFlags=0x00444002,miQuality=2,miUnknown=0x00000011,miUnknown3=0x0000000f,msName=halberd,
+		t:u2,5183,miFlags=0x04444002,miQuality=2,miUnknown=0x00000011,miUnknown3=0x0000000f,msName=halberd,
+		t:u2,7107,miFlags=0x00404002,miQuality=2,miUnknown=0x00000050,msName=Chaos shield,
+		t:u2,7108,miFlags=0x00408002,miQuality=2,miUnknown=0x0000004f,msName=Order shield,
+		t:u2,7109,miFlags=0x00408002,miQuality=2,miUnknown=0x0000004f,msName=Order shield,
+		t:u2,7110,miFlags=0x00444002,miQuality=2,miUnknown=0x00000000,msName=scale shield,
+		t:u2,7111,miFlags=0x00404002,miQuality=2,miUnknown=0x00000000,msName=scale shield,
+		kTileDataFlag_Unknown2									 = hex2num("0x04000000")
+		kTileDataFlag_LightSource								 = hex2num("0x00800000")
+		kTileDataFlag_Wearable									 = hex2num("0x00400000")
+		kTileDataFlag_Partial_Hue							     = hex2num("0x00040000")
+		kTileDataFlag_Prefix_A									 = hex2num("0x00004000")
+		kTileDataFlag_Prefix_An									 = hex2num("0x00008000")
+		kTileDataFlag_Weapon								     = hex2num("0x00000002")   miUnknown= miUnknown3= miWeight=
+		GetModelPartModelIDs    1       nil     miAnimID=0x0000026a,miFlags=0x04404002,miHeight=0x00000001,miHue=0x00000000,miQuality=0x00000001,miQuantity=0x00000000,miUnknown=0x00000003,miUnknown1=0x00000000,miUnknown2=0x00000000,miUnknown3=0x0000000f,miWeight=0x00000006,msName=broadsword,
+		GetModelPartModelIDs    2       nil     miAnimID=0x00000240,miFlags=0x00404002,miHeight=0x00000001,miHue=0x00000000,miQuality=0x00000002,miQuantity=0x00000000,miUnknown=0x0000004e,miUnknown1=0x00000000,miUnknown2=0x00000000,miUnknown3=0x0000000a,miWeight=0x00000006,msName=metal shield,
+		GetModelPartModelIDs    2       true    miAnimID=0x00000264,miFlags=0x00444002,miHeight=0x00000001,miHue=0x00000000,miQuality=0x00000002,miQuantity=0x00000000,miUnknown=0x0000000c,miUnknown1=0x00000000,miUnknown2=0x00000000,miUnknown3=0x00000007,miWeight=0x00000008,msName=two handed axe,
+		GetStaticTileType(item.artid or 0)
+		]]--
+		Crash()
+	end
+	
+	
+]]--
+

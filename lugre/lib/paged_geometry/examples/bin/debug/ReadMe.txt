@@ -1,0 +1,3 @@
+This folder is where the example EXEs will be placed by Visual Studio when compiled in debug mode. In order for these EXEs to have access to Ogre's DLLs, you'll need to copy them into this folder (otherwise they won't run). Usually Ogre's release DLLs are located at C:\OgreSDK\bin\debug.
+
+Note: Plugin_ParticleFX_d.dll, Plugin_BSPSceneManager_d.dll, OgreGUIRenderer_d.dll, CEGUIFalagardWRBase_d.dll, CEGUIExpatParser_d.dll, and CEGUIBase_d.dll aren't used by any of the examples, so they don't need to be copied.

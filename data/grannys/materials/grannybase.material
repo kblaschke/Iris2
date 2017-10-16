@@ -1,0 +1,100 @@
+//###########################################
+// TEMPLATES
+//###########################################
+
+// GRANNY BASE MATERIAL
+// this will be cloned and adjusted to create the materials used by granny models
+//: Ogre/DepthShadowmap/BasicTemplateMaterial
+material grannybase
+{
+	receive_shadows off
+
+	// FIXED FUNCTION - Fallback technique
+	// Software blending technique
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			alpha_rejection greater_equal 50
+
+			texture_unit
+			{
+				texture stone512.dds
+			}
+		}
+	}
+}
+
+material grannybase_equipment : grannybase
+{
+	technique
+	{
+		pass
+		{
+			lighting on
+			ambient 0.5 0.5 0.5 1.0
+			diffuse 1.0 1.0 1.0 1.0
+			specular 0.7 0.7 0.75 30.0
+		}
+	}
+}
+
+material grannybase_human : grannybase
+{
+}
+
+material grannybase_humanshader
+{
+	receive_shadows off
+
+	// Shader: CG & GLSL
+	// Hardware skinning technique
+	technique Shader
+	{
+		scheme Shader
+
+		pass
+		{
+			cull_hardware none
+			cull_software none
+			
+			scene_blend alpha_blend
+			alpha_rejection greater_equal 50
+
+			vertex_program_ref Ogre/HardwareSkinningTwoWeights
+			{
+			}
+			// alternate shadow caster program
+			shadow_caster_vertex_program_ref Ogre/HardwareSkinningTwoWeightsShadowCaster
+			{
+				param_named_auto worldMatrix3x4Array world_matrix_array_3x4
+				param_named_auto viewProjectionMatrix viewproj_matrix
+				param_named_auto ambient ambient_light_colour
+			}
+
+			texture_unit
+			{
+				texture stone512.dds
+			}
+		}
+	}
+
+	// FIXED FUNCTION - Fallback technique
+	// Software blending technique
+	technique Fixedfunction
+	{
+		scheme Fixedfunction
+
+		pass
+		{
+			scene_blend alpha_blend
+			alpha_rejection greater_equal 50
+
+			texture_unit
+			{
+				texture stone512.dds
+			}
+		}
+	}
+}

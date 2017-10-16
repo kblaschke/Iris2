@@ -1,0 +1,137 @@
+import guibase from main.material
+
+material ui_ray_border : guibase
+{
+
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture ui/ray_border.png 2d 0
+			}
+		}
+	}
+}
+
+material ui_ray_button : guibase
+{
+
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture ui/ray_button.png 2d 0
+			}
+		}
+	}
+}
+
+material ui_ray_window : guibase
+{
+
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture ui/ray_window.png 2d 0
+			}
+		}
+	}
+}
+
+
+material ui_iris_border : guibase
+{
+
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture ui/iris_border.png 2d 0
+			}
+		}
+	}
+}
+
+material ui_iris_button : guibase
+{
+
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture ui/iris_button.png 2d 0
+			}
+		}
+	}
+}
+
+material ui_iris_window : guibase
+{
+
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture ui/iris_window.png 2d 0
+			}
+		}
+	}
+}
+
+material ui_sience_border : guibase
+{
+
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture ui/sience_border.png 2d 0
+			}
+		}
+	}
+}
+
+material ui_sience_button : guibase
+{
+
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture ui/sience_button.png 2d 0
+			}
+		}
+	}
+}
+
+material ui_sience_window : guibase
+{
+
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture ui/sience_window.png 2d 0
+			}
+		}
+	}
+}

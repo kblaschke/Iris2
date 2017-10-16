@@ -1,0 +1,9 @@
+<table>
+<string key="gLoginname"></string>
+<string key="gLanguage">DEU</string>
+<boolean key="gPolServer">false</boolean>
+<string key="gServerSeed">1</string>
+<number key="gLoginServerPort">3000</number>
+<string key="gPassword"></string>
+<string key="gLoginServerIP">pergon.fem.tu-ilmenau.de</string>
+</table>

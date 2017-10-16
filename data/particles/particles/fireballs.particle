@@ -1,0 +1,132 @@
+particle_system "Large Fireball"
+{
+	quota	100
+	material	Particles/FlarePointSprite
+	particle_width	1.0
+	particle_height	1.0
+	
+	cull_each	false
+	renderer	billboard
+	sorted	false
+	local_space	false
+	iteration_interval	0
+	nonvisible_update_timeout	0
+	billboard_type	point
+	billboard_origin	center
+	billboard_rotation_type	texcoord
+	common_up_vector	0 1 0
+	point_rendering	false
+	accurate_facing	false
+
+	emitter Point
+	{
+		angle	180
+		colour	1 0.5 0 1
+		colour_range_start	1 0.5 0 1
+		colour_range_end	1 0 0 1
+		direction	1 0 0
+		emission_rate	100
+		position	0 0 0
+		velocity	0.01
+		velocity_min	0.01
+		velocity_max	1.5
+		time_to_live	0
+		time_to_live_min	0
+		time_to_live_max	1
+		duration	1.5
+		duration_min	1.5
+		duration_max	1.5
+		repeat_delay	0
+		repeat_delay_min	0
+		repeat_delay_max	0
+	}
+}
+
+particle_system "Magic Arrow"
+{
+	quota	100
+	material	Particles/FlarePointSprite
+	particle_width	0.5
+	particle_height	0.5
+	
+	cull_each	false
+	renderer	billboard
+	sorted	false
+	local_space	false
+	iteration_interval	0
+	nonvisible_update_timeout	0
+	billboard_type	point
+	billboard_origin	center
+	billboard_rotation_type	texcoord
+	common_up_vector	0 1 0
+	point_rendering	false
+	accurate_facing	false
+
+	emitter Point
+	{
+		angle	180
+		colour	1 0.5 0 1
+		colour_range_start	1 0.5 0 1
+		colour_range_end	1 0 0 1
+		direction	1 0 0
+		emission_rate	100
+		position	0 0 0
+		velocity	0.01
+		velocity_min	0.01
+		velocity_max	1.5
+		time_to_live	0
+		time_to_live_min	0
+		time_to_live_max	1
+		duration	1.5
+		duration_min	1.5
+		duration_max	1.5
+		repeat_delay	0
+		repeat_delay_min	0
+		repeat_delay_max	0
+	}
+}
+
+
+particle_system EBolt
+{
+	quota	100
+	material	Particles/FlarePointSprite
+	particle_width	0.5
+	particle_height	0.5
+	
+	cull_each	false
+	renderer	billboard
+	sorted	false
+	local_space	false
+	iteration_interval	0
+	nonvisible_update_timeout	0
+	billboard_type	point
+	billboard_origin	center
+	billboard_rotation_type	texcoord
+	common_up_vector	0 1 0
+	point_rendering	false
+	accurate_facing	false
+
+	emitter Point
+	{
+		angle	180
+		colour	0 0.5 1 1
+		colour_range_start	0 0.5 1 1
+		colour_range_end	0 0 1 1
+		direction	1 0 0
+		emission_rate	100
+		position	0 0 0
+		velocity	0.01
+		velocity_min	0.01
+		velocity_max	1.5
+		time_to_live	0
+		time_to_live_min	0
+		time_to_live_max	1
+		duration	1.5
+		duration_min	1.5
+		duration_max	1.5
+		repeat_delay	0
+		repeat_delay_min	0
+		repeat_delay_max	0
+	}
+}

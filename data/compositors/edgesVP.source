@@ -1,0 +1,22 @@
+float4x4 view_proj_matrix: register(c0);
+
+
+struct VS_OUTPUT
+{
+   float4 Pos      : POSITION;
+   float2 TexCoord : TEXCOORD0;
+};
+
+VS_OUTPUT main(  float4 Pos      : POSITION,
+   float2 TexCoord : TEXCOORD0)
+{
+   VS_OUTPUT Out; 
+
+   Pos.xy = sign(Pos.xy);
+   Out.Pos       = float4(Pos.xy, 0.0, 1.0);
+   // Image-space
+   Out.TexCoord.x = 0.5 * (1 + Pos.x);
+   Out.TexCoord.y = 0.5 * (1 - Pos.y);
+
+   return Out;
+}

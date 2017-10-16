@@ -1,0 +1,21 @@
+<table>
+    <string key="gLoginname"></string>
+	<boolean key="gPolServer">true</boolean>
+    <boolean key="gClientDisable_kPacket_Mega_Cliloc">true</boolean>
+	<table key="gBaseHues"></table>
+    <string key="gClientVersion">5.0.8.0</string>
+    <number key="gServerSeed">4294967295</number>
+    <number key="gLoginServerPort">5003</number>
+    <string key="gPassword"></string>
+    <string key="gLoginServerIP">83.95.233.118</string>
+	
+    <boolean key="gDisableSendingPartyPos">true</boolean>
+    <number key="gAutoSelectServerIndex">1</number>
+    <number key="gWalkTimeout_MovingSpeed">400</number>
+    <number key="gWalkTimeout_RunningSpeed">200</number>
+    <number key="gWalkTimeout_MountMovingSpeed">205</number>
+    <number key="gWalkTimeout_MountRunningSpeed">115</number>
+    <number key="gWalkTimeout_DirectionChange">100</number>
+    <number key="gWalkRequestAntiStuckTimeoutDelay">2000</number>
+    <number key="gMaxWalkQueueEntries">3</number>
+</table>

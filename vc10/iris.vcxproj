@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E2D2CF97-591B-450F-B5EA-21CB9B6A5DA5}</ProjectGuid>
+    <RootNamespace>iris</RootNamespace>
+    <ProjectName>iris2</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\include\OIS;F:\OgreSDK\include\OGRE;F:\OgreSDK\include\OIS;..\include\;..\include\zlib;..\lugre\include;..\include\fmodx;..\lugre\lib\lua-5.1.4\lib\static;..\lugre\lib\md5\include;..\lugre\lib\cadune_tree\include;..\lugre\lib\caelum\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;USE_FMOD;MAIN_WORKING_DIR="../";USE_LUGRE_LIB_MD5;USE_LUGRE_LIB_CAELUM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AssemblerOutput>All</AssemblerOutput>
+      <BrowseInformation>true</BrowseInformation>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;zlibd.lib;lua5.1_debug.lib;OgreMain_d.lib;OIS_d.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)..\..\bin\$(ProjectName)_d.exe</OutputFile>
+      <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\;..\libs\fmodx;..\lugre\lib\zlib\lib\Debug;..\lugre\lib\lua-5.1.4\lib\static;..\lugre\lib\caelum\lib\static;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>
+      </AssemblyDebug>
+      <GenerateMapFile>false</GenerateMapFile>
+      <MapExports>false</MapExports>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\..\..\OgreSDK_vc10_v1-7-2\include\OGRE\;..\..\..\OgreSDK_vc10_v1-7-2\include\OIS\;..\..\..\OgreSDK_vc10_v1-7-2\boost_1_42\;..\include\;..\lugre\include;..\lugre\lib\zlib\include;..\lugre\lib\fmod\inc;..\lugre\lib\lua-5.1.4\src;..\lugre\lib\md5\include;..\lugre\lib\cadune_tree\include;..\lugre\lib\caelum\include;..\lugre\lib\sqlite\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;MAIN_WORKING_DIR="../";USE_FMOD;USE_LUGRE_LIB_MD5;USE_LUGRE_LIB_CAELUM;USE_LUGRE_LIB_CADUNE_TREE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level1</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>zlib.lib;ws2_32.lib;OgreMain.lib;OIS.lib;lua5.1.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)..\..\bin\iris2.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\OgreSDK_vc10_v1-7-2\lib\release\;..\..\..\OgreSDK_vc10_v1-7-2\lib\release\opt\;..\..\..\OgreSDK_vc10_v1-7-2\boost_1_42\lib\;..\lugre\lib\fmod\lib;..\lugre\lib\zlib\lib\Release;..\lugre\lib\lua-5.1.4\lib\static;..\lugre\lib\caelum\lib\static;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMT.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <SubSystem>Console</SubSystem>
+      <LargeAddressAware>
+      </LargeAddressAware>
+      <TerminalServerAware>
+      </TerminalServerAware>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <SetChecksum>true</SetChecksum>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\builder_L.cpp" />
+    <ClCompile Include="..\src\data.cpp" />
+    <ClCompile Include="..\src\data_anim.cpp" />
+    <ClCompile Include="..\src\data_anim_L.cpp" />
+    <ClCompile Include="..\src\data_artmap.cpp" />
+    <ClCompile Include="..\src\data_artmap_L.cpp" />
+    <ClCompile Include="..\src\data_common.cpp" />
+    <ClCompile Include="..\src\data_font.cpp" />
+    <ClCompile Include="..\src\data_font_L.cpp" />
+    <ClCompile Include="..\src\data_groundblock.cpp" />
+    <ClCompile Include="..\src\data_groundblock_L.cpp" />
+    <ClCompile Include="..\src\data_gump.cpp" />
+    <ClCompile Include="..\src\data_gump_L.cpp" />
+    <ClCompile Include="..\src\data_hue.cpp" />
+    <ClCompile Include="..\src\data_hue_L.cpp" />
+    <ClCompile Include="..\src\data_L.cpp" />
+    <ClCompile Include="..\src\data_light.cpp" />
+    <ClCompile Include="..\src\data_lookupfile.cpp" />
+    <ClCompile Include="..\src\data_map.cpp" />
+    <ClCompile Include="..\src\data_mapinfo.cpp" />
+    <ClCompile Include="..\src\data_multi.cpp" />
+    <ClCompile Include="..\src\data_multi_L.cpp" />
+    <ClCompile Include="..\src\data_radar.cpp" />
+    <ClCompile Include="..\src\data_radar_L.cpp" />
+    <ClCompile Include="..\src\data_sound.cpp" />
+    <ClCompile Include="..\src\data_sound_L.cpp" />
+    <ClCompile Include="..\src\data_staticblock.cpp" />
+    <ClCompile Include="..\src\data_staticblock_L.cpp" />
+    <ClCompile Include="..\src\data_texmap.cpp" />
+    <ClCompile Include="..\src\data_texmap_L.cpp" />
+    <ClCompile Include="..\src\data_tiletype.cpp" />
+    <ClCompile Include="..\src\data_tiletype_L.cpp" />
+    <ClCompile Include="..\src\granny_L.cpp">
+      <EnableFiberSafeOptimizations Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableFiberSafeOptimizations>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
+      <InlineFunctionExpansion Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">OnlyExplicitInline</InlineFunctionExpansion>
+      <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IntrinsicFunctions>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</WholeProgramOptimization>
+      <OmitFramePointers Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</OmitFramePointers>
+    </ClCompile>
+    <ClCompile Include="..\src\grannydump.cpp" />
+    <ClCompile Include="..\src\grannyloader_i2.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
+      <InlineFunctionExpansion Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">OnlyExplicitInline</InlineFunctionExpansion>
+      <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IntrinsicFunctions>
+      <OmitFramePointers Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</OmitFramePointers>
+      <EnableFiberSafeOptimizations Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</WholeProgramOptimization>
+    </ClCompile>
+    <ClCompile Include="..\src\grannyogreloader.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
+      <InlineFunctionExpansion Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">OnlyExplicitInline</InlineFunctionExpansion>
+      <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IntrinsicFunctions>
+      <OmitFramePointers Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</OmitFramePointers>
+      <EnableFiberSafeOptimizations Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</WholeProgramOptimization>
+    </ClCompile>
+    <ClCompile Include="..\src\grannyparser.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
+      <InlineFunctionExpansion Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">OnlyExplicitInline</InlineFunctionExpansion>
+      <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IntrinsicFunctions>
+      <OmitFramePointers Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</OmitFramePointers>
+      <EnableFiberSafeOptimizations Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</WholeProgramOptimization>
+    </ClCompile>
+    <ClCompile Include="..\src\huffman.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\ogremanualloader.cpp" />
+    <ClCompile Include="..\src\ogremanualloader_L.cpp" />
+    <ClCompile Include="..\src\pathsearch.cpp" />
+    <ClCompile Include="..\src\prefix.cpp" />
+    <ClCompile Include="..\src\scripting.iris.cpp" />
+    <ClCompile Include="..\src\spritemanager.cpp" />
+    <ClCompile Include="..\src\spritemanager_L.cpp" />
+    <ClCompile Include="..\src\terrain.cpp" />
+    <ClCompile Include="..\src\terrain_multitex.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_beam.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_beam_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_bitmask.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_bitmask_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_BorderColourClipPaneOverlay.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_cadune_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_caelum_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_camera_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_ColourClipPaneOverlay.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_ColourClipTextOverlay.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_commondialog.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_CompassOverlay.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_fastbatch.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_fifo_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_findpath.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_game.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_gfx2D.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_gfx2D_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_gfx3D.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_gfx3D_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_image_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_input.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_listener.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_luabinds_ogre.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_luaxml.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_main.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_material_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_md5_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_meshbuffer.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_meshbuffer_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_meshloader.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_meshshape.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_net.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_net_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_ode.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_ode_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_ogrewrapper.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_paged_geometry_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_profile.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_random.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_random_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_rendertexture_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_robrenderable.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_RobRenderableOverlay.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_robstring.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_scripting.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_scripting.general.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_scripting.ogre.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_shell.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_SortedOverlayContainer.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_sound.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_sound_fmod.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_sound_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_sound_openal.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_sound_openal2.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_spritelist.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_spritelist_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_texatlas.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_texatlas_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_thread.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_thread_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_timer.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_transform_mesh.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_utils.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_vertexbuffer_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_viewport_L.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_widget.cpp" />
+    <ClCompile Include="..\lugre\src\lugre_widget_L.cpp" />
+    <ClCompile Include="..\lugre\src\tinystr.cpp" />
+    <ClCompile Include="..\lugre\src\tinyxml.cpp" />
+    <ClCompile Include="..\lugre\src\tinyxmlerror.cpp" />
+    <ClCompile Include="..\lugre\src\tinyxmlparser.cpp" />
+    <ClCompile Include="..\lugre\lib\md5\src\md5.c" />
+    <ClCompile Include="..\lugre\lib\cadune_tree\src\CTParameters.cpp" />
+    <ClCompile Include="..\lugre\lib\cadune_tree\src\CTSection.cpp" />
+    <ClCompile Include="..\lugre\lib\cadune_tree\src\CTSerializer.cpp" />
+    <ClCompile Include="..\lugre\lib\cadune_tree\src\CTStem.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\Astronomy.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\BrightStarCatalogue.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\CaelumDefaultTypeDescriptorData.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\CaelumPlugin.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\CaelumPrecompiled.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\CaelumScriptTranslator.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\CaelumSystem.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\CameraBoundElement.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\CloudSystem.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\DepthComposer.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\FlatCloudLayer.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\GeometryFactory.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\GroundFog.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\ImageHelper.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\ImageStarfield.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\Moon.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\PointStarfield.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\PrecipitationController.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\SkyDome.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\SkyLight.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\Sun.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\TypeDescriptor.cpp" />
+    <ClCompile Include="..\lugre\lib\caelum\src\UniversalClock.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\builder.h" />
+    <ClInclude Include="..\include\data.h" />
+    <ClInclude Include="..\include\data_anim.h" />
+    <ClInclude Include="..\include\data_artmap.h" />
+    <ClInclude Include="..\include\data_common.h" />
+    <ClInclude Include="..\include\data_font.h" />
+    <ClInclude Include="..\include\data_groundblock.h" />
+    <ClInclude Include="..\include\data_gump.h" />
+    <ClInclude Include="..\include\data_hue.h" />
+    <ClInclude Include="..\include\data_indexed.h" />
+    <ClInclude Include="..\include\data_light.h" />
+    <ClInclude Include="..\include\data_lookup.h" />
+    <ClInclude Include="..\include\data_luabind_common.h" />
+    <ClInclude Include="..\include\data_mapinfo.h" />
+    <ClInclude Include="..\include\data_multi.h" />
+    <ClInclude Include="..\include\data_radar.h" />
+    <ClInclude Include="..\include\data_raw.h" />
+    <ClInclude Include="..\include\data_sound.h" />
+    <ClInclude Include="..\include\data_staticblock.h" />
+    <ClInclude Include="..\include\data_texmap.h" />
+    <ClInclude Include="..\include\data_tiletype.h" />
+    <ClInclude Include="..\include\grannyloader_i2.h" />
+    <ClInclude Include="..\include\grannyogreloader.h" />
+    <ClInclude Include="..\include\grannyparser.h" />
+    <ClInclude Include="..\include\huffman.h" />
+    <ClInclude Include="..\include\ogremanualloader.h" />
+    <ClInclude Include="..\include\pathsearch.h" />
+    <ClInclude Include="..\include\spritemanager.h" />
+    <ClInclude Include="..\include\terrain.h" />
+    <ClInclude Include="..\lugre\include\lugre_beam.h" />
+    <ClInclude Include="..\lugre\include\lugre_bitmask.h" />
+    <ClInclude Include="..\lugre\include\lugre_BorderColourClipPaneOverlay.h" />
+    <ClInclude Include="..\lugre\include\lugre_cadune.h" />
+    <ClInclude Include="..\lugre\include\lugre_caelum.h" />
+    <ClInclude Include="..\lugre\include\lugre_camera.h" />
+    <ClInclude Include="..\lugre\include\lugre_ColourClipPaneOverlay.h" />
+    <ClInclude Include="..\lugre\include\lugre_ColourClipTextOverlay.h" />
+    <ClInclude Include="..\lugre\include\lugre_commondialog.h" />
+    <ClInclude Include="..\lugre\include\lugre_CompassOverlay.h" />
+    <ClInclude Include="..\lugre\include\lugre_fastbatch.h" />
+    <ClInclude Include="..\lugre\include\lugre_fifo.h" />
+    <ClInclude Include="..\lugre\include\lugre_findpath.h" />
+    <ClInclude Include="..\lugre\include\lugre_game.h" />
+    <ClInclude Include="..\lugre\include\lugre_gfx2D.h" />
+    <ClInclude Include="..\lugre\include\lugre_gfx3D.h" />
+    <ClInclude Include="..\lugre\include\lugre_image.h" />
+    <ClInclude Include="..\lugre\include\lugre_input.h" />
+    <ClInclude Include="..\lugre\include\lugre_listener.h" />
+    <ClInclude Include="..\lugre\include\lugre_luabind.h" />
+    <ClInclude Include="..\lugre\include\lugre_luabind_direct.h" />
+    <ClInclude Include="..\lugre\include\lugre_luabind_ogrehelper.h" />
+    <ClInclude Include="..\lugre\include\lugre_luacallback.h" />
+    <ClInclude Include="..\lugre\include\lugre_luaxml.h" />
+    <ClInclude Include="..\lugre\include\lugre_main.h" />
+    <ClInclude Include="..\lugre\include\lugre_md5.h" />
+    <ClInclude Include="..\lugre\include\lugre_meshbuffer.h" />
+    <ClInclude Include="..\lugre\include\lugre_meshloader.h" />
+    <ClInclude Include="..\lugre\include\lugre_meshshape.h" />
+    <ClInclude Include="..\lugre\include\lugre_net.h" />
+    <ClInclude Include="..\lugre\include\lugre_ode.h" />
+    <ClInclude Include="..\lugre\include\lugre_ogrefonthelper.h" />
+    <ClInclude Include="..\lugre\include\lugre_ogrewrapper.h" />
+    <ClInclude Include="..\lugre\include\lugre_paged_geometry.h" />
+    <ClInclude Include="..\lugre\include\lugre_platform.h" />
+    <ClInclude Include="..\lugre\include\lugre_prefix.h" />
+    <ClInclude Include="..\lugre\include\lugre_profile.h" />
+    <ClInclude Include="..\lugre\include\lugre_random.h" />
+    <ClInclude Include="..\lugre\include\lugre_rendertexture.h" />
+    <ClInclude Include="..\lugre\include\lugre_robrenderable.h" />
+    <ClInclude Include="..\lugre\include\lugre_RobRenderableOverlay.h" />
+    <ClInclude Include="..\lugre\include\lugre_robstring.h" />
+    <ClInclude Include="..\lugre\include\lugre_scripting.h" />
+    <ClInclude Include="..\lugre\include\lugre_shell.h" />
+    <ClInclude Include="..\lugre\include\lugre_smartptr.h" />
+    <ClInclude Include="..\lugre\include\lugre_SortedOverlayContainer.h" />
+    <ClInclude Include="..\lugre\include\lugre_sound.h" />
+    <ClInclude Include="..\lugre\include\lugre_spritelist.h" />
+    <ClInclude Include="..\lugre\include\lugre_texatlas.h" />
+    <ClInclude Include="..\lugre\include\lugre_thread.h" />
+    <ClInclude Include="..\lugre\include\lugre_timer.h" />
+    <ClInclude Include="..\lugre\include\lugre_utils.h" />
+    <ClInclude Include="..\lugre\include\lugre_viewport.h" />
+    <ClInclude Include="..\lugre\include\lugre_widget.h" />
+    <ClInclude Include="..\lugre\include\tinystr.h" />
+    <ClInclude Include="..\lugre\include\tinyxml.h" />
+    <ClInclude Include="..\lugre\lib\md5\include\md5.h" />
+    <ClInclude Include="..\lugre\lib\cadune_tree\include\CaduneTree.h" />
+    <ClInclude Include="..\lugre\lib\cadune_tree\include\CTParameters.h" />
+    <ClInclude Include="..\lugre\lib\cadune_tree\include\CTPrerequisites.h" />
+    <ClInclude Include="..\lugre\lib\cadune_tree\include\CTSection.h" />
+    <ClInclude Include="..\lugre\lib\cadune_tree\include\CTSerializer.h" />
+    <ClInclude Include="..\lugre\lib\cadune_tree\include\CTStem.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\Astronomy.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\Caelum.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\CaelumExceptions.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\CaelumPlugin.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\CaelumPrecompiled.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\CaelumPrerequisites.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\CaelumScriptTranslator.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\CaelumSystem.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\CameraBoundElement.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\CloudSystem.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\DepthComposer.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\FlatCloudLayer.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\GeometryFactory.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\GroundFog.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\ImageHelper.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\ImageStarfield.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\Moon.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\OwnedPtr.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\PointStarfield.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\PrecipitationController.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\SkyDome.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\SkyLight.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\Sun.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\TypeDescriptor.h" />
+    <ClInclude Include="..\lugre\lib\caelum\include\UniversalClock.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\lugre\lib\lua-5.1.4\mak.vc2010\lua5.1_lib.vcxproj">
+      <Project>{d7488b96-456a-1e46-8b0b-0f698e025694}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
