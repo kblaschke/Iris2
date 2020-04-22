@@ -1,7 +1,69 @@
-FILE(GLOB sourceFiles RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
-INCLUDE_DIRECTORIES("${CMAKE_CURRENT_SOURCE_DIR}/include" "${iris2_SOURCE_DIR}/lugre/include" ${PKGOGRE_INCLUDE_DIRS})
-ADD_DEFINITIONS(${MYGLOBAL_ALL_DEFINES} ${PKGOGRE_CFLAGS_OTHER})
 
-ADD_LIBRARY(lugrelib_caelum STATIC ${sourceFiles})
+add_library(lugrelib_caelum STATIC
+	include/Astronomy.h
+	include/Caelum.h
+	include/CaelumExceptions.h
+	include/CaelumPlugin.h
+	include/CaelumPrecompiled.h
+	include/CaelumPrerequisites.h
+	include/CaelumScriptTranslator.h
+	include/CaelumSystem.h
+	include/CameraBoundElement.h
+	include/CloudSystem.h
+	include/DepthComposer.h
+	include/FlatCloudLayer.h
+	include/GeometryFactory.h
+	include/GroundFog.h
+	include/ImageHelper.h
+	include/ImageStarfield.h
+	include/Moon.h
+	include/OwnedPtr.h
+	include/PointStarfield.h
+	include/PrecipitationController.h
+	include/SkyDome.h
+	include/SkyLight.h
+	include/Sun.h
+	include/TypeDescriptor.h
+	include/UniversalClock.h
+	src/Astronomy.cpp
+	src/BrightStarCatalogue.cpp
+	src/CaelumDefaultTypeDescriptorData.cpp
+	src/CaelumPlugin.cpp
+	src/CaelumPrecompiled.cpp
+	src/CaelumScriptTranslator.cpp
+	src/CaelumSystem.cpp
+	src/CameraBoundElement.cpp
+	src/CloudSystem.cpp
+	src/DepthComposer.cpp
+	src/FlatCloudLayer.cpp
+	src/GeometryFactory.cpp
+	src/GroundFog.cpp
+	src/ImageHelper.cpp
+	src/ImageStarfield.cpp
+	src/Moon.cpp
+	src/PointStarfield.cpp
+	src/PrecipitationController.cpp
+	src/SkyDome.cpp
+	src/SkyLight.cpp
+	src/Sun.cpp
+	src/TypeDescriptor.cpp
+	src/UniversalClock.cpp
+	)
 
-ADD_DEPENDENCIES(lugrelib_caelum lugrelua)
+target_compile_definitions(lugrelib_caelum
+	PRIVATE
+		${MYGLOBAL_ALL_DEFINES}
+		${PKGOGRE_CFLAGS_OTHER}
+	)
+
+target_include_directories(lugrelib_caelum
+	PUBLIC
+		"${CMAKE_CURRENT_SOURCE_DIR}/include"
+		"${CMAKE_SOURCE_DIR}/lugre/include"
+		${PKGOGRE_INCLUDE_DIRS}
+	)
+
+target_link_libraries(lugrelib_caelum
+	PUBLIC
+		lugrelua
+	)
