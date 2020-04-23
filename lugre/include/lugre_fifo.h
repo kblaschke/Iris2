@@ -25,8 +25,7 @@ THE SOFTWARE.
 #define LUGRE_FIFO_H
 
 #include "lugre_prefix.h"
-
-#include <boost/crc.hpp>
+#include "lugre_crc32.h"
 
 #ifdef WIN32
 	#include <WinSock2.h>
@@ -153,9 +152,9 @@ public:
 	
 	inline	uint32	CRC		(const uint32		size) { 
 		FIFO_ASSERT(size <= this->size(),"not enough data in fifo");
-		boost::crc_32_type  result;
-		result.process_bytes( HackGetRawReader(), size );
-		return result.checksum();
+		CRC32 result;
+		result.ProcessBytes( HackGetRawReader(), size );
+		return result.Checksum();
 	}
 	
 	// pop cluster with byref arguments

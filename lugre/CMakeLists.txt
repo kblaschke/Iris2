@@ -1,31 +1,179 @@
-ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/lib/cadune_tree)
-IF(NOT USE_SYSTEM_LUA)
-	ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/lib/lua-5.1.4)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lib/cadune_tree)
+if(NOT USE_SYSTEM_LUA)
+	add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lib/lua-5.1.4)
 	add_library(lugrelua ALIAS lua)
-ENDIF(NOT USE_SYSTEM_LUA)
-ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/lib/caelum)
-ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/lib/md5)
+else()
+	find_package(Lua 5.1 REQUIRED)
+	set(lugrelua ${LUA_LIBRARIES})
+	list(APPEND MYLUGRE_INCLUDES ${LUA_INCLUDE_DIR})
+endif()
 
-
-FILE(GLOB sourceFiles RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
-INCLUDE_DIRECTORIES(
-	${MYLUGRE_INCLUDES}
-	${PKGOGRE_INCLUDE_DIRS}
-)
-ADD_DEFINITIONS(
-	${PKGOGRE_CFLAGS_OTHER}
-	${PKGlua_CFLAGS_OTHER}
-	${MYGLOBAL_LUGRE_DEFINES}
-	${MYGLOBAL_ALL_DEFINES}
-	-DUSE_LUGRE_LIB_MD5
-	-DUSE_LUGRE_LIB_CADUNE_TREE
-	-DUSE_LUGRE_LIB_CAELUM
-)
+add_subdirectory(lib/caelum)
+add_subdirectory(lib/md5)
 
 IF(PKGopenal_FOUND)
 	ADD_DEFINITIONS(-DUSE_OPENAL)
 ENDIF(PKGopenal_FOUND)
 
-ADD_LIBRARY(lugre STATIC ${sourceFiles})
+add_library(lugre STATIC
+	include/lugre_beam.h
+	include/lugre_bitmask.h
+	include/lugre_BorderColourClipPaneOverlay.h
+	include/lugre_cadune.h
+	include/lugre_caelum.h
+	include/lugre_camera.h
+	include/lugre_ColourClipPaneOverlay.h
+	include/lugre_ColourClipTextOverlay.h
+	include/lugre_commondialog.h
+	include/lugre_CompassOverlay.h
+	include/lugre_crc32.h
+	include/lugre_fastbatch.h
+	include/lugre_fifo.h
+	include/lugre_findpath.h
+	include/lugre_game.h
+	include/lugre_gfx2D.h
+	include/lugre_gfx3D.h
+	include/lugre_image.h
+	include/lugre_input.h
+	include/lugre_listener.h
+	include/lugre_luabind.h
+	include/lugre_luabind_direct.h
+	include/lugre_luabind_ogrehelper.h
+	include/lugre_luacallback.h
+	include/lugre_luaxml.h
+	include/lugre_main.h
+	include/lugre_md5.h
+	include/lugre_meshbuffer.h
+	include/lugre_meshloader.h
+	include/lugre_meshshape.h
+	include/lugre_net.h
+	include/lugre_ode.h
+	include/lugre_ogrefonthelper.h
+	include/lugre_ogrewrapper.h
+	include/lugre_paged_geometry.h
+	include/lugre_platform.h
+	include/lugre_prefix.h
+	include/lugre_profile.h
+	include/lugre_random.h
+	include/lugre_rendertexture.h
+	include/lugre_robrenderable.h
+	include/lugre_RobRenderableOverlay.h
+	include/lugre_robstring.h
+	include/lugre_scripting.h
+	include/lugre_shell.h
+	include/lugre_smartptr.h
+	include/lugre_SortedOverlayContainer.h
+	include/lugre_sound.h
+	include/lugre_spritelist.h
+	include/lugre_texatlas.h
+	include/lugre_thread.h
+	include/lugre_timer.h
+	include/lugre_utils.h
+	include/lugre_viewport.h
+	include/lugre_widget.h
+	include/malloc.c.h
+	include/nedmalloc-License.txt
+	include/nedmalloc-Readme.txt
+	include/nedmalloc.h
+	include/tinystr.h
+	include/tinyxml.h
+	src/lugre_beam.cpp
+	src/lugre_beam_L.cpp
+	src/lugre_bitmask.cpp
+	src/lugre_bitmask_L.cpp
+	src/lugre_BorderColourClipPaneOverlay.cpp
+	src/lugre_cadune_L.cpp
+	src/lugre_caelum_L.cpp
+	src/lugre_camera_L.cpp
+	src/lugre_ColourClipPaneOverlay.cpp
+	src/lugre_ColourClipTextOverlay.cpp
+	src/lugre_commondialog.cpp
+	src/lugre_CompassOverlay.cpp
+	src/lugre_fastbatch.cpp
+	src/lugre_fifo_L.cpp
+	src/lugre_findpath.cpp
+	src/lugre_game.cpp
+	src/lugre_gfx2D.cpp
+	src/lugre_gfx2D_L.cpp
+	src/lugre_gfx3D.cpp
+	src/lugre_gfx3D_L.cpp
+	src/lugre_image_L.cpp
+	src/lugre_input.cpp
+	src/lugre_listener.cpp
+	src/lugre_luabinds_ogre.cpp
+	src/lugre_luaxml.cpp
+	src/lugre_main.cpp
+	src/lugre_material_L.cpp
+	src/lugre_md5_L.cpp
+	src/lugre_meshbuffer.cpp
+	src/lugre_meshbuffer_L.cpp
+	src/lugre_meshloader.cpp
+	src/lugre_meshshape.cpp
+	src/lugre_net.cpp
+	src/lugre_net_L.cpp
+	src/lugre_ode.cpp
+	src/lugre_ode_L.cpp
+	src/lugre_ogrewrapper.cpp
+	src/lugre_paged_geometry_L.cpp
+	src/lugre_profile.cpp
+	src/lugre_random.cpp
+	src/lugre_random_L.cpp
+	src/lugre_rendertexture_L.cpp
+	src/lugre_robrenderable.cpp
+	src/lugre_RobRenderableOverlay.cpp
+	src/lugre_robstring.cpp
+	src/lugre_scripting.cpp
+	src/lugre_scripting.general.cpp
+	src/lugre_scripting.ogre.cpp
+	src/lugre_shell.cpp
+	src/lugre_SortedOverlayContainer.cpp
+	src/lugre_sound.cpp
+	src/lugre_sound_fmod.cpp
+	src/lugre_sound_L.cpp
+	src/lugre_sound_openal.cpp
+	src/lugre_sound_openal2.cpp
+	src/lugre_spritelist.cpp
+	src/lugre_spritelist_L.cpp
+	src/lugre_texatlas.cpp
+	src/lugre_texatlas_L.cpp
+	src/lugre_thread.cpp
+	src/lugre_thread_L.cpp
+	src/lugre_timer.cpp
+	src/lugre_transform_mesh.cpp
+	src/lugre_utils.cpp
+	src/lugre_vertexbuffer_L.cpp
+	src/lugre_viewport_L.cpp
+	src/lugre_widget.cpp
+	src/lugre_widget_L.cpp
+	src/nedmalloc.c
+	src/tinystr.cpp
+	src/tinyxml.cpp
+	src/tinyxmlerror.cpp
+	src/tinyxmlparser.cpp
+	)
 
-ADD_DEPENDENCIES(lugre lugrelua lugrelib_cadune_tree lugrelib_caelum lugrelib_md5)
+
+target_include_directories(lugre
+	PUBLIC
+		${MYLUGRE_INCLUDES}
+		${OGRE_INCLUDE_DIRS}
+	)
+
+target_compile_definitions(lugre
+	PRIVATE
+		${MYGLOBAL_LUGRE_DEFINES}
+		${MYGLOBAL_ALL_DEFINES}
+		-DUSE_LUGRE_LIB_MD5
+		-DUSE_LUGRE_LIB_CADUNE_TREE
+		-DUSE_LUGRE_LIB_CAELUM
+	)
+
+target_link_libraries(lugre
+	PRIVATE
+		lugrelua
+		lugrelib_cadune_tree
+		lugrelib_caelum
+		lugrelib_md5
+	PUBLIC
+		${OGRE_LIBRARIES}
+	)

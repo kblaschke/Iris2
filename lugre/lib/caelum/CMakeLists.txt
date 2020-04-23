@@ -53,17 +53,18 @@ add_library(lugrelib_caelum STATIC
 target_compile_definitions(lugrelib_caelum
 	PRIVATE
 		${MYGLOBAL_ALL_DEFINES}
-		${PKGOGRE_CFLAGS_OTHER}
+		CAELUM_LIB
 	)
 
 target_include_directories(lugrelib_caelum
 	PUBLIC
 		"${CMAKE_CURRENT_SOURCE_DIR}/include"
 		"${CMAKE_SOURCE_DIR}/lugre/include"
-		${PKGOGRE_INCLUDE_DIRS}
+		${OGRE_INCLUDE_DIRS}
 	)
 
 target_link_libraries(lugrelib_caelum
 	PUBLIC
 		lugrelua
+		${OGRE_LIBRARIES}
 	)

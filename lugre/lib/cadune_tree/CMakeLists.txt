@@ -15,17 +15,17 @@ add_library(lugrelib_cadune_tree STATIC
 target_compile_definitions(lugrelib_cadune_tree
 	PRIVATE
 		${MYGLOBAL_ALL_DEFINES}
-		${PKGOGRE_CFLAGS_OTHER}
 	)
 
 target_include_directories(lugrelib_cadune_tree
 	PUBLIC
 		"${CMAKE_CURRENT_SOURCE_DIR}/include"
 		"${CMAKE_SOURCE_DIR}/lugre/include"
-		${PKGOGRE_INCLUDE_DIRS}
+		${OGRE_INCLUDE_DIRS}
 	)
 
 target_link_libraries(lugrelib_cadune_tree
 	PUBLIC
 		lugrelua
+		${OGRE_LIBRARIES}
 	)
