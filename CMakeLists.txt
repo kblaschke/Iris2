@@ -8,5 +8,6 @@ project(Iris2
 option(USE_SYSTEM_LUA "Enable to use system Lua development library instead of the bundled one" OFF)
 
 find_package(OGRE 1.7.4 REQUIRED)
+find_package(OIS REQUIRED)
 
 add_subdirectory(lugre)

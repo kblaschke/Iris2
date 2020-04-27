@@ -62,6 +62,19 @@ else()
 		)
 endif()
 
+include(CheckLibraryExists)
+check_library_exists(m pow "" LIBM)
+if(LIBM)
+	set(M_LIBRARY "m")
+else()
+	set(M_LIBRARY "")
+endif()
+
+target_link_libraries(lua
+		INTERFACE
+		${M_LIBRARY}
+		)
+
 add_executable(lua_interpreter
 	src/lua.c
 	src/lua.h

@@ -338,7 +338,7 @@ bool FileUniDialog (const std::string& sInitialDir, const std::string& sFilePatt
 	wxFileDialog* openFileDialog =
 		new wxFileDialog( mainWindow, wxString::FromAscii(sTitle.c_str()), _(""), _(""), 
 			wxString::FromAscii(sFilePattern.c_str()), 
-			open ? (wxOPEN | wxFD_FILE_MUST_EXIST) : (wxSAVE | wxFD_OVERWRITE_PROMPT), 
+			open ? (wxFD_OPEN | wxFD_FILE_MUST_EXIST) : (wxFD_SAVE | wxFD_OVERWRITE_PROMPT),
 			wxDefaultPosition);
  
  	bool ok = false;

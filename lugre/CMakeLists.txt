@@ -8,6 +8,14 @@ else()
 	list(APPEND MYLUGRE_INCLUDES ${LUA_INCLUDE_DIR})
 endif()
 
+if(UNIX)
+	find_package(wxWidgets REQUIRED)
+else()
+	set(wxWidgets_LIBRARIES "")
+	set(wxWidgets_DEFINITIONS "")
+	set(wxWidgets_CXX_FLAGS "")
+endif()
+
 add_subdirectory(lib/caelum)
 add_subdirectory(lib/md5)
 
@@ -104,7 +112,6 @@ add_library(lugre STATIC
 	src/lugre_luaxml.cpp
 	src/lugre_main.cpp
 	src/lugre_material_L.cpp
-	src/lugre_md5_L.cpp
 	src/lugre_meshbuffer.cpp
 	src/lugre_meshbuffer_L.cpp
 	src/lugre_meshloader.cpp
@@ -157,12 +164,15 @@ target_include_directories(lugre
 	PUBLIC
 		${MYLUGRE_INCLUDES}
 		${OGRE_INCLUDE_DIRS}
+		${OIS_INCLUDE_DIRS}
+		${wxWidgets_INCLUDE_DIRS}
 	)
 
 target_compile_definitions(lugre
 	PRIVATE
 		${MYGLOBAL_LUGRE_DEFINES}
 		${MYGLOBAL_ALL_DEFINES}
+		${wxWidgets_DEFINITIONS}
 		-DUSE_LUGRE_LIB_MD5
 		-DUSE_LUGRE_LIB_CADUNE_TREE
 		-DUSE_LUGRE_LIB_CAELUM
@@ -176,4 +186,6 @@ target_link_libraries(lugre
 		lugrelib_md5
 	PUBLIC
 		${OGRE_LIBRARIES}
+		${OIS_LIBRARIES}
+		${wxWidgets_LIBRARIES}
 	)
