@@ -1,4 +1,3 @@
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lib/cadune_tree)
 if(NOT USE_SYSTEM_LUA)
 	add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lib/lua-5.1.4)
 	add_library(lugrelua ALIAS lua)
@@ -16,6 +15,7 @@ else()
 	set(wxWidgets_CXX_FLAGS "")
 endif()
 
+add_subdirectory(lib/cadune_tree)
 add_subdirectory(lib/caelum)
 add_subdirectory(lib/md5)
 
@@ -158,7 +158,6 @@ add_library(lugre STATIC
 	src/tinyxmlerror.cpp
 	src/tinyxmlparser.cpp
 	)
-
 
 target_include_directories(lugre
 	PUBLIC
