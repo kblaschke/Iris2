@@ -112,6 +112,7 @@ add_library(lugre STATIC
 	src/lugre_luaxml.cpp
 	src/lugre_main.cpp
 	src/lugre_material_L.cpp
+	src/lugre_md5_L.cpp
 	src/lugre_meshbuffer.cpp
 	src/lugre_meshbuffer_L.cpp
 	src/lugre_meshloader.cpp
@@ -168,7 +169,7 @@ target_include_directories(lugre
 	)
 
 target_compile_definitions(lugre
-	PRIVATE
+	PUBLIC
 		${MYGLOBAL_LUGRE_DEFINES}
 		${MYGLOBAL_ALL_DEFINES}
 		${wxWidgets_DEFINITIONS}
@@ -178,13 +179,15 @@ target_compile_definitions(lugre
 	)
 
 target_link_libraries(lugre
-	PRIVATE
-		lugrelua
+	PUBLIC
 		lugrelib_cadune_tree
 		lugrelib_caelum
 		lugrelib_md5
-	PUBLIC
+		lugrelua
 		${OGRE_LIBRARIES}
 		${OIS_LIBRARIES}
 		${wxWidgets_LIBRARIES}
+		Boost::thread
+		Boost::date_time
+		ZLIB::ZLIB
 	)

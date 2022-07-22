@@ -1,7 +1,9 @@
-FILE(GLOB sourceFiles RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c")
-INCLUDE_DIRECTORIES("${CMAKE_CURRENT_SOURCE_DIR}/include")
-ADD_DEFINITIONS(${MYGLOBAL_ALL_DEFINES} ${PKGOGRE_CFLAGS_OTHER})
+add_library(lugrelib_md5 STATIC
+        include/md5.h
+        src/md5.c
+        )
 
-ADD_LIBRARY(lugrelib_md5 STATIC ${sourceFiles})
-
-ADD_DEPENDENCIES(lugrelib_md5 lugrelua)
+target_include_directories(lugrelib_md5
+        PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        )

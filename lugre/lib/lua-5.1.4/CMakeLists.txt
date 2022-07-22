@@ -75,6 +75,16 @@ target_link_libraries(lua
 		${M_LIBRARY}
 		)
 
+target_include_directories(lua
+		PUBLIC
+		${CMAKE_CURRENT_SOURCE_DIR}/src
+		)
+
+target_compile_definitions(lua
+		PRIVATE
+		LUA_USE_LINUX
+		)
+
 add_executable(lua_interpreter
 	src/lua.c
 	src/lua.h

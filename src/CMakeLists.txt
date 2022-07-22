@@ -1,0 +1,67 @@
+add_executable(iris
+        builder_L.cpp
+        data.cpp
+        data_L.cpp
+        data_anim.cpp
+        data_anim_L.cpp
+        data_artmap.cpp
+        data_artmap_L.cpp
+        data_common.cpp
+        data_font.cpp
+        data_font_L.cpp
+        data_groundblock.cpp
+        data_groundblock_L.cpp
+        data_gump.cpp
+        data_gump_L.cpp
+        data_hue.cpp
+        data_hue_L.cpp
+        data_light.cpp
+        data_lookupfile.cpp
+        data_map.cpp
+        data_mapinfo.cpp
+        data_multi.cpp
+        data_multi_L.cpp
+        data_radar.cpp
+        data_radar_L.cpp
+        data_sound.cpp
+        data_sound_L.cpp
+        data_staticblock.cpp
+        data_staticblock_L.cpp
+        data_texmap.cpp
+        data_texmap_L.cpp
+        data_tiletype.cpp
+        data_tiletype_L.cpp
+        granny_L.cpp
+        grannydump.cpp
+        grannyloader_i2.cpp
+        grannyogreloader.cpp
+        grannyparser.cpp
+        huffman.cpp
+        main.cpp
+        ogremanualloader.cpp
+        ogremanualloader_L.cpp
+        pathsearch.cpp
+        prefix.cpp
+        scripting.iris.cpp
+        spritemanager.cpp
+        spritemanager_L.cpp
+        terrain.cpp
+        terrain_multitex.cpp
+        )
+
+target_include_directories(iris
+        PRIVATE
+        ${CMAKE_SOURCE_DIR}/include
+        )
+
+target_link_libraries(iris
+        PRIVATE
+        lugre
+        )
+
+target_compile_definitions(iris
+        PRIVATE
+        MAIN_WORKING_DIR=".."
+        LUA_DIR="lua"
+        DATA_DIR="data"
+        )
