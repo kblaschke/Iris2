@@ -61,24 +61,24 @@ void	cGrannyVisitor::VisitChunk			(int iChunkType,int iOffset,int iChildren,cons
 	bool	bRootParent_AnimationList	= GetRootParentType() == 0XCA5E1205;
 	
 	switch (iChunkType) {
-		case 0xCA5E0200: assert(iSize >= 8); VisitTextChunk(pInts[0],pInts[1],pData + 8,iSize-8); break;
-		case 0xCA5E0f04:
+		case static_cast<int>(0xCA5E0200): assert(iSize >= 8); VisitTextChunk(pInts[0],pInts[1],pData + 8,iSize-8); break;
+		case static_cast<int>(0xCA5E0f04):
 			if (bRootParent_MeshList) { assert(iSize == 4); VisitMeshID(pInts[0]); }
 			if (bRootParent_BoneTies) { assert(iSize == 4); VisitBoneTieID(pInts[0]); }
 			if (bRootParent_TexInfoList) { assert(iSize == 4); VisitTexInfoID(pInts[0]); }
 		break;
 			
-		case 0XCA5E0F00: if (bRootParent_ObjList) { assert(iSize == 8); VisitObj(pInts[0],pInts[1]); } break;
-		case 0XCA5E0F01: if (bRootParent_ObjList) { assert(iSize == 4); VisitObjKey(pInts[0]); } break;
-		case 0XCA5E0F02: if (bRootParent_ObjList) { assert(iSize == 8); VisitObjValue(pInts[0],pInts[1]); } break;
+		case static_cast<int>(0XCA5E0F00): if (bRootParent_ObjList) { assert(iSize == 8); VisitObj(pInts[0],pInts[1]); } break;
+		case static_cast<int>(0XCA5E0F01): if (bRootParent_ObjList) { assert(iSize == 4); VisitObjKey(pInts[0]); } break;
+		case static_cast<int>(0XCA5E0F02): if (bRootParent_ObjList) { assert(iSize == 8); VisitObjValue(pInts[0],pInts[1]); } break;
 		
-		case 0XCA5E0801: if (bRootParent_MeshList) VisitPoints((const GrannyVector*)pData,iSize/sizeof(GrannyVector)); break;
-		case 0XCA5E0802: if (bRootParent_MeshList) VisitNormals((const GrannyVector*)pData,iSize/sizeof(GrannyVector)); break;
-		case 0XCA5E0901: if (bRootParent_MeshList) VisitPolygons((const GrannyPolygon*)pData,iSize/sizeof(GrannyPolygon)); break;
-		case 0XCA5E0803: if (bRootParent_MeshList) { assert(iSize >= 4); VisitTexCoords(pInts[0],(const GrannyVector*)(pData+4),(iSize-4)/sizeof(GrannyVector)); } break;
-		case 0XCA5E0702: if (bRootParent_MeshList) { assert(iSize >= 3*4); VisitWeights(pInts[0],pInts[1],pInts[2],pData+3*4,iSize-3*4); } break;
+		case static_cast<int>(0XCA5E0801): if (bRootParent_MeshList) VisitPoints((const GrannyVector*)pData,iSize/sizeof(GrannyVector)); break;
+		case static_cast<int>(0XCA5E0802): if (bRootParent_MeshList) VisitNormals((const GrannyVector*)pData,iSize/sizeof(GrannyVector)); break;
+		case static_cast<int>(0XCA5E0901): if (bRootParent_MeshList) VisitPolygons((const GrannyPolygon*)pData,iSize/sizeof(GrannyPolygon)); break;
+		case static_cast<int>(0XCA5E0803): if (bRootParent_MeshList) { assert(iSize >= 4); VisitTexCoords(pInts[0],(const GrannyVector*)(pData+4),(iSize-4)/sizeof(GrannyVector)); } break;
+		case static_cast<int>(0XCA5E0702): if (bRootParent_MeshList) { assert(iSize >= 3*4); VisitWeights(pInts[0],pInts[1],pInts[2],pData+3*4,iSize-3*4); } break;
 				
-		case 0xCA5E0e06: 
+		case static_cast<int>(0xCA5E0e06):
 			if (bRootParent_TextureList) {
 				assert(iSize >= 4); 
 				uint32 iNum = pInts[0];
@@ -91,24 +91,24 @@ void	cGrannyVisitor::VisitChunk			(int iChunkType,int iOffset,int iChildren,cons
 				else printdebug("granny","cGrannyVisitor::VisitChunk 0xCA5E0e06 unexpected element-size : %d\n",iElementSize);
 			}
 		break;
-		case 0XCA5E0506: if (bRootParent_SkeletonList) { assert(iSize == sizeof(GrannyBone)); VisitBone((GrannyBone*)pData); } break;
-		case 0xCA5E0303: if (bRootParent_TexInfoList) { 
+		case static_cast<int>(0XCA5E0506): if (bRootParent_SkeletonList) { assert(iSize == sizeof(GrannyBone)); VisitBone((GrannyBone*)pData); } break;
+		case static_cast<int>(0xCA5E0303): if (bRootParent_TexInfoList) {
 			if (iSize != sizeof(GrannyTexInfo)) 
 				printdebug("granny","WARNING ! granny 0xCA5E0303 : size1=%d size2=%d\n",iSize,sizeof(GrannyTexInfo));
 			assert(iSize >= sizeof(GrannyTexInfo)); 
 			VisitTexInfo((GrannyTexInfo*)pData); 
 		} break;
 		
-		case 0XCA5E0C08: if (bRootParent_BoneTies2) { assert(iSize == 4); VisitBoneTie2ID(pInts[0]); } break;
-		case 0XCA5E0C03: if (bRootParent_BoneTies2) { assert(iSize == 4); VisitBoneTie2GroupID(pInts[0]); } break;
-		case 0XCA5E0C02: if (bRootParent_BoneTies2) { VisitBoneTies2(pInts,iSize/4); } break;
-		case 0xCA5E0c0a: if (bRootParent_BoneTies2) { assert(iSize == sizeof(GrannyBoneTie)); VisitBoneTie((GrannyBoneTie*)pData); } break;
+		case static_cast<int>(0XCA5E0C08): if (bRootParent_BoneTies2) { assert(iSize == 4); VisitBoneTie2ID(pInts[0]); } break;
+		case static_cast<int>(0XCA5E0C03): if (bRootParent_BoneTies2) { assert(iSize == 4); VisitBoneTie2GroupID(pInts[0]); } break;
+		case static_cast<int>(0XCA5E0C02): if (bRootParent_BoneTies2) { VisitBoneTies2(pInts,iSize/4); } break;
+		case static_cast<int>(0xCA5E0c0a): if (bRootParent_BoneTies2) { assert(iSize == sizeof(GrannyBoneTie)); VisitBoneTie((GrannyBoneTie*)pData); } break;
 	
-		case 0XCA5E0E00: if (bRootParent_TextureList) {  assert(iSize == 4); VisitTextureID(pInts[0]); } break;
-		case 0XCA5E0E02: if (bRootParent_TextureList) {  assert(iSize == 8); VisitTexturePoly(pInts[0],pInts[1]); } break;
-		case 0XCA5E0E04: if (bRootParent_TextureList) {  assert(iSize == 4); VisitTexturePolyData(pInts[0]); } break;
+		case static_cast<int>(0XCA5E0E00): if (bRootParent_TextureList) {  assert(iSize == 4); VisitTextureID(pInts[0]); } break;
+		case static_cast<int>(0XCA5E0E02): if (bRootParent_TextureList) {  assert(iSize == 8); VisitTexturePoly(pInts[0],pInts[1]); } break;
+		case static_cast<int>(0XCA5E0E04): if (bRootParent_TextureList) {  assert(iSize == 4); VisitTexturePolyData(pInts[0]); } break;
 		
-		case 0XCA5E1204: if (bRootParent_AnimationList) {
+		case static_cast<int>(0XCA5E1204): if (bRootParent_AnimationList) {
 			assert(iSize >= sizeof(GrannyAnim));
 			const char* p = pData;
 			GrannyAnim*	pAnim 				= (GrannyAnim*)p; 		p += sizeof(GrannyAnim);

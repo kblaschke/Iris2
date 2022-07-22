@@ -21,7 +21,7 @@ void	cGrannyLoader_i2::VisitChunk			(int iChunkType,int iOffset,int iChildren,co
 	//VisitUnknown(iChunkType,iOffset,iChildren,pData,iSize);  // print debug info
 	
 	switch (iChunkType) {
-		case 0XCA5E0601: StartSubMesh(); break;
+		case static_cast<int>(0XCA5E0601): StartSubMesh(); break;
 	}
 	
 	cGrannyVisitor::VisitChunk(iChunkType,iOffset,iChildren,pData,iSize);

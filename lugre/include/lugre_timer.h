@@ -95,7 +95,7 @@ class cTimer { public :
 	}
 	
 	// removal of registrations is done only during iteration, so no search is required, the timeouts are sorted so iteration is short
-	struct cTimerRegistrationCompare { bool operator()(cTimerRegistration* a, cTimerRegistration* b) { return a->miTime < b->miTime; } };
+	struct cTimerRegistrationCompare { bool operator()(cTimerRegistration* a, cTimerRegistration* b) const { return a->miTime < b->miTime; } };
 	std::multiset< 			cTimerRegistration*,cTimerRegistrationCompare>	mlTimeouts;
 	std::list<				cTimerRegistration*>							mlIntervals;
 	std::vector< std::list<	cTimerRegistration*>* >							mlFrameIntervals;
